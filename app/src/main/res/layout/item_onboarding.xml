@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:background="#FFFFFF"
+    android:padding="24dp">
+
+    <!-- Top spacing -->
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+
+    <!-- Illustration -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardImage"
+        android:layout_width="290dp"
+        android:layout_height="290dp"
+        app:cardCornerRadius="42dp"
+        app:cardElevation="0dp"
+        app:cardBackgroundColor="#EEF4FF">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="220dp"
+            android:layout_height="220dp"
+            android:layout_gravity="center"
+            android:scaleType="fitCenter"
+            android:src="@drawable/onboarding1"
+            android:contentDescription="@null"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <!-- Indicator -->
+    <LinearLayout
+        android:id="@+id/indicatorLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="30dp"
+            android:layout_height="8dp"
+            android:background="@drawable/indicator_active"/>
+
+        <Space
+            android:layout_width="8dp"
+            android:layout_height="1dp"/>
+
+        <View
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:background="@drawable/indicator_inactive"/>
+
+        <Space
+            android:layout_width="8dp"
+            android:layout_height="1dp"/>
+
+        <View
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:background="@drawable/indicator_inactive"/>
+
+    </LinearLayout>
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Stay on Track"
+        android:textColor="#0F172A"
+        android:textSize="34sp"
+        android:fontFamily="@font/poppins_bold"/>
+
+    <!-- Description -->
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:gravity="center"
+        android:textColor="#64748B"
+        android:textSize="17sp"
+        android:lineSpacingExtra="3dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Never miss a class or deadline again. Smart timetables and assignment reminders keep you ahead."/>
+
+</LinearLayout>

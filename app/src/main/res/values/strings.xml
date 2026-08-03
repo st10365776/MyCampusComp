@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">MyCampusComp</string>
+    <string name="onboarding_title_1">Stay on Track</string>
+    <string name="onboarding_desc_1">Never miss a class or deadline again.</string>
+    <string name="onboarding_title_2">AI-Powered Study</string>
+    <string name="onboarding_desc_2">Generate summaries, quizzes and flashcards.</string>
+    <string name="onboarding_title_3">Campus Community</string>
+    <string name="onboarding_desc_3">Buy, sell and connect with fellow students.</string>
+    <string name="get_started">Get Started</string>
+    <string name="continue_text">Continue</string>
+    <string name="back_text">Back</string>
 </resources>

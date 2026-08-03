@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
-import kotlin.jvm.java
 
 class SplashActivity : AppCompatActivity() {
 
@@ -16,12 +15,12 @@ class SplashActivity : AppCompatActivity() {
         Handler(Looper.getMainLooper()).postDelayed({
 
             startActivity(
-                Intent(this, MainActivity::class.java)
+                Intent(this, OnboardingActivity::class.java)
             )
 
             finish()
 
-        }, 9000)
+        }, 2500)
 
     }
 }
