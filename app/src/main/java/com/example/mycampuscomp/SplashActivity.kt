@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
 
 class SplashActivity : AppCompatActivity() {
 
@@ -12,15 +13,23 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
+        val auth = FirebaseAuth.getInstance()
+
         Handler(Looper.getMainLooper()).postDelayed({
 
-            startActivity(
-                Intent(this, OnboardingActivity::class.java)
-            )
+            if(auth.currentUser != null){
+
+                startActivity(Intent(this, MainActivity::class.java))
+
+            }else{
+
+                startActivity(Intent(this, OnboardingActivity::class.java))
+
+            }
 
             finish()
 
-        }, 2500)
+        },5000)
 
     }
 }
