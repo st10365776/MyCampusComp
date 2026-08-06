@@ -22,6 +22,11 @@
             android:name=".MainActivity"
             android:exported="false" />
 
+        <!-- Dashboard -->
+        <activity
+            android:name=".DashboardActivity"
+            android:exported="false" />
+
         <!-- Onboarding -->
         <activity
             android:name=".OnboardingActivity"

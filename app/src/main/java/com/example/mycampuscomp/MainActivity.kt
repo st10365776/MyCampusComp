@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.mapbox.geojson.Point
 import com.mapbox.maps.CameraOptions
@@ -21,6 +22,21 @@ class MainActivity : AppCompatActivity() {
 
         mapView = findViewById(R.id.mapView)
         val btnLogout = findViewById<Button>(R.id.btnLogout)
+        val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottomNavigation)
+
+        bottomNavigation.selectedItemId = R.id.nav_map
+
+        bottomNavigation.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_home -> {
+                    startActivity(Intent(this, DashboardActivity::class.java))
+                    finish()
+                    true
+                }
+                R.id.nav_map -> true
+                else -> false
+            }
+        }
 
         // Set the initial camera position
         mapView.mapboxMap.setCamera(

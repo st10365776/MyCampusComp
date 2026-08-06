@@ -13,7 +13,12 @@
           "package_name": "com.example.myapplication1"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "295139727248-3b7lhgjsgkprhqea2hd3mbvpb9g1pau3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBTH76yn31olIbqyGtxjLSv4ALgQnSp1Y0"
@@ -21,7 +26,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "295139727248-3b7lhgjsgkprhqea2hd3mbvpb9g1pau3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     },
@@ -32,7 +42,20 @@
           "package_name": "com.example.mycampuscomp"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "295139727248-doffcsqdnqsmunqgomnrdn5ah29pj7s2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mycampuscomp",
+            "certificate_hash": "09f002c7406863f0deae1b15dbd9bc0291532157"
+          }
+        },
+        {
+          "client_id": "295139727248-3b7lhgjsgkprhqea2hd3mbvpb9g1pau3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBTH76yn31olIbqyGtxjLSv4ALgQnSp1Y0"
@@ -40,7 +63,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "295139727248-3b7lhgjsgkprhqea2hd3mbvpb9g1pau3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
