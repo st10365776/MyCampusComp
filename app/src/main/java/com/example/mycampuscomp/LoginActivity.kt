@@ -9,13 +9,20 @@ import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
+    private lateinit var googleSignInClient: GoogleSignInClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,9 +30,18 @@ class LoginActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
+        // Configure Google Sign In
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+
+        googleSignInClient = GoogleSignIn.getClient(this, gso)
+
         val email = findViewById<EditText>(R.id.etEmail)
         val password = findViewById<EditText>(R.id.etPassword)
         val btnLogin = findViewById<Button>(R.id.btnLogin)
+        val btnGoogleSignIn = findViewById<Button>(R.id.btnGoogleSignIn)
         val txtRegister = findViewById<TextView>(R.id.txtRegister)
         val txtForgotPassword = findViewById<TextView>(R.id.txtForgotPassword)
 
@@ -40,12 +56,16 @@ class LoginActivity : AppCompatActivity() {
 
             auth.signInWithEmailAndPassword(emailText, passwordText)
                 .addOnSuccessListener {
-                    startActivity(Intent(this, MainActivity::class.java))
+                    startActivity(Intent(this, DashboardActivity::class.java))
                     finish()
                 }
                 .addOnFailureListener { e ->
                     Toast.makeText(this, "Login Failed: ${e.message}", Toast.LENGTH_LONG).show()
                 }
+        }
+
+        btnGoogleSignIn.setOnClickListener {
+            signInGoogle()
         }
 
         txtForgotPassword.setOnClickListener {
@@ -95,5 +115,37 @@ class LoginActivity : AppCompatActivity() {
             startActivity(Intent(this, RegisterActivity::class.java))
             finish()
         }
+    }
+
+    private val googleSignInLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        val data = result.data
+        if (result.resultCode == RESULT_OK && data != null) {
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            try {
+                val account = task.getResult(ApiException::class.java)
+                firebaseAuthWithGoogle(account.idToken!!)
+            } catch (e: ApiException) {
+                Toast.makeText(this, "Google sign in failed: ${e.message} (Status Code: ${e.statusCode})", Toast.LENGTH_LONG).show()
+            }
+        } else {
+            Toast.makeText(this, "Google Sign-In Canceled or Failed (Result Code: ${result.resultCode})", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun signInGoogle() {
+        val signInIntent = googleSignInClient.signInIntent
+        googleSignInLauncher.launch(signInIntent)
+    }
+
+    private fun firebaseAuthWithGoogle(idToken: String) {
+        val credential = GoogleAuthProvider.getCredential(idToken, null)
+        auth.signInWithCredential(credential)
+            .addOnSuccessListener {
+                startActivity(Intent(this, DashboardActivity::class.java))
+                finish()
+            }
+            .addOnFailureListener { e ->
+                Toast.makeText(this, "Authentication Failed: ${e.message}", Toast.LENGTH_LONG).show()
+            }
     }
 }
