@@ -6,6 +6,16 @@
     <color name="blue">#1C4FA8</color>
     <color name="blueLight">#275EC8</color>
 
+    <color name="bg_light">#F8F9FB</color>
+    <color name="navy_dark">#0A1B3D</color>
+    <color name="text_secondary">#8E94A3</color>
+    <color name="icon_bg_green">#E8F5E9</color>
+    <color name="icon_bg_blue">#E3F2FD</color>
+    <color name="icon_bg_yellow">#FFFDE7</color>
+    <color name="icon_bg_orange">#FFF3E0</color>
+    <color name="icon_bg_purple">#F3E5F5</color>
+    <color name="gray_light">#E7EAF0</color>
+
     <color name="gold">#E7B84A</color>
 
     <color name="lightText">#AEBBE7</color>
