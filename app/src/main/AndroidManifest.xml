@@ -42,6 +42,11 @@
             android:name=".RegisterActivity"
             android:exported="false" />
 
+        <!-- Timetable Page -->
+        <activity
+            android:name=".TimetableActivity"
+            android:exported="false" />
+
         <!-- Splash Screen -->
         <activity
             android:name=".SplashActivity"
