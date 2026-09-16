@@ -124,11 +124,12 @@
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="416dp"
-        android:layout_height="239dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="400dp"
+        android:layout_height="230dp"
+        android:layout_marginTop="20dp"
         android:contentDescription="@string/app_name"
         android:src="@drawable/logo"
+        android:scaleType="centerCrop"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

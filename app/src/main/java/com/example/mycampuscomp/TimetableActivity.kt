@@ -76,6 +76,12 @@ class TimetableActivity : AppCompatActivity() {
                     finish()
                     true
                 }
+                R.id.nav_assignments -> {
+                    startActivity(android.content.Intent(this, AssignmentsActivity::class.java))
+                    finish()
+                    true
+                }
+                R.id.nav_more -> true
                 else -> false
             }
         }

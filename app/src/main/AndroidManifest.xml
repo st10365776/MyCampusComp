@@ -47,6 +47,11 @@
             android:name=".TimetableActivity"
             android:exported="false" />
 
+        <!-- Assignments Page -->
+        <activity
+            android:name=".AssignmentsActivity"
+            android:exported="false" />
+
         <!-- Splash Screen -->
         <activity
             android:name=".SplashActivity"

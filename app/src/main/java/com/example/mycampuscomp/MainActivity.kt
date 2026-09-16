@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.mapbox.geojson.Point
@@ -78,7 +80,6 @@ class MainActivity : AppCompatActivity() {
 
                 // ASSIGNMENTS
                 R.id.nav_assignments -> {
-                    /*
                     startActivity(
                         Intent(
                             this,
@@ -86,7 +87,6 @@ class MainActivity : AppCompatActivity() {
                         )
                     )
                     finish()
-                    */
                     true
                 }
 
@@ -144,14 +144,20 @@ class MainActivity : AppCompatActivity() {
                 .getInstance()
                 .signOut()
 
-            startActivity(
-                Intent(
-                    this,
-                    LoginActivity::class.java
-                )
-            )
+            val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build()
 
-            finish()
+            GoogleSignIn.getClient(this, gso).signOut().addOnCompleteListener {
+                startActivity(
+                    Intent(
+                        this,
+                        LoginActivity::class.java
+                    )
+                )
+                finish()
+            }
         }
     }
 }
