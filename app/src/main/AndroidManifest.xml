@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- Include this permission to grab user's general location -->
+    <!-- Permissions -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <!-- Include only if your app benefits from precise location access. -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
@@ -17,21 +17,53 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyCampusComp">
 
+        <!-- Main Screen -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+
+        <!-- Dashboard -->
+        <activity
+            android:name=".DashboardActivity"
+            android:exported="false" />
+
+        <!-- Onboarding -->
+        <activity
+            android:name=".OnboardingActivity"
+            android:exported="false" />
+
+        <!-- Login -->
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
+
+        <!-- Register -->
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="false" />
+
+        <!-- Timetable Page -->
+        <activity
+            android:name=".TimetableActivity"
+            android:exported="false" />
+
+        <!-- Assignments Page -->
+        <activity
+            android:name=".AssignmentsActivity"
+            android:exported="false" />
+
+        <!-- Splash Screen -->
         <activity
             android:name=".SplashActivity"
             android:exported="true">
 
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
         </activity>
 
-        <activity
-            android:name=".MainActivity"
-            android:exported="false" />
     </application>
 
 </manifest>
