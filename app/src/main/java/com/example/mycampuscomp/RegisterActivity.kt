@@ -88,8 +88,10 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun signInGoogle() {
-        val signInIntent = googleSignInClient.signInIntent
-        googleSignInLauncher.launch(signInIntent)
+        googleSignInClient.signOut().addOnCompleteListener {
+            val signInIntent = googleSignInClient.signInIntent
+            googleSignInLauncher.launch(signInIntent)
+        }
     }
 
     private fun firebaseAuthWithGoogle(idToken: String) {

@@ -5,17 +5,21 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class DashboardActivity : AppCompatActivity() {
+class AssignmentsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_dashboard)
+        setContentView(R.layout.activity_assignments)
 
         val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottomNavigation)
-        bottomNavigation.selectedItemId = R.id.nav_home
+        bottomNavigation.selectedItemId = R.id.nav_assignments
 
         bottomNavigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.nav_home -> true
+                R.id.nav_home -> {
+                    startActivity(Intent(this, DashboardActivity::class.java))
+                    finish()
+                    true
+                }
                 R.id.nav_timetable -> {
                     startActivity(Intent(this, TimetableActivity::class.java))
                     finish()
@@ -26,11 +30,7 @@ class DashboardActivity : AppCompatActivity() {
                     finish()
                     true
                 }
-                R.id.nav_assignments -> {
-                    startActivity(Intent(this, AssignmentsActivity::class.java))
-                    finish()
-                    true
-                }
+                R.id.nav_assignments -> true
                 R.id.nav_more -> true
                 else -> false
             }
