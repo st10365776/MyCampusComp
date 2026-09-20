@@ -9,16 +9,21 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
+import com.example.mycampuscomp.model.User
 
 class RegisterActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
+    private val firestore: FirebaseFirestore = FirebaseFirestore.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,10 +57,34 @@ class RegisterActivity : AppCompatActivity() {
             }
 
             auth.createUserWithEmailAndPassword(emailText, passwordText)
-                .addOnSuccessListener {
-                    Toast.makeText(this, "Account Created Successfully", Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this, DashboardActivity::class.java))
-                    finish()
+                .addOnSuccessListener { authResult ->
+                    val uid = authResult.user?.uid
+                    if (uid == null) {
+                        Toast.makeText(this, "Account Created Successfully", Toast.LENGTH_SHORT).show()
+                        startActivity(Intent(this, DashboardActivity::class.java))
+                        finish()
+                        return@addOnSuccessListener
+                    }
+                    val newUser = User(uid = uid, name = nameText, email = emailText)
+                    // Also persist the user's profile in Firestore so classes and
+                    // other data can be stored under this user's document.
+                    firestore.collection("users").document(uid).set(newUser)
+                        .addOnCompleteListener {
+                            // Whether or not the Firestore write succeeds, the account
+                            // itself was created, so let the user in and just warn
+                            // if the profile failed to save.
+                            if (!it.isSuccessful) {
+                                Toast.makeText(
+                                    this,
+                                    "Account created, but saving your profile failed: ${it.exception?.message}",
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            } else {
+                                Toast.makeText(this, "Account Created Successfully", Toast.LENGTH_SHORT).show()
+                            }
+                            startActivity(Intent(this, DashboardActivity::class.java))
+                            finish()
+                        }
                 }
                 .addOnFailureListener { e ->
                     Toast.makeText(this, "Registration Failed: ${e.message}", Toast.LENGTH_LONG).show()
@@ -78,7 +107,7 @@ class RegisterActivity : AppCompatActivity() {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             try {
                 val account = task.getResult(ApiException::class.java)
-                firebaseAuthWithGoogle(account.idToken!!)
+                firebaseAuthWithGoogle(account)
             } catch (e: ApiException) {
                 Toast.makeText(this, "Google sign in failed: ${e.message} (Status Code: ${e.statusCode})", Toast.LENGTH_LONG).show()
             }
@@ -94,12 +123,28 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
-    private fun firebaseAuthWithGoogle(idToken: String) {
-        val credential = GoogleAuthProvider.getCredential(idToken, null)
+    private fun firebaseAuthWithGoogle(account: GoogleSignInAccount) {
+        val credential = GoogleAuthProvider.getCredential(account.idToken, null)
         auth.signInWithCredential(credential)
-            .addOnSuccessListener {
-                startActivity(Intent(this, DashboardActivity::class.java))
-                finish()
+            .addOnSuccessListener { authResult ->
+                val uid = authResult.user?.uid
+                if (uid == null) {
+                    startActivity(Intent(this, DashboardActivity::class.java))
+                    finish()
+                    return@addOnSuccessListener
+                }
+                val newUser = User(
+                    uid = uid,
+                    name = account.displayName ?: "",
+                    email = account.email ?: ""
+                )
+                // merge() so an existing user's doc (e.g. they've registered before)
+                // isn't clobbered, while a brand-new user still gets a profile doc.
+                firestore.collection("users").document(uid).set(newUser, SetOptions.merge())
+                    .addOnCompleteListener {
+                        startActivity(Intent(this, DashboardActivity::class.java))
+                        finish()
+                    }
             }
             .addOnFailureListener { e ->
                 Toast.makeText(this, "Authentication Failed: ${e.message}", Toast.LENGTH_LONG).show()

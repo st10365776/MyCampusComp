@@ -106,6 +106,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tvDayNameMon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Mon"
@@ -113,6 +114,7 @@
                 android:textSize="13sp" />
 
             <TextView
+                android:id="@+id/tvDayNumMon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -134,6 +136,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tvDayNameTue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Tue"
@@ -141,6 +144,7 @@
                 android:textSize="13sp" />
 
             <TextView
+                android:id="@+id/tvDayNumTue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -161,6 +165,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tvDayNameWed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Wed"
@@ -168,6 +173,7 @@
                 android:textSize="13sp" />
 
             <TextView
+                android:id="@+id/tvDayNumWed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -188,6 +194,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tvDayNameThu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Thu"
@@ -195,6 +202,7 @@
                 android:textSize="13sp" />
 
             <TextView
+                android:id="@+id/tvDayNumThu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -215,6 +223,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tvDayNameFri"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Fri"
@@ -222,6 +231,7 @@
                 android:textSize="13sp" />
 
             <TextView
+                android:id="@+id/tvDayNumFri"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -234,242 +244,17 @@
     </LinearLayout>
 
     <!-- Schedule Content -->
-    <ScrollView
-        android:id="@+id/scheduleScroll"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvTimetable"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
         android:clipToPadding="false"
         android:padding="20dp"
         app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
-        app:layout_constraintTop_toBottomOf="@id/dayStrip">
+        app:layout_constraintTop_toBottomOf="@id/dayStrip"
+        tools:listitem="@layout/item_timetable_class" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <!-- Software Engineering -->
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/timetable_card"
-                android:elevation="2dp"
-                android:padding="16dp">
-
-                <FrameLayout
-                    android:id="@+id/iconBox1"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:background="@drawable/bg_icon_box"
-                    android:backgroundTint="@color/icon_bg_green"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_gravity="center"
-                        android:src="@drawable/ic_class_book"
-                        app:tint="#2E7D32" />
-                </FrameLayout>
-
-                <TextView
-                    android:id="@+id/tvTime1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:text="08:00 - 09:00"
-                    android:textColor="@color/text_secondary"
-                    android:textSize="12sp"
-                    app:layout_constraintStart_toEndOf="@id/iconBox1"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/tvSubject1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="2dp"
-                    android:text="Software Engineering"
-                    android:textColor="@color/navy_dark"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@id/iconBox1"
-                    app:layout_constraintTop_toBottomOf="@id/tvTime1" />
-
-                <TextView
-                    android:id="@+id/tvRoom1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="2dp"
-                    android:text="Room 204"
-                    android:textColor="@color/text_secondary"
-                    android:textSize="13sp"
-                    app:layout_constraintStart_toEndOf="@id/iconBox1"
-                    app:layout_constraintTop_toBottomOf="@id/tvSubject1" />
-
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/ic_chevron_down"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <!-- Mathematics -->
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/timetable_card"
-                android:elevation="2dp"
-                android:padding="16dp">
-
-                <FrameLayout
-                    android:id="@+id/iconBox2"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:background="@drawable/bg_icon_box"
-                    android:backgroundTint="@color/icon_bg_blue"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_gravity="center"
-                        android:src="@drawable/ic_class_book"
-                        app:tint="#1976D2" />
-                </FrameLayout>
-
-                <TextView
-                    android:id="@+id/tvTime2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:text="09:15 - 10:15"
-                    android:textColor="@color/text_secondary"
-                    android:textSize="12sp"
-                    app:layout_constraintStart_toEndOf="@id/iconBox2"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/tvSubject2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="2dp"
-                    android:text="Mathematics"
-                    android:textColor="@color/navy_dark"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@id/iconBox2"
-                    app:layout_constraintTop_toBottomOf="@id/tvTime2" />
-
-                <TextView
-                    android:id="@+id/tvRoom2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="2dp"
-                    android:text="Room 101"
-                    android:textColor="@color/text_secondary"
-                    android:textSize="13sp"
-                    app:layout_constraintStart_toEndOf="@id/iconBox2"
-                    app:layout_constraintTop_toBottomOf="@id/tvSubject2" />
-
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/ic_chevron_down"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <!-- Database Systems -->
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/timetable_card"
-                android:elevation="2dp"
-                android:padding="16dp">
-
-                <FrameLayout
-                    android:id="@+id/iconBox3"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:background="@drawable/bg_icon_box"
-                    android:backgroundTint="@color/icon_bg_yellow"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_gravity="center"
-                        android:src="@drawable/ic_class_book"
-                        app:tint="#FBC02D" />
-                </FrameLayout>
-
-                <TextView
-                    android:id="@+id/tvTime3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:text="11:00 - 12:00"
-                    android:textColor="@color/text_secondary"
-                    android:textSize="12sp"
-                    app:layout_constraintStart_toEndOf="@id/iconBox3"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/tvSubject3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="2dp"
-                    android:text="Database Systems"
-                    android:textColor="@color/navy_dark"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@id/iconBox3"
-                    app:layout_constraintTop_toBottomOf="@id/tvTime3" />
-
-                <TextView
-                    android:id="@+id/tvRoom3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="4dp"
-                    android:text="Room 108"
-                    android:textColor="@color/text_secondary"
-                    android:textSize="13sp"
-                    app:layout_constraintStart_toEndOf="@id/iconBox3"
-                    app:layout_constraintTop_toBottomOf="@id/tvSubject3" />
-
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/ic_chevron_down"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </LinearLayout>
-    </ScrollView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabAdd"

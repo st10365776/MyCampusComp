@@ -10,4 +10,8 @@
     <string name="continue_text">Continue</string>
     <string name="back_text">Back</string>
     <string name="logout">Logout</string>
+
+    <string name="assignment_due_prefix">Due: %1$s</string>
+    <string name="edit_assignment">Edit assignment</string>
+    <string name="delete_assignment">Delete assignment</string>
 </resources>
