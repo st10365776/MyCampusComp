@@ -16,8 +16,9 @@
         android:id="@+id/nav_assignments"
         android:icon="@drawable/ic_school"
         android:title="Assignments" />
+
     <item
-        android:id="@+id/nav_more"
-        android:icon="@drawable/ic_settings"
-        android:title="More" />
+        android:id="@+id/nav_ai"
+        android:icon="@drawable/ic_ai"
+        android:title="AI Assistant" />
 </menu>
