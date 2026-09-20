@@ -91,16 +91,10 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 // MORE
-                R.id.nav_more -> {
-                    /*
+                R.id.nav_ai -> {
                     startActivity(
-                        Intent(
-                            this,
-                            SettingsActivity::class.java
-                        )
+                        Intent(this, AIStudyAssistantActivity::class.java)
                     )
-                    finish()
-                    */
                     true
                 }
 

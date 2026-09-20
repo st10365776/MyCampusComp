@@ -1,5 +1,6 @@
 package com.example.mycampuscomp
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -81,8 +82,16 @@ class TimetableActivity : AppCompatActivity() {
                     finish()
                     true
                 }
-                R.id.nav_more -> true
-                else -> false
+                R.id.nav_ai -> {
+                    startActivity(
+                        Intent(this, AIStudyAssistantActivity::class.java)
+                    )
+                    true
+                }
+
+                else -> {
+                    false
+                }
             }
         }
     }

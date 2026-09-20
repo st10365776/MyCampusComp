@@ -6,33 +6,61 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class DashboardActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_dashboard)
 
-        val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottomNavigation)
+        val bottomNavigation =
+            findViewById<BottomNavigationView>(R.id.bottomNavigation)
+
+        // Keep Home selected when Dashboard opens
         bottomNavigation.selectedItemId = R.id.nav_home
 
+        // Bottom navigation
         bottomNavigation.setOnItemSelectedListener { item ->
+
             when (item.itemId) {
-                R.id.nav_home -> true
+
+                R.id.nav_home -> {
+                    true
+                }
+
                 R.id.nav_timetable -> {
-                    startActivity(Intent(this, TimetableActivity::class.java))
+                    startActivity(
+                        Intent(this, TimetableActivity::class.java)
+                    )
                     finish()
                     true
                 }
+
                 R.id.nav_map -> {
-                    startActivity(Intent(this, MainActivity::class.java))
+                    startActivity(
+                        Intent(this, MainActivity::class.java)
+                    )
                     finish()
                     true
                 }
+
                 R.id.nav_assignments -> {
-                    startActivity(Intent(this, AssignmentsActivity::class.java))
+                    startActivity(
+                        Intent(this, AssignmentsActivity::class.java)
+                    )
                     finish()
                     true
                 }
-                R.id.nav_more -> true
-                else -> false
+
+                R.id.nav_ai -> {
+                    startActivity(
+                        Intent(this, AIStudyAssistantActivity::class.java)
+                    )
+                    true
+                }
+
+                else -> {
+                    false
+                }
             }
         }
     }
