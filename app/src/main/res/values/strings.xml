@@ -32,4 +32,32 @@
     <string name="assignment_due_prefix">Due: %1$s</string>
     <string name="edit_assignment">Edit assignment</string>
     <string name="delete_assignment">Delete assignment</string>
+
+    <string-array name="marketplace_categories">
+        <item>Books</item>
+        <item>Electronics</item>
+        <item>Furniture</item>
+        <item>Clothing</item>
+        <item>Stationery</item>
+        <item>Gaming</item>
+        <item>Sports</item>
+        <item>Accommodation</item>
+        <item>Services</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="marketplace_conditions">
+        <item>New</item>
+        <item>Like New</item>
+        <item>Good</item>
+        <item>Fair</item>
+        <item>Used</item>
+    </string-array>
+
+    <!-- Dashboard / Home screen -->
+    <string name="dashboard_greeting_name">%1$s 👋</string>
+    <string name="dashboard_study_streak">%1$d 🔥</string>
+    <string name="dashboard_next_class_label">NEXT CLASS</string>
+    <string name="dashboard_no_classes_today">No more classes today</string>
+    <string name="dashboard_no_upcoming_assignments">No upcoming assignments</string>
 </resources>

@@ -10,20 +10,33 @@ import androidx.lifecycle.viewModelScope
 import com.example.mycampuscomp.db.AppDatabase
 import com.example.mycampuscomp.model.TimetableClass
 import com.example.mycampuscomp.repository.TimetableRepository
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.launch
 
-@kotlinx.coroutines.ExperimentalCoroutinesApi
 class TimetableViewModel(application: Application) : AndroidViewModel(application) {
+
+    enum class ViewMode { DAY, WEEK }
 
     private val repository: TimetableRepository
     private val selectedDay = MutableStateFlow("Mon")
+    private val viewMode = MutableStateFlow(ViewMode.WEEK)
     private val TAG = "TimetableViewModel"
 
-    val classes: LiveData<List<TimetableClass>> = selectedDay.flatMapLatest { day ->
-        repository.getClassesForDayLocal(day)
-    }.asLiveData()
+    // Emits the selected day's classes in DAY mode, or every class Mon-Fri
+    // in WEEK mode - whichever tab is currently active.
+    @OptIn(ExperimentalCoroutinesApi::class)
+    val classes: LiveData<List<TimetableClass>> =
+        combine(viewMode, selectedDay) { mode, day -> mode to day }
+            .flatMapLatest { (mode, day) ->
+                if (mode == ViewMode.WEEK) {
+                    repository.getAllClassesLocal()
+                } else {
+                    repository.getClassesForDayLocal(day)
+                }
+            }.asLiveData()
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
@@ -36,6 +49,10 @@ class TimetableViewModel(application: Application) : AndroidViewModel(applicatio
 
     fun setDay(day: String) {
         selectedDay.value = day
+    }
+
+    fun setViewMode(mode: ViewMode) {
+        viewMode.value = mode
     }
 
     fun refreshData() {
