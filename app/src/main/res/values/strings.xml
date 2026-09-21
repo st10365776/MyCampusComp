@@ -10,6 +10,24 @@
     <string name="continue_text">Continue</string>
     <string name="back_text">Back</string>
     <string name="logout">Logout</string>
+    <!-- Top bar -->
+    <string name="ai_study_assistant_title">AI Study Assistant</string>
+    <string name="menu_icon_description">More options</string>
+
+    <!-- Chat labels -->
+    <string name="ai_tutor_label">AI Tutor</string>
+
+    <!-- Sample / seed messages (replace with dynamic content from chat adapter) -->
+    <string name="ai_welcome_message">Hi! I\'m your AI Study Tutor. I can help you understand your university work, explain difficult topics, give you hints and test your knowledge.</string>
+    <string name="sample_student_message">Explain polymorphism in Java with an example.</string>
+    <string name="sample_ai_response">Polymorphism means that one thing can have different forms. In Java, it allows the same method to behave differently depending on the object using it.\n\nFor example, a parent class can have a method and a child class can change how that method works.\n\nNow let\'s test your understanding: Can you explain polymorphism in your own words?</string>
+
+    <!-- Input area -->
+    <string name="message_input_hint">Ask anything...</string>
+    <string name="send_button_description">Send message</string>
+
+    <string name="ai_assistant_icon_description">AI Study Assistant</string>
+
 
     <string name="assignment_due_prefix">Due: %1$s</string>
     <string name="edit_assignment">Edit assignment</string>

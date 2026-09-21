@@ -156,25 +156,47 @@ class AssignmentsActivity : AppCompatActivity() {
         bottomNavigation.selectedItemId = R.id.nav_assignments
 
         bottomNavigation.setOnItemSelectedListener { item ->
+
             when (item.itemId) {
+
                 R.id.nav_home -> {
-                    startActivity(Intent(this, DashboardActivity::class.java))
-                    finish()
                     true
                 }
+
                 R.id.nav_timetable -> {
-                    startActivity(Intent(this, TimetableActivity::class.java))
+                    startActivity(
+                        Intent(this, TimetableActivity::class.java)
+                    )
                     finish()
                     true
                 }
+
                 R.id.nav_map -> {
-                    startActivity(Intent(this, MainActivity::class.java))
+                    startActivity(
+                        Intent(this, MainActivity::class.java)
+                    )
                     finish()
                     true
                 }
-                R.id.nav_assignments -> true
-                R.id.nav_more -> true
-                else -> false
+
+                R.id.nav_assignments -> {
+                    startActivity(
+                        Intent(this, AssignmentsActivity::class.java)
+                    )
+                    finish()
+                    true
+                }
+
+                R.id.nav_ai -> {
+                    startActivity(
+                        Intent(this, AIStudyAssistantActivity::class.java)
+                    )
+                    true
+                }
+
+                else -> {
+                    false
+                }
             }
         }
     }
