@@ -30,8 +30,18 @@
 
     <color name="send_button">#1769D1</color>
     <color name="gold">#E7B84A</color>
+    <color name="green_dark">#2E7D32</color>
+    <color name="blue_dark">#1976D2</color>
 
     <color name="lightText">#AEBBE7</color>
 
     <color name="logoBackground">#5A6DB3</color>
+
+    <!-- Assignment status badges -->
+    <color name="status_pending_bg">#E3EAFF</color>
+    <color name="status_pending_text">#3B59FF</color>
+    <color name="status_urgent_bg">#FFF0F0</color>
+    <color name="status_urgent_text">#FF5252</color>
+    <color name="status_completed_bg">#E8F5E9</color>
+    <color name="status_completed_text">#2E7D32</color>
 </resources>
