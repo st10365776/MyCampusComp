@@ -1,24 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+
     <item
         android:id="@+id/nav_home"
         android:icon="@drawable/ic_school"
         android:title="Home" />
+
     <item
         android:id="@+id/nav_timetable"
-        android:icon="@drawable/ic_school"
+        android:icon="@drawable/ic_timetable"
         android:title="Timetable" />
+
     <item
         android:id="@+id/nav_map"
         android:icon="@drawable/ic_map"
         android:title="Map" />
+
     <item
         android:id="@+id/nav_assignments"
-        android:icon="@drawable/ic_school"
+        android:icon="@drawable/ic_assignment"
         android:title="Assignments" />
+
+    <item
+        android:id="@+id/nav_marketplace"
+        android:icon="@drawable/ic_marketplace"
+        android:title="Market" />
 
     <item
         android:id="@+id/nav_ai"
         android:icon="@drawable/ic_ai"
         android:title="AI Assistant" />
+
 </menu>

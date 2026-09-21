@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F4F7FC">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="List an Item"
+            android:textColor="#172B4D"
+            android:textSize="28sp"
+            android:fontFamily="sans-serif-black"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Sell something to fellow students"
+            android:textColor="#7A869A"
+            android:textSize="14sp"/>
+
+        <EditText
+            android:id="@+id/etItemTitle"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="25dp"
+            android:hint="Item title *"
+            android:background="@drawable/bg_marketplace_input"
+            android:paddingHorizontal="16dp"/>
+
+        <EditText
+            android:id="@+id/etItemDescription"
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:layout_marginTop="12dp"
+            android:gravity="top"
+            android:hint="Description *"
+            android:background="@drawable/bg_marketplace_input"
+            android:padding="16dp"/>
+
+        <EditText
+            android:id="@+id/etItemPrice"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="12dp"
+            android:inputType="numberDecimal"
+            android:hint="Price (R) *"
+            android:background="@drawable/bg_marketplace_input"
+            android:paddingHorizontal="16dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="Category"
+            android:textColor="#172B4D"
+            android:textSize="13sp"/>
+
+        <Spinner
+            android:id="@+id/spinnerCategory"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:entries="@array/marketplace_categories"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Condition"
+            android:textColor="#172B4D"
+            android:textSize="13sp"/>
+
+        <Spinner
+            android:id="@+id/spinnerCondition"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:entries="@array/marketplace_conditions"/>
+
+        <EditText
+            android:id="@+id/etItemImage"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="12dp"
+            android:hint="Image URL"
+            android:inputType="textUri"
+            android:background="@drawable/bg_marketplace_input"
+            android:paddingHorizontal="16dp"/>
+
+        <EditText
+            android:id="@+id/etItemLocation"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="12dp"
+            android:hint="Location / Campus"
+            android:background="@drawable/bg_marketplace_input"
+            android:paddingHorizontal="16dp"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnPublishItem"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_marginTop="25dp"
+            android:text="Publish Listing"
+            android:textColor="@color/white"
+            app:backgroundTint="@color/blueDark"
+            app:cornerRadius="18dp"/>
+
+    </LinearLayout>
+
+</ScrollView>

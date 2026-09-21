@@ -2,47 +2,109 @@ package com.example.mycampuscomp
 
 import android.content.Intent
 import android.os.Bundle
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
-import com.mapbox.geojson.Point
-import com.mapbox.maps.CameraOptions
-import com.mapbox.maps.MapView
-import com.mapbox.maps.plugin.attribution.attribution
-import com.mapbox.maps.plugin.logo.logo
-import com.mapbox.maps.plugin.scalebar.scalebar
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var mapView: MapView
+    private lateinit var mapWebView: WebView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
 
-        // Map
-        mapView = findViewById(R.id.mapView)
+        // --------------------------------------------------
+        // MAP
+        // --------------------------------------------------
 
-        // Logout button
-        val btnLogout = findViewById<Button>(R.id.btnLogout)
+        mapWebView = findViewById(R.id.mapWebView)
 
-        // Bottom navigation
+        setupWebView()
+
+
+        // --------------------------------------------------
+        // LOGOUT
+        // --------------------------------------------------
+
+        val btnLogout =
+            findViewById<Button>(R.id.btnLogout)
+
+
+        btnLogout.setOnClickListener {
+
+            FirebaseAuth
+                .getInstance()
+                .signOut()
+
+            val gso =
+                GoogleSignInOptions
+                    .Builder(
+                        GoogleSignInOptions.DEFAULT_SIGN_IN
+                    )
+                    .requestIdToken(
+                        getString(
+                            R.string.default_web_client_id
+                        )
+                    )
+                    .requestEmail()
+                    .build()
+
+            GoogleSignIn
+                .getClient(
+                    this,
+                    gso
+                )
+                .signOut()
+                .addOnCompleteListener {
+
+                    val intent =
+                        Intent(
+                            this,
+                            LoginActivity::class.java
+                        )
+
+                    intent.flags =
+                        Intent.FLAG_ACTIVITY_NEW_TASK or
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK
+
+                    startActivity(intent)
+
+                    finish()
+                }
+        }
+
+
+        // --------------------------------------------------
+        // BOTTOM NAVIGATION
+        // --------------------------------------------------
+
         val bottomNavigation =
-            findViewById<BottomNavigationView>(R.id.bottomNavigation)
+            findViewById<BottomNavigationView>(
+                R.id.bottomNavigation
+            )
 
-        // Highlight Map because this is the Map Activity
-        bottomNavigation.selectedItemId = R.id.nav_map
 
-        // Bottom navigation
+        // Highlight Map
+
+        bottomNavigation.selectedItemId =
+            R.id.nav_map
+
+
         bottomNavigation.setOnItemSelectedListener { item ->
 
             when (item.itemId) {
 
+                // ------------------------------------------
                 // HOME
+                // ------------------------------------------
+
                 R.id.nav_home -> {
 
                     startActivity(
@@ -57,7 +119,11 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
 
+
+                // ------------------------------------------
                 // TIMETABLE
+                // ------------------------------------------
+
                 R.id.nav_timetable -> {
 
                     startActivity(
@@ -72,86 +138,123 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
 
+
+                // ------------------------------------------
                 // MAP
+                // ------------------------------------------
+
                 R.id.nav_map -> {
 
                     true
                 }
 
+
+                // ------------------------------------------
                 // ASSIGNMENTS
+                // ------------------------------------------
+
                 R.id.nav_assignments -> {
+
                     startActivity(
                         Intent(
                             this,
                             AssignmentsActivity::class.java
                         )
                     )
+
                     finish()
+
                     true
                 }
 
-                // MORE
-                R.id.nav_ai -> {
+
+                // ------------------------------------------
+                // MARKETPLACE
+                // ------------------------------------------
+
+                R.id.nav_marketplace -> {
+
                     startActivity(
-                        Intent(this, AIStudyAssistantActivity::class.java)
+                        Intent(
+                            this,
+                            MarketplaceActivity::class.java
+                        )
                     )
+
+                    finish()
+
                     true
                 }
 
-                else -> false
+
+                // ------------------------------------------
+                // AI STUDY ASSISTANT
+                // ------------------------------------------
+
+                R.id.nav_ai -> {
+
+                    startActivity(
+                        Intent(
+                            this,
+                            AIStudyAssistantActivity::class.java
+                        )
+                    )
+
+                    true
+                }
+
+
+                else -> {
+
+                    false
+                }
             }
         }
+    }
 
-        // --------------------------------
-        // MAP CONFIGURATION
-        // --------------------------------
 
-        mapView.mapboxMap.setCamera(
-            CameraOptions.Builder()
-                .center(
-                    Point.fromLngLat(
-                        25.57717897908619,
-                        -33.951466489045124
+    // ======================================================
+    // MAPPEDIN WEBVIEW
+    // ======================================================
+
+    private fun setupWebView() {
+
+        mapWebView.settings.apply {
+
+            javaScriptEnabled = true
+
+            domStorageEnabled = true
+
+            loadWithOverviewMode = true
+
+            useWideViewPort = true
+        }
+
+
+        mapWebView.webViewClient =
+            object : WebViewClient() {
+
+                override fun onRenderProcessGone(
+                    view: WebView?,
+                    detail: android.webkit.RenderProcessGoneDetail?
+                ): Boolean {
+
+                    /*
+                     * Reload the Mappedin map if the WebView
+                     * renderer crashes.
+                     */
+
+                    view?.loadUrl(
+                        "https://app.mappedin.com/map/6a6fa4cb81d0f1000af1aaf4?embedded=true"
                     )
-                )
-                .pitch(0.0)
-                .zoom(18.0)
-                .bearing(0.0)
-                .build()
+
+                    return true
+                }
+            }
+
+
+        mapWebView.loadUrl(
+            "https://app.mappedin.com/map/6a6fa4cb81d0f1000af1aaf4?embedded=true"
         )
-
-        // Map overlays
-
-        mapView.scalebar.marginTop = 200f
-
-        mapView.logo.marginBottom = 140f
-
-        mapView.attribution.marginBottom = 140f
-
-        // --------------------------------
-        // LOGOUT
-        // --------------------------------
-
-        btnLogout.setOnClickListener {
-
-            FirebaseAuth
-                .getInstance()
-                .signOut()
-
-            val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build()
-
-            GoogleSignIn.getClient(this, gso).signOut().addOnCompleteListener {
-                startActivity(
-                    Intent(
-                        this,
-                        LoginActivity::class.java
-                    )
-                )
-                finish()
-            }
-        }
     }
 }

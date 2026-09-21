@@ -12,6 +12,25 @@ interface TimetableDao {
     @Query("SELECT * FROM timetable_classes WHERE day = :day AND userId = :userId ORDER BY time ASC")
     fun getClassesForDay(day: String, userId: String): Flow<List<TimetableClass>>
 
+    // Whole week (Mon-Fri), ordered day-by-day (not alphabetically - "Mon"
+    // needs to sort before "Tue" etc.) and then by time within each day.
+    @Query(
+        """
+        SELECT * FROM timetable_classes WHERE userId = :userId
+        ORDER BY CASE day
+            WHEN 'Mon' THEN 1
+            WHEN 'Tue' THEN 2
+            WHEN 'Wed' THEN 3
+            WHEN 'Thu' THEN 4
+            WHEN 'Fri' THEN 5
+            WHEN 'Sat' THEN 6
+            WHEN 'Sun' THEN 7
+            ELSE 8
+        END, time ASC
+        """
+    )
+    fun getAllClassesForUser(userId: String): Flow<List<TimetableClass>>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertClasses(classes: List<TimetableClass>)
 

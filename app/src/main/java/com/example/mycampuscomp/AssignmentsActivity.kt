@@ -160,6 +160,10 @@ class AssignmentsActivity : AppCompatActivity() {
             when (item.itemId) {
 
                 R.id.nav_home -> {
+                    startActivity(
+                        Intent(this, DashboardActivity::class.java)
+                    )
+                    finish()
                     true
                 }
 
@@ -182,6 +186,14 @@ class AssignmentsActivity : AppCompatActivity() {
                 R.id.nav_assignments -> {
                     startActivity(
                         Intent(this, AssignmentsActivity::class.java)
+                    )
+                    finish()
+                    true
+                }
+
+                R.id.nav_marketplace -> {
+                    startActivity(
+                        Intent(this, MarketplaceActivity::class.java)
                     )
                     finish()
                     true
