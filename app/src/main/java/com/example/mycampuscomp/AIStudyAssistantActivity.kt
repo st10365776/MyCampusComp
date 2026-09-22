@@ -119,7 +119,7 @@ class AIStudyAssistantActivity : AppCompatActivity() {
 
                         addTutorMessage(
                             "Sorry, I couldn't process your request right now. " +
-                                    "Please try again."
+                                    "Please try again. (HTTP ${response.code()})"
                         )
 
                         showErrorToast(
@@ -143,7 +143,7 @@ class AIStudyAssistantActivity : AppCompatActivity() {
                     )
 
                     showErrorToast(
-                        "Connection error"
+                        "Connection error: ${e.message}"
                     )
 
                     enableChat()

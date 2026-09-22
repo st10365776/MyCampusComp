@@ -39,11 +39,11 @@ class SettingsActivity : AppCompatActivity() {
         }
 
         layoutEditProfile.setOnClickListener {
-            Toast.makeText(this, "Edit Profile clicked", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, EditProfileActivity::class.java))
         }
 
         layoutNotifications.setOnClickListener {
-            Toast.makeText(this, "Notifications clicked", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, NotificationsActivity::class.java))
         }
 
         layoutTheme.setOnClickListener {

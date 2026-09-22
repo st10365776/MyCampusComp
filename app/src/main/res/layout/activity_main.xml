@@ -1,39 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
+    android:background="#F4F6F8"
+
     tools:context=".MainActivity">
 
-    <com.mapbox.maps.MapView
-        android:id="@+id/mapView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/bottomNavigation" />
 
-    <Button
-        android:id="@+id/btnLogout"
-        android:layout_width="wrap_content"
+    <!-- ================================================= -->
+    <!-- MAPPEDIN CAMPUS MAP                               -->
+    <!-- ================================================= -->
+
+    <WebView
+        android:id="@+id/mapWebView"
+
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+
+        android:background="#F4F6F8"
+
+        android:overScrollMode="never"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <!-- ================================================= -->
+    <!-- FLOATING TOP CARD                                 -->
+    <!-- ================================================= -->
+
+    <androidx.cardview.widget.CardView
+
+        android:id="@+id/mapHeader"
+
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:text="@string/logout"
-        android:backgroundTint="#FF5252"
-        android:textColor="@android:color/white"
+
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="22dp"
+        app:cardElevation="8dp"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+    <!-- ================================================= -->
+    <!-- LOGOUT BUTTON                                     -->
+    <!-- ================================================= -->
+
+
+    <!-- ================================================= -->
+    <!-- BOTTOM INFORMATION CARD                           -->
+    <!-- ================================================= -->
+
+    <androidx.cardview.widget.CardView
+
+        android:id="@+id/mapInfoCard"
+
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="14dp"
+
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="8dp"
+
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigation"/>
+
+
+    <!-- ================================================= -->
+    <!-- BOTTOM NAVIGATION                                 -->
+    <!-- ================================================= -->
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
+
         android:id="@+id/bottomNavigation"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         android:background="@color/white"
+
+        android:elevation="12dp"
+
         app:itemIconTint="@color/blueDark"
         app:itemTextColor="@color/blueDark"
+
         app:labelVisibilityMode="labeled"
+
         app:layout_constraintBottom_toBottomOf="parent"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
         app:menu="@menu/bottom_nav_menu" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

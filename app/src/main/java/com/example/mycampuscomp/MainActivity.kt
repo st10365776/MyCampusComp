@@ -2,156 +2,116 @@ package com.example.mycampuscomp
 
 import android.content.Intent
 import android.os.Bundle
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
-import com.mapbox.geojson.Point
-import com.mapbox.maps.CameraOptions
-import com.mapbox.maps.MapView
-import com.mapbox.maps.plugin.attribution.attribution
-import com.mapbox.maps.plugin.logo.logo
-import com.mapbox.maps.plugin.scalebar.scalebar
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var mapView: MapView
+    private lateinit var mapWebView: WebView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
 
-        // Map
-        mapView = findViewById(R.id.mapView)
+        // --------------------------------------------------
+        // MAP
+        // --------------------------------------------------
 
-        // Logout button
-        val btnLogout = findViewById<Button>(R.id.btnLogout)
+        mapWebView = findViewById(R.id.mapWebView)
 
-        // Bottom navigation
-        val bottomNavigation =
-            findViewById<BottomNavigationView>(R.id.bottomNavigation)
+        setupWebView()
 
-        // Highlight Map because this is the Map Activity
-        bottomNavigation.selectedItemId = R.id.nav_map
 
-        // Bottom navigation
+        // --------------------------------------------------
+        // BOTTOM NAVIGATION
+        // --------------------------------------------------
+
+        val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottomNavigation)
+        bottomNavigation.selectedItemId = R.id.nav_home
+
         bottomNavigation.setOnItemSelectedListener { item ->
-
             when (item.itemId) {
-
-                // HOME
                 R.id.nav_home -> {
-
-                    startActivity(
-                        Intent(
-                            this,
-                            DashboardActivity::class.java
-                        )
-                    )
-
+                    startActivity(Intent(this, DashboardActivity::class.java))
                     finish()
-
                     true
                 }
-
-                // TIMETABLE
                 R.id.nav_timetable -> {
-
-                    startActivity(
-                        Intent(
-                            this,
-                            TimetableActivity::class.java
-                        )
-                    )
-
-                    finish()
-
-                    true
-                }
-
-                // MAP
-                R.id.nav_map -> {
-
-                    true
-                }
-
-                // ASSIGNMENTS
-                R.id.nav_assignments -> {
-                    startActivity(
-                        Intent(
-                            this,
-                            AssignmentsActivity::class.java
-                        )
-                    )
+                    startActivity(Intent(this, TimetableActivity::class.java))
                     finish()
                     true
                 }
-
-                // MORE
                 R.id.nav_ai -> {
-                    startActivity(
-                        Intent(this, AIStudyAssistantActivity::class.java)
-                    )
+                    startActivity(Intent(this, AIStudyAssistantActivity::class.java))
                     true
                 }
-
+                R.id.nav_assignments -> {
+                    startActivity(Intent(this, AssignmentsActivity::class.java))
+                    finish()
+                    true
+                }
+                R.id.nav_more -> {
+                    val intent = Intent(this, DashboardActivity::class.java)
+                    intent.putExtra("open_drawer", true)
+                    startActivity(intent)
+                    finish()
+                    true
+                }
                 else -> false
             }
         }
+    }
 
-        // --------------------------------
-        // MAP CONFIGURATION
-        // --------------------------------
 
-        mapView.mapboxMap.setCamera(
-            CameraOptions.Builder()
-                .center(
-                    Point.fromLngLat(
-                        25.57717897908619,
-                        -33.951466489045124
-                    )
-                )
-                .pitch(0.0)
-                .zoom(18.0)
-                .bearing(0.0)
-                .build()
-        )
+    // ======================================================
+    // MAPPEDIN WEBVIEW
+    // ======================================================
 
-        // Map overlays
+    private fun setupWebView() {
 
-        mapView.scalebar.marginTop = 200f
+        mapWebView.settings.apply {
 
-        mapView.logo.marginBottom = 140f
+            javaScriptEnabled = true
 
-        mapView.attribution.marginBottom = 140f
+            domStorageEnabled = true
 
-        // --------------------------------
-        // LOGOUT
-        // --------------------------------
+            loadWithOverviewMode = true
 
-        btnLogout.setOnClickListener {
-
-            FirebaseAuth
-                .getInstance()
-                .signOut()
-
-            val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build()
-
-            GoogleSignIn.getClient(this, gso).signOut().addOnCompleteListener {
-                startActivity(
-                    Intent(
-                        this,
-                        LoginActivity::class.java
-                    )
-                )
-                finish()
-            }
+            useWideViewPort = true
         }
+
+
+        mapWebView.webViewClient =
+            object : WebViewClient() {
+
+                override fun onRenderProcessGone(
+                    view: WebView?,
+                    detail: android.webkit.RenderProcessGoneDetail?
+                ): Boolean {
+
+                    /*
+                     * Reload the Mappedin map if the WebView
+                     * renderer crashes.
+                     */
+
+                    view?.loadUrl(
+                        "https://app.mappedin.com/map/6a6fa4cb81d0f1000af1aaf4?embedded=true"
+                    )
+
+                    return true
+                }
+            }
+
+
+        mapWebView.loadUrl(
+            "https://app.mappedin.com/map/6a6fa4cb81d0f1000af1aaf4?embedded=true"
+        )
     }
 }

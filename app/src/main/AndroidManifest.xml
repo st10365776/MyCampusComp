@@ -2,13 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- Permissions -->
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:usesCleartextTraffic="true"
         android:allowBackup="true"
@@ -50,23 +48,55 @@
             android:name=".RegisterActivity"
             android:exported="false" />
 
-        <!-- Settings Page -->
-        <activity
-            android:name=".SettingsActivity"
-            android:exported="false" />
-
         <!-- Timetable Page -->
         <activity
             android:name=".TimetableActivity"
             android:exported="false" />
 
-        <activity
-            android:name=".QrScannerActivity"
-            android:screenOrientation="portrait" />
-
         <!-- Assignments Page -->
         <activity
             android:name=".AssignmentsActivity"
+            android:exported="false" />
+
+        <!-- Marketplace Page -->
+        <activity
+            android:name=".MarketplaceActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ListItemActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ProductDetailsActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".MyListingsActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".SellerProfileActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".EditProfileActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".QrScannerActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".AttendanceActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".NotificationsActivity"
             android:exported="false" />
 
         <!-- Splash Screen -->

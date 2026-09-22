@@ -28,14 +28,40 @@
 
     <string name="ai_assistant_icon_description">AI Study Assistant</string>
 
-    <!-- Settings -->
+
+    <string name="assignment_due_prefix">Due: %1$s</string>
+    <string name="edit_assignment">Edit assignment</string>
+    <string name="delete_assignment">Delete assignment</string>
+
+    <!-- Marketplace arrays -->
+    <string-array name="marketplace_categories">
+        <item>Books</item>
+        <item>Electronics</item>
+        <item>Furniture</item>
+        <item>Clothing</item>
+        <item>Stationery</item>
+        <item>Gaming</item>
+        <item>Sports</item>
+        <item>Accommodation</item>
+        <item>Services</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="marketplace_conditions">
+        <item>New</item>
+        <item>Like New</item>
+        <item>Good</item>
+        <item>Fair</item>
+        <item>Used</item>
+    </string-array>
+
+    <!-- Settings strings -->
     <string name="settings_title">Settings</string>
     <string name="account_section">Account</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="notifications">Notifications</string>
     <string name="preferences_section">Preferences</string>
     <string name="theme">Theme</string>
-    <string name="theme_light">Light</string>
+    <string name="theme_light">Light Theme</string>
     <string name="log_out">Log Out</string>
-
 </resources>
