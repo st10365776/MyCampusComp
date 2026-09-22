@@ -28,4 +28,8 @@
 
     <string name="ai_assistant_icon_description">AI Study Assistant</string>
 
+
+    <string name="assignment_due_prefix">Due: %1$s</string>
+    <string name="edit_assignment">Edit assignment</string>
+    <string name="delete_assignment">Delete assignment</string>
 </resources>
