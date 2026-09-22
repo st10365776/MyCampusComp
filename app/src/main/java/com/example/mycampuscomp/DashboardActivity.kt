@@ -2,6 +2,7 @@ package com.example.mycampuscomp
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -11,6 +12,11 @@ class DashboardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_dashboard)
+
+        val ivProfile = findViewById<ImageView>(R.id.ivProfile)
+        ivProfile.setOnClickListener {
+            startActivity(Intent(this, SettingsActivity::class.java))
+        }
 
         val bottomNavigation =
             findViewById<BottomNavigationView>(R.id.bottomNavigation)

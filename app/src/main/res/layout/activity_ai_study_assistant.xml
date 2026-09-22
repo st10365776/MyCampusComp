@@ -109,8 +109,8 @@
             android:inputType="textCapSentences|textMultiLine"
             android:imeOptions="actionSend"
             android:maxLines="@integer/ai_input_max_lines"
-            android:textColor="@color/text_main"
-            android:textColorHint="@color/text_muted"
+            android:textColor="@color/ai_input_text_color"
+            android:textColorHint="@color/ai_input_hint_color"
             android:textSize="@dimen/ai_input_text_size" />
 
         <ImageButton

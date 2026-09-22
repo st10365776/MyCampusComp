@@ -3,7 +3,7 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
 
-    <solid android:color="@color/ai_bubble" />
+    <solid android:color="@color/ai_chat_bubble_ai" />
 
     <corners
         android:topLeftRadius="@dimen/ai_bubble_corner_radius"
