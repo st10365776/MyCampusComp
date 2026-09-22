@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F4F7FC"
+    android:background="@color/screen_background"
     tools:context=".AssignmentsActivity">
 
     <TextView
@@ -14,7 +14,7 @@
         android:layout_margin="20dp"
         android:fontFamily="@font/poppins_bold"
         android:text="Assignments"
-        android:textColor="#172B4D"
+        android:textColor="@color/text_main"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -37,7 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
-                app:cardBackgroundColor="@color/white"
+                app:cardBackgroundColor="@color/card_surface"
                 app:cardCornerRadius="24dp"
                 app:cardElevation="6dp"
                 app:strokeWidth="0dp">
@@ -53,7 +53,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-medium"
                         android:text="Database Systems Project"
-                        android:textColor="#172B4D"
+                        android:textColor="@color/text_main"
                         android:textSize="16sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -64,24 +64,32 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif"
                         android:text="Due: Oct 12, 2026"
-                        android:textColor="#7A869A"
+                        android:textColor="@color/text_muted"
                         android:textSize="13sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tvAssignment1Name" />
 
-                    <TextView
+                    <com.google.android.material.card.MaterialCardView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="#E3EAFF"
-                        android:fontFamily="sans-serif-black"
-                        android:paddingHorizontal="8dp"
-                        android:paddingVertical="4dp"
-                        android:text="Pending"
-                        android:textColor="#3B59FF"
-                        android:textSize="11sp"
+                        app:cardBackgroundColor="@color/accent_surface"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="0dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:strokeWidth="0dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-black"
+                            android:paddingHorizontal="10dp"
+                            android:paddingVertical="4dp"
+                            android:text="Pending"
+                            android:textColor="@color/accent_text"
+                            android:textSize="11sp" />
+                    </com.google.android.material.card.MaterialCardView>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -91,7 +99,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
-                app:cardBackgroundColor="@color/white"
+                app:cardBackgroundColor="@color/card_surface"
                 app:cardCornerRadius="24dp"
                 app:cardElevation="6dp"
                 app:strokeWidth="0dp">
@@ -107,7 +115,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-medium"
                         android:text="Mobile App Development"
-                        android:textColor="#172B4D"
+                        android:textColor="@color/text_main"
                         android:textSize="16sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -118,24 +126,32 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif"
                         android:text="Due: Oct 15, 2026"
-                        android:textColor="#7A869A"
+                        android:textColor="@color/text_muted"
                         android:textSize="13sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tvAssignment2Name" />
 
-                    <TextView
+                    <com.google.android.material.card.MaterialCardView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="#FFF0F0"
-                        android:fontFamily="sans-serif-black"
-                        android:paddingHorizontal="8dp"
-                        android:paddingVertical="4dp"
-                        android:text="Urgent"
-                        android:textColor="#FF5252"
-                        android:textSize="11sp"
+                        app:cardBackgroundColor="@color/upcoming_icon_bg"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="0dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:strokeWidth="0dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-black"
+                            android:paddingHorizontal="10dp"
+                            android:paddingVertical="4dp"
+                            android:text="Urgent"
+                            android:textColor="@color/upcoming_icon_tint"
+                            android:textSize="11sp" />
+                    </com.google.android.material.card.MaterialCardView>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -147,7 +163,7 @@
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@color/card_surface"
         android:elevation="16dp"
         app:itemIconTint="@color/blueDark"
         app:itemTextColor="@color/blueDark"
