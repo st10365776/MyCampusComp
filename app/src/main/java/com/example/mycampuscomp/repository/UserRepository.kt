@@ -48,4 +48,17 @@ class UserRepository(
         listener?.remove()
         listener = null
     }
+
+    suspend fun updateUserProfile(name: String, profileImageUrl: String) {
+        val uid = auth.currentUser?.uid ?: return
+        try {
+            val updates = mapOf(
+                "name" to name,
+                "profileImageUrl" to profileImageUrl
+            )
+            firestore.collection("users").document(uid).update(updates)
+        } catch (e: Exception) {
+            Log.e(TAG, "Error updating user profile", e)
+        }
+    }
 }

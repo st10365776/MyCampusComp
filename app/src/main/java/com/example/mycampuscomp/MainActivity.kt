@@ -30,184 +30,41 @@ class MainActivity : AppCompatActivity() {
 
 
         // --------------------------------------------------
-        // LOGOUT
-        // --------------------------------------------------
-
-        val btnLogout =
-            findViewById<Button>(R.id.btnLogout)
-
-
-        btnLogout.setOnClickListener {
-
-            FirebaseAuth
-                .getInstance()
-                .signOut()
-
-            val gso =
-                GoogleSignInOptions
-                    .Builder(
-                        GoogleSignInOptions.DEFAULT_SIGN_IN
-                    )
-                    .requestIdToken(
-                        getString(
-                            R.string.default_web_client_id
-                        )
-                    )
-                    .requestEmail()
-                    .build()
-
-            GoogleSignIn
-                .getClient(
-                    this,
-                    gso
-                )
-                .signOut()
-                .addOnCompleteListener {
-
-                    val intent =
-                        Intent(
-                            this,
-                            LoginActivity::class.java
-                        )
-
-                    intent.flags =
-                        Intent.FLAG_ACTIVITY_NEW_TASK or
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK
-
-                    startActivity(intent)
-
-                    finish()
-                }
-        }
-
-
-        // --------------------------------------------------
         // BOTTOM NAVIGATION
         // --------------------------------------------------
 
-        val bottomNavigation =
-            findViewById<BottomNavigationView>(
-                R.id.bottomNavigation
-            )
-
-
-        // Highlight Map
-
-        bottomNavigation.selectedItemId =
-            R.id.nav_map
-
+        val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottomNavigation)
+        bottomNavigation.selectedItemId = R.id.nav_home
 
         bottomNavigation.setOnItemSelectedListener { item ->
-
             when (item.itemId) {
-
-                // ------------------------------------------
-                // HOME
-                // ------------------------------------------
-
                 R.id.nav_home -> {
-
-                    startActivity(
-                        Intent(
-                            this,
-                            DashboardActivity::class.java
-                        )
-                    )
-
+                    startActivity(Intent(this, DashboardActivity::class.java))
                     finish()
-
                     true
                 }
-
-
-                // ------------------------------------------
-                // TIMETABLE
-                // ------------------------------------------
-
                 R.id.nav_timetable -> {
-
-                    startActivity(
-                        Intent(
-                            this,
-                            TimetableActivity::class.java
-                        )
-                    )
-
+                    startActivity(Intent(this, TimetableActivity::class.java))
                     finish()
-
                     true
                 }
-
-
-                // ------------------------------------------
-                // MAP
-                // ------------------------------------------
-
-                R.id.nav_map -> {
-
-                    true
-                }
-
-
-                // ------------------------------------------
-                // ASSIGNMENTS
-                // ------------------------------------------
-
-                R.id.nav_assignments -> {
-
-                    startActivity(
-                        Intent(
-                            this,
-                            AssignmentsActivity::class.java
-                        )
-                    )
-
-                    finish()
-
-                    true
-                }
-
-
-                // ------------------------------------------
-                // MARKETPLACE
-                // ------------------------------------------
-
-                R.id.nav_marketplace -> {
-
-                    startActivity(
-                        Intent(
-                            this,
-                            MarketplaceActivity::class.java
-                        )
-                    )
-
-                    finish()
-
-                    true
-                }
-
-
-                // ------------------------------------------
-                // AI STUDY ASSISTANT
-                // ------------------------------------------
-
                 R.id.nav_ai -> {
-
-                    startActivity(
-                        Intent(
-                            this,
-                            AIStudyAssistantActivity::class.java
-                        )
-                    )
-
+                    startActivity(Intent(this, AIStudyAssistantActivity::class.java))
                     true
                 }
-
-
-                else -> {
-
-                    false
+                R.id.nav_assignments -> {
+                    startActivity(Intent(this, AssignmentsActivity::class.java))
+                    finish()
+                    true
                 }
+                R.id.nav_more -> {
+                    val intent = Intent(this, DashboardActivity::class.java)
+                    intent.putExtra("open_drawer", true)
+                    startActivity(intent)
+                    finish()
+                    true
+                }
+                else -> false
             }
         }
     }

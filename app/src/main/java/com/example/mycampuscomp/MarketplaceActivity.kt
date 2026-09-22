@@ -181,89 +181,38 @@ class MarketplaceActivity : AppCompatActivity() {
     }
 
     private fun setupBottomNavigation() {
-
-        val navigation =
-            findViewById<BottomNavigationView>(
-                R.id.bottomNavigation
-            )
-
-        navigation.selectedItemId =
-            R.id.nav_marketplace
+        val navigation = findViewById<BottomNavigationView>(R.id.bottomNavigation)
+        // Since Marketplace is a sub-page from drawer, we don't have to force a bottom tab selection
+        navigation.selectedItemId = R.id.nav_home
 
         navigation.setOnItemSelectedListener { item ->
-
             when (item.itemId) {
-
                 R.id.nav_home -> {
-
-                    startActivity(
-                        Intent(
-                            this,
-                            DashboardActivity::class.java
-                        )
-                    )
-
+                    startActivity(Intent(this, DashboardActivity::class.java))
                     finish()
-
                     true
                 }
-
                 R.id.nav_timetable -> {
-
-                    startActivity(
-                        Intent(
-                            this,
-                            TimetableActivity::class.java
-                        )
-                    )
-
+                    startActivity(Intent(this, TimetableActivity::class.java))
                     finish()
-
                     true
                 }
-
-                R.id.nav_map -> {
-
-                    startActivity(
-                        Intent(
-                            this,
-                            MainActivity::class.java
-                        )
-                    )
-
-                    finish()
-
-                    true
-                }
-
-                R.id.nav_assignments -> {
-
-                    startActivity(
-                        Intent(
-                            this,
-                            AssignmentsActivity::class.java
-                        )
-                    )
-
-                    finish()
-
-                    true
-                }
-
-                R.id.nav_marketplace -> true
-
                 R.id.nav_ai -> {
-
-                    startActivity(
-                        Intent(
-                            this,
-                            AIStudyAssistantActivity::class.java
-                        )
-                    )
-
+                    startActivity(Intent(this, AIStudyAssistantActivity::class.java))
                     true
                 }
-
+                R.id.nav_assignments -> {
+                    startActivity(Intent(this, AssignmentsActivity::class.java))
+                    finish()
+                    true
+                }
+                R.id.nav_more -> {
+                    val intent = Intent(this, DashboardActivity::class.java)
+                    intent.putExtra("open_drawer", true)
+                    startActivity(intent)
+                    finish()
+                    true
+                }
                 else -> false
             }
         }

@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
@@ -13,9 +12,9 @@
         android:title="Timetable" />
 
     <item
-        android:id="@+id/nav_map"
-        android:icon="@drawable/ic_map"
-        android:title="Map" />
+        android:id="@+id/nav_ai"
+        android:icon="@drawable/ic_ai"
+        android:title="AI Assistant" />
 
     <item
         android:id="@+id/nav_assignments"
@@ -23,13 +22,8 @@
         android:title="Assignments" />
 
     <item
-        android:id="@+id/nav_marketplace"
-        android:icon="@drawable/ic_marketplace"
-        android:title="Market" />
-
-    <item
-        android:id="@+id/nav_ai"
-        android:icon="@drawable/ic_ai"
-        android:title="AI Assistant" />
+        android:id="@+id/nav_more"
+        android:icon="@drawable/ic_menu_hamburger"
+        android:title="More" />
 
 </menu>

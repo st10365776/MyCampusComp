@@ -31,8 +31,17 @@ class DashboardViewModel(application: Application) : AndroidViewModel(applicatio
     // Firestore profile loads (or if the user never set a name).
     val userName: LiveData<String>
 
+    // Email address for the drawer header.
+    val userEmail: LiveData<String>
+
+    // Profile image URL for the drawer and greeting.
+    val profileImageUrl: LiveData<String>
+
     // Current study streak, straight from the user's Firestore profile.
     val studyStreak: LiveData<Int>
+
+    // Current APS Score, straight from the user's Firestore profile.
+    val apsScore: LiveData<Int>
 
     // All of today's classes, used for the "TODAY" count.
     val todayClasses: LiveData<List<TimetableClass>>
@@ -61,10 +70,15 @@ class DashboardViewModel(application: Application) : AndroidViewModel(applicatio
         userName = userRepository.user.map { user ->
             user?.name?.trim()?.takeIf { it.isNotEmpty() } ?: "Student"
         }
+        userEmail = userRepository.user.map { it?.email ?: "" }
+        profileImageUrl = userRepository.user.map { it?.profileImageUrl ?: "" }
         studyStreak = userRepository.user.map { it?.studyStreak ?: 0 }
+        apsScore = userRepository.user.map { it?.apsScore ?: 0 }
 
         todayClasses = timetableRepository.getClassesForDayLocal(todayAbbrev()).asLiveData()
-        nextClass = todayClasses.map { classes -> pickNextClass(classes) }
+        
+        val allLocalClasses = timetableRepository.getAllClassesLocal().asLiveData()
+        nextClass = allLocalClasses.map { classes -> pickNextClassAcrossWeek(classes) }
 
         assignments = assignmentRepository.getAssignmentsLocal().asLiveData()
         assignmentsDueThisWeek = assignments.map { list -> countDueWithinDays(list, 7) }
@@ -95,21 +109,43 @@ class DashboardViewModel(application: Application) : AndroidViewModel(applicatio
         fun todayAbbrev(): String =
             SimpleDateFormat("EEE", Locale.ENGLISH).format(Date())
 
-        // Classes are user-entered free text for "time" (e.g. "09:00"), so
-        // parsing is best-effort: pick the earliest class whose time hasn't
-        // passed yet, otherwise fall back to the first class of the day.
-        fun pickNextClass(classes: List<TimetableClass>): TimetableClass? {
+        fun pickNextClassAcrossWeek(classes: List<TimetableClass>): TimetableClass? {
             if (classes.isEmpty()) return null
+
+            val dayToOrder = mapOf("Mon" to 1, "Tue" to 2, "Wed" to 3, "Thu" to 4, "Fri" to 5)
+            val currentDayAbbrev = todayAbbrev()
+            val currentDayOrder = dayToOrder[currentDayAbbrev] ?: 1
 
             val now = Calendar.getInstance()
             val nowMinutes = now.get(Calendar.HOUR_OF_DAY) * 60 + now.get(Calendar.MINUTE)
 
-            val upcoming = classes
+            // 1. Look for remaining classes TODAY
+            val todayUpcoming = classes
+                .filter { it.day == currentDayAbbrev }
                 .mapNotNull { cls -> parseMinutes(cls.time)?.let { cls to it } }
                 .filter { (_, minutes) -> minutes >= nowMinutes }
                 .minByOrNull { (_, minutes) -> minutes }
 
-            return upcoming?.first ?: classes.first()
+            if (todayUpcoming != null) return todayUpcoming.first
+
+            // 2. Look for the first class in the next available days (circularly)
+            // We'll check from tomorrow up to the end of the week, then from Mon to today.
+            val daysToCheck = listOf("Mon", "Tue", "Wed", "Thu", "Fri")
+            val startIndex = daysToCheck.indexOf(currentDayAbbrev)
+            
+            // Check next days in the week
+            for (i in 1..4) {
+                val nextDayIndex = (startIndex + i) % 5
+                val nextDayName = daysToCheck[nextDayIndex]
+                val firstOnNextDay = classes
+                    .filter { it.day == nextDayName }
+                    .mapNotNull { cls -> parseMinutes(cls.time)?.let { cls to it } }
+                    .minByOrNull { (_, minutes) -> minutes }
+                
+                if (firstOnNextDay != null) return firstOnNextDay.first
+            }
+
+            return classes.firstOrNull()
         }
 
         // Soonest-due assignment that isn't marked Completed.

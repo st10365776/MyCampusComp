@@ -148,6 +148,8 @@ class TimetableActivity : AppCompatActivity() {
             btnDay.setBackgroundResource(0)
             btnDay.setTextColor(ContextCompat.getColor(this, R.color.text_secondary))
             btnDay.setTypeface(null, android.graphics.Typeface.NORMAL)
+
+            viewModel.setViewMode(TimetableViewModel.ViewMode.WEEK)
         }
 
         btnDay.setOnClickListener {
@@ -158,6 +160,8 @@ class TimetableActivity : AppCompatActivity() {
             btnWeek.setBackgroundResource(0)
             btnWeek.setTextColor(ContextCompat.getColor(this, R.color.text_secondary))
             btnWeek.setTypeface(null, android.graphics.Typeface.NORMAL)
+
+            viewModel.setViewMode(TimetableViewModel.ViewMode.DAY)
         }
     }
 
@@ -168,31 +172,28 @@ class TimetableActivity : AppCompatActivity() {
         bottomNavigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> {
-                    startActivity(android.content.Intent(this, DashboardActivity::class.java))
+                    startActivity(Intent(this, DashboardActivity::class.java))
                     finish()
                     true
                 }
                 R.id.nav_timetable -> true
-                R.id.nav_map -> {
-                    startActivity(android.content.Intent(this, MainActivity::class.java))
-                    finish()
+                R.id.nav_ai -> {
+                    startActivity(Intent(this, AIStudyAssistantActivity::class.java))
                     true
                 }
                 R.id.nav_assignments -> {
-                    startActivity(android.content.Intent(this, AssignmentsActivity::class.java))
+                    startActivity(Intent(this, AssignmentsActivity::class.java))
                     finish()
                     true
                 }
-                R.id.nav_ai -> {
-                    startActivity(
-                        Intent(this, AIStudyAssistantActivity::class.java)
-                    )
+                R.id.nav_more -> {
+                    val intent = Intent(this, DashboardActivity::class.java)
+                    intent.putExtra("open_drawer", true)
+                    startActivity(intent)
+                    finish()
                     true
                 }
-
-                else -> {
-                    false
-                }
+                else -> false
             }
         }
     }

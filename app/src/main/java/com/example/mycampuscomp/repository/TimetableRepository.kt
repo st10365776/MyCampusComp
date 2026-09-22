@@ -29,6 +29,11 @@ class TimetableRepository(
         return timetableDao.getClassesForDay(day, uid)
     }
 
+    fun getAllClassesLocal(): Flow<List<TimetableClass>> {
+        val uid = auth.currentUser?.uid ?: return flowOf(emptyList())
+        return timetableDao.getAllClasses(uid)
+    }
+
     suspend fun refreshClassesFromFirestore() {
         val uid = auth.currentUser?.uid
         if (uid == null) {
