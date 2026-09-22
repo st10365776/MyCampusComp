@@ -23,7 +23,7 @@ class DashboardViewModel(application: Application) : AndroidViewModel(applicatio
 
     private val TAG = "DashboardViewModel"
 
-    private val userRepository = UserRepository()
+    private val userRepository: UserRepository
     private val timetableRepository: TimetableRepository
     private val assignmentRepository: AssignmentRepository
 
@@ -42,6 +42,10 @@ class DashboardViewModel(application: Application) : AndroidViewModel(applicatio
 
     // Current APS Score, straight from the user's Firestore profile.
     val apsScore: LiveData<Int>
+
+    // Current gamification points and level
+    val points: LiveData<Int>
+    val level: LiveData<Int>
 
     // All of today's classes, used for the "TODAY" count.
     val todayClasses: LiveData<List<TimetableClass>>
@@ -66,14 +70,20 @@ class DashboardViewModel(application: Application) : AndroidViewModel(applicatio
         timetableRepository = TimetableRepository(db.timetableDao())
         assignmentRepository = AssignmentRepository(db.assignmentDao())
 
+        userRepository = UserRepository(context = application)
         userRepository.startListening()
         userName = userRepository.user.map { user ->
             user?.name?.trim()?.takeIf { it.isNotEmpty() } ?: "Student"
         }
         userEmail = userRepository.user.map { it?.email ?: "" }
-        profileImageUrl = userRepository.user.map { it?.profileImageUrl ?: "" }
+        profileImageUrl = userRepository.user.map { user ->
+            val url = user?.profileImageUrl?.trim() ?: ""
+            if (url.isNotEmpty()) url else UserRepository.getLocalProfileImageUrl(application)
+        }
         studyStreak = userRepository.user.map { it?.studyStreak ?: 0 }
         apsScore = userRepository.user.map { it?.apsScore ?: 0 }
+        points = userRepository.user.map { it?.points ?: 0 }
+        level = userRepository.user.map { it?.level ?: 1 }
 
         todayClasses = timetableRepository.getClassesForDayLocal(todayAbbrev()).asLiveData()
         

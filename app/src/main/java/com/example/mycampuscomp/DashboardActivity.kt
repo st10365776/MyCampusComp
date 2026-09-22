@@ -60,6 +60,14 @@ class DashboardActivity : AppCompatActivity() {
         tvUpcomingName = findViewById(R.id.tvUpcomingName)
         tvUpcomingDue = findViewById(R.id.tvUpcomingDue)
         tvUpcomingStatus = findViewById(R.id.tvUpcomingStatus)
+
+        findViewById<com.google.android.material.card.MaterialCardView>(R.id.cardApsScore).setOnClickListener {
+            startActivity(Intent(this, ApsCalculatorActivity::class.java))
+        }
+
+        findViewById<com.google.android.material.card.MaterialCardView>(R.id.cardStudyStreak).setOnClickListener {
+            startActivity(Intent(this, GamificationActivity::class.java))
+        }
     }
 
     private fun observeViewModel() {
@@ -182,6 +190,14 @@ class DashboardActivity : AppCompatActivity() {
                     startActivity(Intent(this, AttendanceActivity::class.java))
                     true
                 }
+                R.id.drawer_aps_calculator -> {
+                    startActivity(Intent(this, ApsCalculatorActivity::class.java))
+                    true
+                }
+                R.id.drawer_gamification -> {
+                    startActivity(Intent(this, GamificationActivity::class.java))
+                    true
+                }
                 R.id.drawer_qr_scanner -> {
                     startActivity(Intent(this, QrScannerActivity::class.java))
                     true
@@ -202,7 +218,6 @@ class DashboardActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         bottomNavigation.selectedItemId = R.id.nav_home
-        viewModel.refreshData()
 
         if (intent.getBooleanExtra("open_drawer", false)) {
             drawerLayout.openDrawer(GravityCompat.START)

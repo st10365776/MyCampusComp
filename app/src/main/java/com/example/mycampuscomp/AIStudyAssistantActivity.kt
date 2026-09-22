@@ -114,6 +114,11 @@ class AIStudyAssistantActivity : AppCompatActivity() {
                             response.body()!!.response
 
                         addTutorMessage(aiMessage)
+                        
+                        // Award gamification points for completing a study query
+                        CoroutineScope(Dispatchers.IO).launch {
+                            com.example.mycampuscomp.repository.UserRepository(context = applicationContext).addGamificationPoints(15, "badge_ai_study")
+                        }
 
                     } else {
 
