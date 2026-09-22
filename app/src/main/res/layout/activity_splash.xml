@@ -26,8 +26,7 @@
         <ImageView
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:src="@drawable/ic_school"
-            app:tint="@android:color/white"/>
+            android:src="@drawable/logo"/>
 
     </LinearLayout>
 
@@ -37,7 +36,7 @@
         android:id="@+id/txtCollege"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ROSEBANK INTERNATIONAL NMB"
+        android:text=""
         android:fontFamily="@font/poppins_medium"
         android:textColor="#AEBBE7"
         android:textStyle="bold"

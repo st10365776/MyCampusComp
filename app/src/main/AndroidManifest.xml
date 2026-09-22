@@ -98,6 +98,14 @@
             android:name=".NotificationsActivity"
             android:exported="false" />
 
+        <activity
+            android:name=".ApsCalculatorActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".GamificationActivity"
+            android:exported="false" />
+
         <!-- Splash Screen -->
         <activity
             android:name=".SplashActivity"
