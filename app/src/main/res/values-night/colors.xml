@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Theme Semantic Colors - Dark -->
+    <color name="screen_background">#0D1117</color>
+    <color name="card_surface">#161B22</color>
+    <color name="text_main">#FFFFFF</color>
+    <color name="text_muted">#B0B8C1</color>
+    <color name="primary_text">#FFFFFF</color>
+    <color name="divider_color">#30363D</color>
+    <color name="header_bg">#161B22</color>
+    <color name="button_logout_text">#F85149</color>
+    <color name="button_logout_bg">#21262D</color>
+
+    <color name="accent_surface">#1C2128</color>
+    <color name="accent_text">#58A6FF</color>
+    <color name="stats_card_1_bg">#2D2418</color>
+    <color name="stats_card_1_text">#FFA657</color>
+    <color name="upcoming_icon_bg">#2D1E1E</color>
+    <color name="upcoming_icon_tint">#FF7B72</color>
+
+    <color name="ai_chat_bubble_student">#1C4FA8</color>
+    <color name="ai_chat_bubble_ai">#161B22</color>
+
+    <color name="bg_light">#0D1117</color>
+    <color name="navy_dark">#E6EDF3</color>
+    <color name="text_secondary">#8B949E</color>
+
+    <!-- Override some specific colors for better dark mode visibility -->
+    <color name="blueDark">#58A6FF</color>
+    <color name="white">#E6EDF3</color>
+    <color name="ai_input_text_color">#000000</color>
+    <color name="ai_input_hint_color">#666666</color>
+</resources>

@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/ai_screen_background">
+    android:background="@color/screen_background">
 
     <!-- Top Bar -->
     <LinearLayout
@@ -16,7 +16,7 @@
         android:gravity="center_vertical"
         android:paddingStart="@dimen/ai_screen_padding"
         android:paddingEnd="@dimen/ai_small_padding"
-        android:background="@color/surface"
+        android:background="@color/card_surface"
         android:elevation="@dimen/ai_top_bar_elevation"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,7 +27,8 @@
             android:layout_width="@dimen/ai_header_icon_size"
             android:layout_height="@dimen/ai_header_icon_size"
             android:contentDescription="@string/ai_assistant_icon_description"
-            android:src="@drawable/ic_ai_assistant" />
+            android:src="@drawable/ic_ai_assistant"
+            app:tint="@color/blueDark" />
 
         <TextView
             android:id="@+id/aiStudyAssistantTitle"
@@ -36,7 +37,7 @@
             android:layout_weight="1"
             android:layout_marginStart="@dimen/ai_small_margin"
             android:text="@string/ai_study_assistant_title"
-            android:textColor="@color/primary_text"
+            android:textColor="@color/text_main"
             android:textSize="@dimen/ai_title_text_size"
             android:textStyle="bold" />
 
@@ -46,7 +47,8 @@
             android:layout_height="@dimen/ai_header_button_size"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/menu_icon_description"
-            android:src="@drawable/ic_more_vert" />
+            android:src="@drawable/ic_more_vert"
+            app:tint="@color/text_muted" />
 
     </LinearLayout>
 
@@ -89,7 +91,7 @@
         android:gravity="center_vertical"
         android:paddingStart="@dimen/ai_small_padding"
         android:paddingEnd="@dimen/ai_small_padding"
-        android:background="@color/surface"
+        android:background="@color/card_surface"
         android:elevation="@dimen/ai_input_area_elevation"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -107,8 +109,8 @@
             android:inputType="textCapSentences|textMultiLine"
             android:imeOptions="actionSend"
             android:maxLines="@integer/ai_input_max_lines"
-            android:textColor="@color/primary_text"
-            android:textColorHint="@color/secondary_text"
+            android:textColor="@color/ai_input_text_color"
+            android:textColorHint="@color/ai_input_hint_color"
             android:textSize="@dimen/ai_input_text_size" />
 
         <ImageButton
@@ -119,7 +121,8 @@
             android:background="@drawable/bg_send_button"
             android:contentDescription="@string/send_button_description"
             android:padding="@dimen/ai_send_icon_padding"
-            android:src="@drawable/ic_send" />
+            android:src="@drawable/ic_send"
+            app:tint="@color/white" />
 
     </LinearLayout>
 

@@ -29,12 +29,6 @@ class TimetableRepository(
         return timetableDao.getClassesForDay(day, uid)
     }
 
-    // Used for the "Week" tab - every class for the signed-in user, Mon-Fri.
-    fun getAllClassesLocal(): Flow<List<TimetableClass>> {
-        val uid = auth.currentUser?.uid ?: return flowOf(emptyList())
-        return timetableDao.getAllClassesForUser(uid)
-    }
-
     suspend fun refreshClassesFromFirestore() {
         val uid = auth.currentUser?.uid
         if (uid == null) {

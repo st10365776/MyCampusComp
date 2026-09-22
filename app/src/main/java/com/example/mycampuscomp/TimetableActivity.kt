@@ -3,7 +3,6 @@ package com.example.mycampuscomp
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
@@ -16,7 +15,6 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mycampuscomp.adapter.TimetableAdapter
-import com.example.mycampuscomp.adapter.TimetableWeekAdapter
 import com.example.mycampuscomp.viewmodel.TimetableViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -25,7 +23,6 @@ import java.util.*
 
 class TimetableActivity : AppCompatActivity() {
 
-    private lateinit var dayStrip: LinearLayout
     private lateinit var dayMonday: LinearLayout
     private lateinit var dayTuesday: LinearLayout
     private lateinit var dayWednesday: LinearLayout
@@ -33,17 +30,12 @@ class TimetableActivity : AppCompatActivity() {
     private lateinit var dayFriday: LinearLayout
 
     private lateinit var rvTimetable: RecyclerView
-    private lateinit var dayAdapter: TimetableAdapter
-    private lateinit var weekAdapter: TimetableWeekAdapter
+    private lateinit var adapter: TimetableAdapter
     private val viewModel: TimetableViewModel by viewModels()
 
     private lateinit var btnWeek: TextView
     private lateinit var btnDay: TextView
     private lateinit var fabAdd: FloatingActionButton
-
-    // Tracks which tab is active so the classes observer knows which
-    // adapter/shape to feed the incoming list into.
-    private var currentMode = TimetableViewModel.ViewMode.WEEK
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,12 +47,10 @@ class TimetableActivity : AppCompatActivity() {
         setupToggle()
         setupBottomNavigation()
         automateDates()
-        selectMode(TimetableViewModel.ViewMode.WEEK)
         observeViewModel()
     }
 
     private fun initViews() {
-        dayStrip = findViewById(R.id.dayStrip)
         dayMonday = findViewById(R.id.dayMonday)
         dayTuesday = findViewById(R.id.dayTuesday)
         dayWednesday = findViewById(R.id.dayWednesday)
@@ -109,19 +99,14 @@ class TimetableActivity : AppCompatActivity() {
     }
 
     private fun setupRecyclerView() {
-        dayAdapter = TimetableAdapter()
-        weekAdapter = TimetableWeekAdapter()
+        adapter = TimetableAdapter()
         rvTimetable.layoutManager = LinearLayoutManager(this)
-        // The active adapter is (re)assigned in selectMode().
+        rvTimetable.adapter = adapter
     }
 
     private fun observeViewModel() {
         viewModel.classes.observe(this) { classes ->
-            if (currentMode == TimetableViewModel.ViewMode.WEEK) {
-                weekAdapter.submitList(TimetableWeekAdapter.buildWeekList(classes))
-            } else {
-                dayAdapter.submitList(classes)
-            }
+            adapter.submitList(classes)
         }
     }
 
@@ -140,7 +125,7 @@ class TimetableActivity : AppCompatActivity() {
             findViewById<TextView>(id).text = dateFormat.format(calendar.time)
             calendar.add(Calendar.DAY_OF_YEAR, 1)
         }
-
+        
         // Select current day automatically if it's a weekday
         val currentDayOfWeek = Calendar.getInstance().get(Calendar.DAY_OF_WEEK)
         val todayLayout = when (currentDayOfWeek) {
@@ -156,21 +141,6 @@ class TimetableActivity : AppCompatActivity() {
 
     private fun setupToggle() {
         btnWeek.setOnClickListener {
-            selectMode(TimetableViewModel.ViewMode.WEEK)
-        }
-
-        btnDay.setOnClickListener {
-            selectMode(TimetableViewModel.ViewMode.DAY)
-        }
-    }
-
-    // Switches both the visual toggle state and which adapter/data source
-    // backs the RecyclerView.
-    private fun selectMode(mode: TimetableViewModel.ViewMode) {
-        currentMode = mode
-        viewModel.setViewMode(mode)
-
-        if (mode == TimetableViewModel.ViewMode.WEEK) {
             btnWeek.setBackgroundResource(R.drawable.bg_toggle_selected)
             btnWeek.setTextColor(ContextCompat.getColor(this, R.color.white))
             btnWeek.setTypeface(null, android.graphics.Typeface.BOLD)
@@ -178,11 +148,9 @@ class TimetableActivity : AppCompatActivity() {
             btnDay.setBackgroundResource(0)
             btnDay.setTextColor(ContextCompat.getColor(this, R.color.text_secondary))
             btnDay.setTypeface(null, android.graphics.Typeface.NORMAL)
+        }
 
-            // Picking a single day doesn't apply to the week view.
-            dayStrip.visibility = View.GONE
-            rvTimetable.adapter = weekAdapter
-        } else {
+        btnDay.setOnClickListener {
             btnDay.setBackgroundResource(R.drawable.bg_toggle_selected)
             btnDay.setTextColor(ContextCompat.getColor(this, R.color.white))
             btnDay.setTypeface(null, android.graphics.Typeface.BOLD)
@@ -190,16 +158,13 @@ class TimetableActivity : AppCompatActivity() {
             btnWeek.setBackgroundResource(0)
             btnWeek.setTextColor(ContextCompat.getColor(this, R.color.text_secondary))
             btnWeek.setTypeface(null, android.graphics.Typeface.NORMAL)
-
-            dayStrip.visibility = View.VISIBLE
-            rvTimetable.adapter = dayAdapter
         }
     }
 
     private fun setupBottomNavigation() {
         val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottomNavigation)
         bottomNavigation.selectedItemId = R.id.nav_timetable
-
+        
         bottomNavigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> {
@@ -215,13 +180,6 @@ class TimetableActivity : AppCompatActivity() {
                 }
                 R.id.nav_assignments -> {
                     startActivity(android.content.Intent(this, AssignmentsActivity::class.java))
-                    finish()
-                    true
-                }
-                R.id.nav_marketplace -> {
-                    startActivity(
-                        Intent(this, MarketplaceActivity::class.java)
-                    )
                     finish()
                     true
                 }

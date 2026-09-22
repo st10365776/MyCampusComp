@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- Permissions -->
@@ -7,7 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:usesCleartextTraffic="true"
         android:allowBackup="true"
@@ -20,10 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyCampusComp">
 
-        <!-- ==================== -->
-        <!-- MAIN / CORE SCREENS   -->
-        <!-- ==================== -->
-
+        <!-- Main Screen -->
         <activity
             android:name=".AIStudyAssistantActivity"
             android:exported="false" />
@@ -32,78 +28,44 @@
             android:name=".MainActivity"
             android:exported="false" />
 
+        <!-- Dashboard -->
         <activity
             android:name=".DashboardActivity"
             android:exported="false" />
 
-        <!-- ==================== -->
-        <!-- ONBOARDING / AUTH      -->
-        <!-- ==================== -->
-
+        <!-- Onboarding -->
         <activity
             android:name=".OnboardingActivity"
             android:exported="false" />
 
+        <!-- Login -->
         <activity
             android:name=".LoginActivity"
             android:exported="false" />
 
+        <!-- Register -->
         <activity
             android:name=".RegisterActivity"
             android:exported="false" />
 
-        <!-- ==================== -->
-        <!-- ACADEMIC PAGES        -->
-        <!-- ==================== -->
-
+        <!-- Timetable Page -->
         <activity
             android:name=".TimetableActivity"
             android:exported="false" />
 
+        <!-- Assignments Page -->
         <activity
             android:name=".AssignmentsActivity"
             android:exported="false" />
 
-        <!-- ==================== -->
-        <!-- MARKETPLACE           -->
-        <!-- ==================== -->
-
-        <activity
-            android:name=".MarketplaceActivity"
-            android:exported="false" />
-
-        <activity
-            android:name=".ListItemActivity"
-            android:exported="false" />
-
-        <activity
-            android:name=".ProductDetailsActivity"
-            android:exported="false" />
-
-        <activity
-            android:name=".MyListingsActivity"
-            android:exported="false" />
-
-        <activity
-            android:name=".SellerProfileActivity"
-            android:exported="false" />
-
-        <!-- ==================== -->
-        <!-- SPLASH SCREEN         -->
-        <!-- ==================== -->
-
+        <!-- Splash Screen -->
         <activity
             android:name=".SplashActivity"
             android:exported="true">
 
             <intent-filter>
-
-                <action
-                    android:name="android.intent.action.MAIN" />
-
-                <category
-                    android:name="android.intent.category.LAUNCHER" />
-
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
         </activity>
