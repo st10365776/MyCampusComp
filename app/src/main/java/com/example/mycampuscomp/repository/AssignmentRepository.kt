@@ -48,30 +48,35 @@ class AssignmentRepository(
         }
     }
 
-    // Used for both creating a new assignment (id is empty) and editing an
-    // existing one (id already set) - it's an upsert either way, so the
-    // same Firestore document just gets overwritten when editing.
     suspend fun saveAssignment(assignment: Assignment) {
         val uid = auth.currentUser?.uid
         if (uid == null) {
             Log.w(TAG, "No signed-in user; cannot save assignment")
             return
         }
+
+        val collection = userAssignmentCollection(uid)
+        val docRef = if (assignment.id.isEmpty()) {
+            collection.document()
+        } else {
+            collection.document(assignment.id)
+        }
+        val finalAssignment = assignment.copy(id = docRef.id, userId = uid)
+
+        // 1. Save to local Room DB FIRST so user actions work seamlessly offline
         try {
-            val collection = userAssignmentCollection(uid)
-            val docRef = if (assignment.id.isEmpty()) {
-                collection.document()
-            } else {
-                collection.document(assignment.id)
-            }
-            val finalAssignment = assignment.copy(id = docRef.id, userId = uid)
-            Log.d(TAG, "Saving assignment to Firestore: $finalAssignment")
-            docRef.set(finalAssignment).await()
-            // Immediate local update for fast UI feedback; the next
-            // refreshAssignmentsFromFirestore() call will reconcile fully.
             assignmentDao.insertAssignments(listOf(finalAssignment))
+            Log.d(TAG, "Saved assignment locally to Room: $finalAssignment")
         } catch (e: Exception) {
-            Log.e(TAG, "Error saving assignment to Firestore", e)
+            Log.e(TAG, "Error saving assignment locally to Room", e)
+        }
+
+        // 2. Sync with Firestore in try-catch so offline network errors won't prevent local save
+        try {
+            Log.d(TAG, "Syncing assignment to Firestore: $finalAssignment")
+            docRef.set(finalAssignment).await()
+        } catch (e: Exception) {
+            Log.w(TAG, "Firestore write offline/deferred: ${e.message}")
         }
     }
 
@@ -81,11 +86,20 @@ class AssignmentRepository(
             Log.w(TAG, "No signed-in user; cannot delete assignment")
             return
         }
+
+        // 1. Delete from local Room DB FIRST
+        try {
+            assignmentDao.deleteAssignment(assignment.id)
+            Log.d(TAG, "Deleted assignment locally from Room: ${assignment.id}")
+        } catch (e: Exception) {
+            Log.e(TAG, "Error deleting assignment locally from Room", e)
+        }
+
+        // 2. Sync deletion with Firestore
         try {
             userAssignmentCollection(uid).document(assignment.id).delete().await()
-            assignmentDao.deleteAssignment(assignment.id)
         } catch (e: Exception) {
-            Log.e(TAG, "Error deleting assignment from Firestore", e)
+            Log.w(TAG, "Firestore delete offline/deferred: ${e.message}")
         }
     }
 }

@@ -22,6 +22,7 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import com.example.mycampuscomp.model.User
+import com.example.mycampuscomp.repository.UserRepository
 
 class LoginActivity : AppCompatActivity() {
 
@@ -154,11 +155,14 @@ class LoginActivity : AppCompatActivity() {
                     finish()
                     return@addOnSuccessListener
                 }
+                val photoUrl = account.photoUrl?.toString() ?: ""
                 val user = User(
                     uid = uid,
                     name = account.displayName ?: "",
-                    email = account.email ?: ""
+                    email = account.email ?: "",
+                    profileImageUrl = photoUrl
                 )
+                UserRepository.saveUserLocally(this@LoginActivity, user)
                 // merge() keeps this idempotent for returning users while still
                 // creating the profile doc the first time someone signs in with Google.
                 firestore.collection("users").document(uid).set(user, SetOptions.merge())

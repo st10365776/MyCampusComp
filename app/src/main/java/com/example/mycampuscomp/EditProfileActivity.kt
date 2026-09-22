@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 
 class EditProfileActivity : AppCompatActivity() {
 
-    private val userRepository = UserRepository()
+    private lateinit var userRepository: UserRepository
     
     private lateinit var ivProfilePreview: ShapeableImageView
     private lateinit var etName: TextInputEditText
@@ -26,18 +26,31 @@ class EditProfileActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_profile)
 
+        userRepository = UserRepository(context = applicationContext)
+
         ivProfilePreview = findViewById(R.id.ivProfilePreview)
         etName = findViewById(R.id.etName)
         etPhotoUrl = findViewById(R.id.etPhotoUrl)
         btnSave = findViewById(R.id.btnSave)
         btnBack = findViewById(R.id.btnBack)
 
+        // Load cached local image URL first
+        val savedLocalUrl = UserRepository.getLocalProfileImageUrl(this)
+        if (savedLocalUrl.isNotEmpty()) {
+            etPhotoUrl.setText(savedLocalUrl)
+            ivProfilePreview.load(savedLocalUrl) {
+                crossfade(true)
+                placeholder(R.drawable.logo2)
+                error(R.drawable.logo2)
+            }
+        }
+
         userRepository.startListening()
         userRepository.user.observe(this) { user ->
             if (user != null) {
-                etName.setText(user.name)
-                etPhotoUrl.setText(user.profileImageUrl)
+                if (user.name.isNotEmpty()) etName.setText(user.name)
                 if (user.profileImageUrl.isNotEmpty()) {
+                    etPhotoUrl.setText(user.profileImageUrl)
                     ivProfilePreview.load(user.profileImageUrl) {
                         crossfade(true)
                         placeholder(R.drawable.logo2)
@@ -58,8 +71,11 @@ class EditProfileActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
+            // Save locally and on the database
+            UserRepository.saveProfileImageUrlLocally(this@EditProfileActivity, photoUrl)
+
             lifecycleScope.launch {
-                userRepository.updateUserProfile(name, photoUrl)
+                userRepository.updateUserProfile(name, photoUrl, this@EditProfileActivity)
                 Toast.makeText(this@EditProfileActivity, "Profile updated", Toast.LENGTH_SHORT).show()
                 finish()
             }

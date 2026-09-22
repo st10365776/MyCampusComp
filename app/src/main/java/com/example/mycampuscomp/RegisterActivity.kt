@@ -18,6 +18,7 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import com.example.mycampuscomp.model.User
+import com.example.mycampuscomp.repository.UserRepository
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -66,6 +67,7 @@ class RegisterActivity : AppCompatActivity() {
                         return@addOnSuccessListener
                     }
                     val newUser = User(uid = uid, name = nameText, email = emailText)
+                    UserRepository.saveUserLocally(this@RegisterActivity, newUser)
                     // Also persist the user's profile in Firestore so classes and
                     // other data can be stored under this user's document.
                     firestore.collection("users").document(uid).set(newUser)
@@ -133,11 +135,14 @@ class RegisterActivity : AppCompatActivity() {
                     finish()
                     return@addOnSuccessListener
                 }
+                val photoUrl = account.photoUrl?.toString() ?: ""
                 val newUser = User(
                     uid = uid,
                     name = account.displayName ?: "",
-                    email = account.email ?: ""
+                    email = account.email ?: "",
+                    profileImageUrl = photoUrl
                 )
+                UserRepository.saveUserLocally(this@RegisterActivity, newUser)
                 // merge() so an existing user's doc (e.g. they've registered before)
                 // isn't clobbered, while a brand-new user still gets a profile doc.
                 firestore.collection("users").document(uid).set(newUser, SetOptions.merge())

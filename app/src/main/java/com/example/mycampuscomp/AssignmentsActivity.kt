@@ -30,6 +30,7 @@ class AssignmentsActivity : AppCompatActivity() {
     private lateinit var rvAssignments: RecyclerView
     private lateinit var tvEmptyState: TextView
     private lateinit var fabAddAssignment: FloatingActionButton
+    private lateinit var layoutOfflineBanner: View
     private lateinit var adapter: AssignmentAdapter
 
     private val displayDateFormat = SimpleDateFormat("MMM d, yyyy", Locale.getDefault())
@@ -41,13 +42,21 @@ class AssignmentsActivity : AppCompatActivity() {
         rvAssignments = findViewById(R.id.rvAssignments)
         tvEmptyState = findViewById(R.id.tvEmptyState)
         fabAddAssignment = findViewById(R.id.fabAddAssignment)
+        layoutOfflineBanner = findViewById(R.id.layoutOfflineBannerAssignments)
 
         setupRecyclerView()
         observeViewModel()
+        observeNetwork()
         setupBottomNavigation()
 
         fabAddAssignment.setOnClickListener {
             showAssignmentDialog(existing = null)
+        }
+    }
+
+    private fun observeNetwork() {
+        com.example.mycampuscomp.utils.NetworkUtils.NetworkStateLiveData(this).observe(this) { isConnected ->
+            layoutOfflineBanner.visibility = if (isConnected) View.GONE else View.VISIBLE
         }
     }
 
