@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    android:background="#FFFFFF"
+    android:background="@color/card_surface"
     android:padding="24dp">
 
     <!-- Top spacing -->
@@ -21,7 +21,7 @@
         android:layout_height="290dp"
         app:cardCornerRadius="42dp"
         app:cardElevation="0dp"
-        app:cardBackgroundColor="#EEF4FF">
+        app:cardBackgroundColor="@color/accent_surface">
 
         <ImageView
             android:id="@+id/image"
@@ -74,7 +74,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:text="Stay on Track"
-        android:textColor="#0F172A"
+        android:textColor="@color/text_main"
         android:textSize="34sp"
         android:fontFamily="@font/poppins_bold"/>
 
@@ -85,7 +85,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
         android:gravity="center"
-        android:textColor="#64748B"
+        android:textColor="@color/text_muted"
         android:textSize="17sp"
         android:lineSpacingExtra="3dp"
         android:fontFamily="@font/poppins_medium"

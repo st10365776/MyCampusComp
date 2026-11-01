@@ -45,13 +45,13 @@ class BadgeAdapter(private val badges: MutableList<Badge> = mutableListOf()) : R
         if (badge.isUnlocked) {
             holder.cardBadge.alpha = 1.0f
             holder.tvStatus.text = "Unlocked ✓"
-            holder.tvStatus.setTextColor(ContextCompat.getColor(context, R.color.blueDark))
-            holder.tvStatus.setBackgroundColor(Color.parseColor("#E3EAFF"))
+            holder.tvStatus.setTextColor(ContextCompat.getColor(context, R.color.accent_text))
+            holder.tvStatus.setBackgroundColor(ContextCompat.getColor(context, R.color.badge_earned_bg))
         } else {
             holder.cardBadge.alpha = 0.5f
             holder.tvStatus.text = "Locked 🔒"
-            holder.tvStatus.setTextColor(Color.parseColor("#7A869A"))
-            holder.tvStatus.setBackgroundColor(Color.parseColor("#F1F5F9"))
+            holder.tvStatus.setTextColor(ContextCompat.getColor(context, R.color.text_muted))
+            holder.tvStatus.setBackgroundColor(ContextCompat.getColor(context, R.color.badge_locked_bg))
         }
     }
 

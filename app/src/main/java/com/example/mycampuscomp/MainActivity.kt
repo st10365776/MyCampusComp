@@ -2,32 +2,20 @@ package com.example.mycampuscomp
 
 import android.content.Intent
 import android.os.Bundle
-import android.webkit.WebView
-import android.webkit.WebViewClient
-import android.widget.Button
+import android.view.LayoutInflater
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
-
-    private lateinit var mapWebView: WebView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
 
-        // --------------------------------------------------
-        // MAP
-        // --------------------------------------------------
-
-        mapWebView = findViewById(R.id.mapWebView)
-
-        setupWebView()
-
+        showEvents()
 
         // --------------------------------------------------
         // BOTTOM NAVIGATION
@@ -69,49 +57,31 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private data class CampusEvent(
+        val date: String,
+        val title: String,
+        val location: String,
+        val description: String
+    )
 
-    // ======================================================
-    // MAPPEDIN WEBVIEW
-    // ======================================================
-
-    private fun setupWebView() {
-
-        mapWebView.settings.apply {
-
-            javaScriptEnabled = true
-
-            domStorageEnabled = true
-
-            loadWithOverviewMode = true
-
-            useWideViewPort = true
-        }
-
-
-        mapWebView.webViewClient =
-            object : WebViewClient() {
-
-                override fun onRenderProcessGone(
-                    view: WebView?,
-                    detail: android.webkit.RenderProcessGoneDetail?
-                ): Boolean {
-
-                    /*
-                     * Reload the Mappedin map if the WebView
-                     * renderer crashes.
-                     */
-
-                    view?.loadUrl(
-                        "https://app.mappedin.com/map/6a6fa4cb81d0f1000af1aaf4?embedded=true"
-                    )
-
-                    return true
-                }
-            }
-
-
-        mapWebView.loadUrl(
-            "https://app.mappedin.com/map/6a6fa4cb81d0f1000af1aaf4?embedded=true"
+    private fun showEvents() {
+        val events = listOf(
+            CampusEvent("MON • 09:00", "Orientation Welcome Day", "Main Auditorium", "Meet lecturers, collect your student pack and tour the campus."),
+            CampusEvent("WED • 12:30", "Career & Internship Fair", "Student Centre", "Meet employers and learn about internship and graduate opportunities."),
+            CampusEvent("THU • 16:00", "Inter-Campus Sports Day", "Sports Grounds", "Soccer, netball and relay races. Everyone is welcome to cheer."),
+            CampusEvent("FRI • 18:00", "Movie & Chill Night", "Student Lounge", "Free popcorn and a movie voted by students."),
+            CampusEvent("SAT • 10:00", "Community Clean-Up Drive", "Campus Gardens", "Join clubs and societies to keep our campus clean and green.")
         )
+
+        val container = findViewById<LinearLayout>(R.id.eventsContainer)
+        val inflater = LayoutInflater.from(this)
+        events.forEach { event ->
+            val card = inflater.inflate(R.layout.item_event, container, false)
+            card.findViewById<TextView>(R.id.tvEventDate).text = event.date
+            card.findViewById<TextView>(R.id.tvEventTitle).text = event.title
+            card.findViewById<TextView>(R.id.tvEventLocation).text = "📍 ${event.location}"
+            card.findViewById<TextView>(R.id.tvEventDescription).text = event.description
+            container.addView(card)
+        }
     }
 }

@@ -28,7 +28,7 @@
             android:layout_height="@dimen/ai_header_icon_size"
             android:contentDescription="@string/ai_assistant_icon_description"
             android:src="@drawable/ic_ai_assistant"
-            app:tint="@color/blueDark" />
+            app:tint="@color/brand_primary" />
 
         <TextView
             android:id="@+id/aiStudyAssistantTitle"

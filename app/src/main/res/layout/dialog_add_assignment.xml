@@ -68,7 +68,7 @@
             android:id="@+id/btnSaveAssignment"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:backgroundTint="@color/navy_dark"
+            android:backgroundTint="@color/brand_primary"
             android:text="Save Assignment"
             android:textColor="@color/white" />
 

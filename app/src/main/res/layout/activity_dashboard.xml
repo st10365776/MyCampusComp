@@ -5,7 +5,7 @@
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F4F7FC"
+    android:background="@color/screen_background"
     tools:context=".DashboardActivity">
 
     <!-- Main Content Content View -->
@@ -32,7 +32,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif"
                     android:text="Good morning,"
-                    android:textColor="#7A869A"
+                    android:textColor="@color/text_muted"
                     android:textSize="17sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -43,7 +43,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-bold"
                     android:text="Student 👋"
-                    android:textColor="#172B4D"
+                    android:textColor="@color/text_main"
                     android:textSize="24sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tvGreeting" />
@@ -69,7 +69,7 @@
                     android:layout_marginTop="28dp"
                     android:fontFamily="sans-serif-medium"
                     android:text="Today's Classes"
-                    android:textColor="#172B4D"
+                    android:textColor="@color/text_main"
                     android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tvUserName" />
@@ -79,7 +79,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    app:cardBackgroundColor="@color/white"
+                    app:cardBackgroundColor="@color/card_surface"
                     app:cardCornerRadius="24dp"
                     app:cardElevation="6dp"
                     app:cardUseCompatPadding="true"
@@ -95,7 +95,7 @@
                         <LinearLayout
                             android:layout_width="100dp"
                             android:layout_height="match_parent"
-                            android:background="#E3EAFF"
+                            android:background="@color/accent_surface"
                             android:gravity="center"
                             android:orientation="vertical"
                             android:padding="16dp">
@@ -105,7 +105,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="sans-serif-medium"
                                 android:text="TODAY"
-                                android:textColor="#3B59FF"
+                                android:textColor="@color/accent_text"
                                 android:textSize="11sp" />
 
                             <TextView
@@ -114,7 +114,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="sans-serif-black"
                                 android:text="0"
-                                android:textColor="#3B59FF"
+                                android:textColor="@color/accent_text"
                                 android:textSize="38sp" />
                         </LinearLayout>
 
@@ -131,7 +131,7 @@
                                 android:fontFamily="sans-serif-medium"
                                 android:letterSpacing="0.1"
                                 android:text="NEXT CLASS"
-                                android:textColor="#7A869A"
+                                android:textColor="@color/text_muted"
                                 android:textSize="10sp"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
@@ -142,7 +142,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="sans-serif-black"
                                 android:text="--:--"
-                                android:textColor="#172B4D"
+                                android:textColor="@color/text_main"
                                 android:textSize="14sp"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
@@ -154,7 +154,7 @@
                                 android:layout_marginTop="6dp"
                                 android:fontFamily="sans-serif-black"
                                 android:text="No Classes"
-                                android:textColor="#172B4D"
+                                android:textColor="@color/text_main"
                                 android:textSize="16sp"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@id/tvNextClassLabel" />
@@ -165,7 +165,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="sans-serif"
                                 android:text="Free time"
-                                android:textColor="#7A869A"
+                                android:textColor="@color/text_muted"
                                 android:textSize="12sp"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@id/tvNextClassName" />
@@ -186,7 +186,7 @@
                         android:layout_width="0dp"
                         android:layout_height="140dp"
                         android:layout_weight="1"
-                        app:cardBackgroundColor="#FFF4E5"
+                        app:cardBackgroundColor="@color/stats_card_1_bg"
                         app:cardCornerRadius="24dp"
                         app:cardElevation="6dp"
                         app:cardUseCompatPadding="true"
@@ -205,7 +205,7 @@
                                 android:fontFamily="sans-serif-medium"
                                 android:letterSpacing="0.05"
                                 android:text="ASSIGNMENTS"
-                                android:textColor="#FF9800"
+                                android:textColor="@color/stats_card_1_text"
                                 android:textSize="10sp" />
 
                             <TextView
@@ -214,7 +214,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="sans-serif-black"
                                 android:text="0"
-                                android:textColor="#FF9800"
+                                android:textColor="@color/stats_card_1_text"
                                 android:textSize="32sp" />
 
                             <TextView
@@ -222,7 +222,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="sans-serif"
                                 android:text="This Week"
-                                android:textColor="#FF9800"
+                                android:textColor="@color/stats_card_1_text"
                                 android:textSize="11sp" />
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
@@ -232,7 +232,7 @@
                         android:layout_width="0dp"
                         android:layout_height="140dp"
                         android:layout_weight="1"
-                        app:cardBackgroundColor="@color/white"
+                        app:cardBackgroundColor="@color/card_surface"
                         app:cardCornerRadius="24dp"
                         app:cardElevation="6dp"
                         app:cardUseCompatPadding="true"
@@ -251,7 +251,7 @@
                                 android:fontFamily="sans-serif-medium"
                                 android:letterSpacing="0.1"
                                 android:text="CURRENT APS"
-                                android:textColor="#7A869A"
+                                android:textColor="@color/text_muted"
                                 android:textSize="10sp" />
 
                             <TextView
@@ -260,7 +260,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="sans-serif-black"
                                 android:text="0"
-                                android:textColor="#172B4D"
+                                android:textColor="@color/text_main"
                                 android:textSize="32sp" />
 
                             <TextView
@@ -268,7 +268,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="sans-serif"
                                 android:text="Connected"
-                                android:textColor="#7A869A"
+                                android:textColor="@color/text_muted"
                                 android:textSize="11sp" />
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
@@ -339,7 +339,7 @@
                     android:layout_marginTop="24dp"
                     android:fontFamily="sans-serif-medium"
                     android:text="Upcoming Assignment"
-                    android:textColor="#172B4D"
+                    android:textColor="@color/text_main"
                     android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/cardStudyStreak" />
@@ -350,7 +350,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:layout_marginBottom="24dp"
-                    app:cardBackgroundColor="@color/white"
+                    app:cardBackgroundColor="@color/card_surface"
                     app:cardCornerRadius="24dp"
                     app:cardElevation="6dp"
                     app:cardUseCompatPadding="true"
@@ -366,7 +366,7 @@
                             android:id="@+id/cardIconContainer"
                             android:layout_width="48dp"
                             android:layout_height="48dp"
-                            app:cardBackgroundColor="#FFF0F0"
+                            app:cardBackgroundColor="@color/upcoming_icon_bg"
                             app:cardCornerRadius="14dp"
                             app:cardElevation="0dp"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -379,7 +379,7 @@
                                 android:layout_height="match_parent"
                                 android:padding="12dp"
                                 android:src="@drawable/ic_assignment"
-                                app:tint="#FF5252" />
+                                app:tint="@color/upcoming_icon_tint" />
                         </com.google.android.material.card.MaterialCardView>
 
                         <TextView
@@ -390,7 +390,7 @@
                             android:layout_marginEnd="8dp"
                             android:fontFamily="sans-serif-medium"
                             android:text="No Upcoming Assignments"
-                            android:textColor="#172B4D"
+                            android:textColor="@color/text_main"
                             android:textSize="15sp"
                             app:layout_constraintEnd_toStartOf="@id/cardStatusContainer"
                             app:layout_constraintStart_toEndOf="@id/cardIconContainer"
@@ -403,7 +403,7 @@
                             android:layout_marginStart="16dp"
                             android:fontFamily="sans-serif"
                             android:text="All caught up!"
-                            android:textColor="#7A869A"
+                            android:textColor="@color/text_muted"
                             android:textSize="13sp"
                             app:layout_constraintStart_toEndOf="@id/cardIconContainer"
                             app:layout_constraintTop_toBottomOf="@id/tvUpcomingName" />
@@ -412,7 +412,7 @@
                             android:id="@+id/cardStatusContainer"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:cardBackgroundColor="#FFF0F0"
+                            app:cardBackgroundColor="@color/upcoming_icon_bg"
                             app:cardCornerRadius="8dp"
                             app:cardElevation="0dp"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -428,7 +428,7 @@
                                 android:paddingHorizontal="10dp"
                                 android:paddingVertical="4dp"
                                 android:text="Done"
-                                android:textColor="#FF5252"
+                                android:textColor="@color/upcoming_icon_tint"
                                 android:textSize="11sp" />
                         </com.google.android.material.card.MaterialCardView>
 
@@ -442,10 +442,10 @@
             android:id="@+id/bottomNavigation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:background="@color/card_surface"
             android:elevation="16dp"
-            app:itemIconTint="@color/blueDark"
-            app:itemTextColor="@color/blueDark"
+            app:itemIconTint="@color/brand_primary"
+            app:itemTextColor="@color/brand_primary"
             app:labelVisibilityMode="labeled"
             app:layout_constraintBottom_toBottomOf="parent"
             app:menu="@menu/bottom_nav_menu" />
@@ -458,7 +458,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="@color/white"
+        android:background="@color/card_surface"
         app:headerLayout="@layout/drawer_header"
         app:menu="@menu/drawer_menu" />
 
