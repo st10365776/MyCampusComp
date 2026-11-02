@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F8FAFC"
+    android:background="@color/screen_background"
     android:orientation="vertical"
     tools:context=".GamificationActivity">
 
@@ -12,7 +12,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@color/card_surface"
         android:elevation="4dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
@@ -26,7 +26,7 @@
             android:contentDescription="Back"
             android:src="@drawable/ic_chevron_down"
             android:rotation="90"
-            app:tint="#172B4D" />
+            app:tint="@color/text_main" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -34,7 +34,7 @@
             android:layout_marginStart="12dp"
             android:fontFamily="sans-serif-bold"
             android:text="Gamification &amp; Badges"
-            android:textColor="#172B4D"
+            android:textColor="@color/text_main"
             android:textSize="20sp" />
     </LinearLayout>
 
@@ -43,7 +43,7 @@
         android:id="@+id/layoutOfflineBannerGamification"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FFF3CD"
+        android:background="@color/warn_bg"
         android:padding="8dp"
         android:gravity="center"
         android:visibility="gone">
@@ -52,7 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="⚡ Offline Mode - Progress saved locally"
-            android:textColor="#856404"
+            android:textColor="@color/warn_text"
             android:textSize="12sp"
             android:textStyle="bold" />
     </LinearLayout>
@@ -151,7 +151,7 @@
                 android:layout_marginTop="24dp"
                 android:fontFamily="sans-serif-bold"
                 android:text="Badges &amp; Achievements"
-                android:textColor="#172B4D"
+                android:textColor="@color/text_main"
                 android:textSize="18sp" />
 
             <androidx.recyclerview.widget.RecyclerView

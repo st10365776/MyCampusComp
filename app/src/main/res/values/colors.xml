@@ -45,6 +45,13 @@
     <color name="button_logout_text">#FF5252</color>
     <color name="button_logout_bg">#FFFFFF</color>
 
+    <color name="brand_primary">#143C8C</color>
+    <color name="warn_bg">#FFF3CD</color>
+    <color name="warn_text">#856404</color>
+    <color name="placeholder_bg">#E8ECF3</color>
+    <color name="badge_earned_bg">#E3EAFF</color>
+    <color name="badge_locked_bg">#F1F5F9</color>
+
     <color name="accent_surface">#E3EAFF</color>
     <color name="accent_text">#3B59FF</color>
     <color name="stats_card_1_bg">#FFF4E5</color>

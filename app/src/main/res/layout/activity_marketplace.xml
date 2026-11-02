@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F4F7FC">
+    android:background="@color/screen_background">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -25,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="Marketplace"
-                android:textColor="#172B4D"
+                android:textColor="@color/text_main"
                 android:textSize="28sp"
                 android:fontFamily="sans-serif-black"/>
 
@@ -35,7 +35,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="4dp"
                 android:text="Buy and sell with fellow students"
-                android:textColor="#7A869A"
+                android:textColor="@color/text_muted"
                 android:textSize="14sp"/>
 
             <EditText
@@ -47,8 +47,8 @@
                 android:hint="Search items..."
                 android:paddingHorizontal="18dp"
                 android:singleLine="true"
-                android:textColor="#172B4D"
-                android:textColorHint="#9AA3B2"/>
+                android:textColor="@color/text_main"
+                android:textColorHint="@color/text_muted"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -63,7 +63,7 @@
                     android:layout_weight="1"
                     android:text="Sell an Item"
                     android:textColor="@color/white"
-                    app:backgroundTint="@color/blueDark"
+                    app:backgroundTint="@color/brand_primary"
                     app:cornerRadius="16dp"/>
 
                 <com.google.android.material.button.MaterialButton
@@ -73,10 +73,10 @@
                     android:layout_marginStart="10dp"
                     android:layout_weight="1"
                     android:text="My Listings"
-                    android:textColor="@color/blueDark"
-                    app:backgroundTint="@color/white"
+                    android:textColor="@color/brand_primary"
+                    app:backgroundTint="@color/card_surface"
                     app:cornerRadius="16dp"
-                    app:strokeColor="@color/blueDark"
+                    app:strokeColor="@color/brand_primary"
                     app:strokeWidth="1dp"/>
             </LinearLayout>
 
@@ -85,7 +85,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="26dp"
                 android:text="Browse Marketplace"
-                android:textColor="#172B4D"
+                android:textColor="@color/text_main"
                 android:textSize="20sp"
                 android:fontFamily="sans-serif-black"/>
 
@@ -104,10 +104,10 @@
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@color/card_surface"
         android:elevation="16dp"
-        app:itemIconTint="@color/blueDark"
-        app:itemTextColor="@color/blueDark"
+        app:itemIconTint="@color/brand_primary"
+        app:itemTextColor="@color/brand_primary"
         app:labelVisibilityMode="labeled"
         app:menu="@menu/bottom_nav_menu"
         app:layout_constraintBottom_toBottomOf="parent"/>

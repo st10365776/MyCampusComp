@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="6dp"
-    app:cardBackgroundColor="@color/white"
+    app:cardBackgroundColor="@color/card_surface"
     app:cardCornerRadius="20dp"
     app:cardElevation="3dp"
     app:strokeWidth="0dp">
@@ -21,7 +21,7 @@
             android:id="@+id/ivItemImage"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:background="#E8ECF3"
+            android:background="@color/placeholder_bg"
             android:scaleType="centerCrop"/>
 
         <LinearLayout
@@ -37,7 +37,7 @@
                 android:maxLines="2"
                 android:ellipsize="end"
                 android:text="Scientific Calculator"
-                android:textColor="#172B4D"
+                android:textColor="@color/text_main"
                 android:textSize="15sp"
                 android:fontFamily="sans-serif-medium"/>
 
@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="7dp"
                 android:text="R450.00"
-                android:textColor="#1769D1"
+                android:textColor="@color/accent_text"
                 android:textSize="18sp"
                 android:fontFamily="sans-serif-black"/>
 
@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:text="Good condition"
-                android:textColor="#6B7280"
+                android:textColor="@color/text_muted"
                 android:textSize="12sp"/>
 
             <TextView
@@ -66,7 +66,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
                 android:text="Campus"
-                android:textColor="#8E94A3"
+                android:textColor="@color/text_muted"
                 android:textSize="11sp"/>
 
         </LinearLayout>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F4F7FC"
+    android:background="@color/screen_background"
     tools:context=".AssignmentsActivity">
 
     <TextView
@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:text="Assignments"
-        android:textColor="#172B4D"
+        android:textColor="@color/text_main"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:background="#FFF3CD"
+        android:background="@color/warn_bg"
         android:padding="8dp"
         android:gravity="center"
         android:visibility="gone"
@@ -33,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="⚡ Offline Mode - Assignments saved locally"
-            android:textColor="#856404"
+            android:textColor="@color/warn_text"
             android:textSize="12sp"
             android:textStyle="bold" />
     </LinearLayout>
@@ -46,7 +46,7 @@
         android:layout_marginTop="40dp"
         android:gravity="center"
         android:text="No assignments yet. Tap + to add one."
-        android:textColor="#7A869A"
+        android:textColor="@color/text_muted"
         android:textSize="14sp"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
@@ -71,7 +71,7 @@
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
         android:src="@drawable/ic_add_white"
-        app:backgroundTint="@color/navy_dark"
+        app:backgroundTint="@color/brand_primary"
         app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:tint="@color/white" />
@@ -80,10 +80,10 @@
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@color/card_surface"
         android:elevation="16dp"
-        app:itemIconTint="@color/blueDark"
-        app:itemTextColor="@color/blueDark"
+        app:itemIconTint="@color/brand_primary"
+        app:itemTextColor="@color/brand_primary"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/bottom_nav_menu" />

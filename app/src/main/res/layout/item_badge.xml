@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="6dp"
-    app:cardBackgroundColor="@color/white"
+    app:cardBackgroundColor="@color/card_surface"
     app:cardCornerRadius="16dp"
     app:cardElevation="3dp"
     app:strokeWidth="1dp"
@@ -33,7 +33,7 @@
             android:fontFamily="sans-serif-bold"
             android:gravity="center"
             android:text="Badge Title"
-            android:textColor="#172B4D"
+            android:textColor="@color/text_main"
             android:textSize="14sp" />
 
         <TextView
@@ -44,7 +44,7 @@
             android:fontFamily="sans-serif"
             android:gravity="center"
             android:text="Badge description goes here"
-            android:textColor="#7A869A"
+            android:textColor="@color/text_muted"
             android:textSize="11sp" />
 
         <TextView
@@ -57,7 +57,7 @@
             android:paddingHorizontal="10dp"
             android:paddingVertical="4dp"
             android:text="Unlocked"
-            android:textColor="#3B59FF"
+            android:textColor="@color/accent_text"
             android:textSize="10sp" />
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

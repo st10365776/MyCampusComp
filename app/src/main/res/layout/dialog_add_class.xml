@@ -93,7 +93,7 @@
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:text="Save Class"
-            android:backgroundTint="@color/navy_dark"
+            android:backgroundTint="@color/brand_primary"
             android:textColor="@color/white" />
 
     </LinearLayout>

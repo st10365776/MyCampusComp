@@ -7,7 +7,7 @@
 
     <!-- AI Assistant Head -->
     <path
-        android:fillColor="#172B4D"
+        android:fillColor="@color/text_main"
         android:pathData="M12,2C7.58,2 4,5.58 4,10v4c0,4.42 3.58,8 8,8s8,-3.58 8,-8v-4c0,-4.42 -3.58,-8 -8,-8z" />
 
     <!-- Left Eye -->
@@ -27,11 +27,11 @@
 
     <!-- Antenna -->
     <path
-        android:fillColor="#172B4D"
+        android:fillColor="@color/text_main"
         android:pathData="M11,2h2v-2h-2z" />
 
     <path
-        android:fillColor="#172B4D"
+        android:fillColor="@color/text_main"
         android:pathData="M10.5,1L12,2.5 13.5,1 12,0z" />
 
 </vector>

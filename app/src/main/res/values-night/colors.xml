@@ -25,9 +25,19 @@
     <color name="navy_dark">#E6EDF3</color>
     <color name="text_secondary">#8B949E</color>
 
-    <!-- Override some specific colors for better dark mode visibility -->
-    <color name="blueDark">#58A6FF</color>
-    <color name="white">#E6EDF3</color>
-    <color name="ai_input_text_color">#000000</color>
-    <color name="ai_input_hint_color">#666666</color>
+    <color name="brand_primary">#3B7BEA</color>
+    <color name="warn_bg">#3A2F10</color>
+    <color name="warn_text">#F2CC60</color>
+    <color name="placeholder_bg">#21262D</color>
+    <color name="badge_earned_bg">#1C2B45</color>
+    <color name="badge_locked_bg">#21262D</color>
+    <color name="status_pending_bg">#1C2B45</color>
+    <color name="status_pending_text">#58A6FF</color>
+    <color name="status_urgent_bg">#3A1E1E</color>
+    <color name="status_urgent_text">#FF7B72</color>
+    <color name="status_completed_bg">#1B3324</color>
+    <color name="status_completed_text">#56D364</color>
+    <color name="input_background">#21262D</color>
+    <color name="ai_input_text_color">#FFFFFF</color>
+    <color name="ai_input_hint_color">#8B949E</color>
 </resources>

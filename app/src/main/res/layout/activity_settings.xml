@@ -91,7 +91,7 @@
                             android:layout_width="24dp"
                             android:layout_height="24dp"
                             android:src="@drawable/ic_school"
-                            app:tint="@color/blueDark" />
+                            app:tint="@color/brand_primary" />
 
                         <TextView
                             android:layout_width="0dp"
@@ -129,7 +129,7 @@
                             android:layout_width="24dp"
                             android:layout_height="24dp"
                             android:src="@drawable/ic_school"
-                            app:tint="@color/blueDark" />
+                            app:tint="@color/brand_primary" />
 
                         <TextView
                             android:layout_width="0dp"
@@ -188,7 +188,7 @@
                             android:layout_width="24dp"
                             android:layout_height="24dp"
                             android:src="@drawable/ic_school"
-                            app:tint="@color/blueDark" />
+                            app:tint="@color/brand_primary" />
 
                         <TextView
                             android:id="@+id/tvTheme"
