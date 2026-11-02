@@ -17,6 +17,7 @@ class SettingsActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var tvThemeStatus: TextView
+    private lateinit var tvLanguageStatus: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,11 +29,18 @@ class SettingsActivity : AppCompatActivity() {
         val layoutEditProfile = findViewById<LinearLayout>(R.id.layoutEditProfile)
         val layoutNotifications = findViewById<LinearLayout>(R.id.layoutNotifications)
         val layoutTheme = findViewById<LinearLayout>(R.id.layoutTheme)
+        val layoutLanguage = findViewById<LinearLayout>(R.id.layoutLanguage)
+        tvLanguageStatus = findViewById(R.id.tvLanguageStatus)
         tvThemeStatus = findViewById(R.id.tvThemeStatus)
         val btnLogout = findViewById<MaterialButton>(R.id.btnLogout)
 
         // Sync current selected theme status text
         updateThemeStatusText()
+        updateLanguageStatusText()
+
+        layoutLanguage.setOnClickListener {
+            showLanguageDialog()
+        }
 
         btnBack.setOnClickListener {
             onBackPressed()
@@ -64,14 +72,43 @@ class SettingsActivity : AppCompatActivity() {
         val themeMode = sharedPreferences.getInt("theme_mode", AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
         
         tvThemeStatus.text = when (themeMode) {
-            AppCompatDelegate.MODE_NIGHT_NO -> "Light"
-            AppCompatDelegate.MODE_NIGHT_YES -> "Dark"
-            else -> "System Default"
+            AppCompatDelegate.MODE_NIGHT_NO -> getString(R.string.theme_light_short)
+            AppCompatDelegate.MODE_NIGHT_YES -> getString(R.string.theme_dark)
+            else -> getString(R.string.language_system_default)
         }
     }
 
+    private fun updateLanguageStatusText() {
+        tvLanguageStatus.text = LanguageManager.displayName(
+            LanguageManager.currentTag(),
+            getString(R.string.language_system_default)
+        )
+    }
+
+    private fun showLanguageDialog() {
+        val tags = listOf("") + LanguageManager.languages.map { it.tag }
+        val names = (listOf(getString(R.string.language_system_default)) +
+            LanguageManager.languages.map { "${it.nativeName} (${it.englishName})" }).toTypedArray()
+        val checked = tags.indexOf(LanguageManager.currentTag()).coerceAtLeast(0)
+
+        MaterialAlertDialogBuilder(this)
+            .setTitle(R.string.select_language)
+            .setSingleChoiceItems(names, checked) { dialog, which ->
+                dialog.dismiss()
+                if (tags[which] != LanguageManager.currentTag()) {
+                    LanguageManager.apply(tags[which])
+                }
+            }
+            .setNegativeButton(R.string.cancel, null)
+            .show()
+    }
+
     private fun showThemeSelectionDialog() {
-        val themes = arrayOf("Light", "Dark", "System Default")
+        val themes = arrayOf(
+            getString(R.string.theme_light_short),
+            getString(R.string.theme_dark),
+            getString(R.string.language_system_default)
+        )
         val sharedPreferences = getSharedPreferences("theme_prefs", Context.MODE_PRIVATE)
         val currentThemeMode = sharedPreferences.getInt("theme_mode", AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
 
@@ -82,7 +119,7 @@ class SettingsActivity : AppCompatActivity() {
         }
 
         MaterialAlertDialogBuilder(this)
-            .setTitle("Choose Theme")
+            .setTitle(R.string.choose_theme)
             .setSingleChoiceItems(themes, checkedItem) { dialog, which ->
                 val selectedMode = when (which) {
                     0 -> AppCompatDelegate.MODE_NIGHT_NO
@@ -99,7 +136,7 @@ class SettingsActivity : AppCompatActivity() {
                 updateThemeStatusText()
                 dialog.dismiss()
             }
-            .setNegativeButton("Cancel", null)
+            .setNegativeButton(R.string.cancel, null)
             .show()
     }
 }

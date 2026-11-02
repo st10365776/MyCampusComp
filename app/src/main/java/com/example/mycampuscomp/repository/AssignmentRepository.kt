@@ -3,26 +3,24 @@ package com.example.mycampuscomp.repository
 import android.util.Log
 import com.example.mycampuscomp.db.AssignmentDao
 import com.example.mycampuscomp.model.Assignment
+import com.example.mycampuscomp.model.SyncState
+import com.example.mycampuscomp.notifications.NotificationCenter
+import com.example.mycampuscomp.sync.SyncManager
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.CollectionReference
-import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.tasks.await
+import java.util.UUID
 
+/**
+ * Room is the source of truth for the UI. Writes are saved locally and flagged as
+ * pending; SyncManager uploads them as soon as the device is online.
+ */
 class AssignmentRepository(
     private val assignmentDao: AssignmentDao,
-    private val firestore: FirebaseFirestore = FirebaseFirestore.getInstance(),
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
 ) {
 
     private val TAG = "AssignmentRepository"
-
-    // Each signed-in user's assignments live under their own document, e.g.
-    // users/{uid}/assignments/{assignmentId} - so one user never sees another's data.
-    private fun userAssignmentCollection(uid: String): CollectionReference {
-        return firestore.collection("users").document(uid).collection("assignments")
-    }
 
     fun getAssignmentsLocal(): Flow<List<Assignment>> {
         val uid = auth.currentUser?.uid ?: return flowOf(emptyList())
@@ -30,22 +28,7 @@ class AssignmentRepository(
     }
 
     suspend fun refreshAssignmentsFromFirestore() {
-        val uid = auth.currentUser?.uid
-        if (uid == null) {
-            Log.w(TAG, "No signed-in user; skipping Firestore refresh")
-            return
-        }
-        try {
-            val snapshot = userAssignmentCollection(uid).get().await()
-            val assignments = snapshot.toObjects(Assignment::class.java).map { it.copy(userId = uid) }
-            Log.d(TAG, "Fetched ${assignments.size} assignments from Firestore for $uid")
-            assignmentDao.clearAllForUser(uid)
-            if (assignments.isNotEmpty()) {
-                assignmentDao.insertAssignments(assignments)
-            }
-        } catch (e: Exception) {
-            Log.e(TAG, "Error refreshing assignments from Firestore", e)
-        }
+        SyncManager.syncAll()
     }
 
     suspend fun saveAssignment(assignment: Assignment) {
@@ -54,29 +37,24 @@ class AssignmentRepository(
             Log.w(TAG, "No signed-in user; cannot save assignment")
             return
         }
+        val id = assignment.id.ifEmpty { UUID.randomUUID().toString() }
+        val previous = assignmentDao.getById(id)
+        assignmentDao.insertAssignments(
+            listOf(assignment.copy(id = id, userId = uid, syncState = SyncState.PENDING_UPSERT))
+        )
+        SyncManager.requestSync()
 
-        val collection = userAssignmentCollection(uid)
-        val docRef = if (assignment.id.isEmpty()) {
-            collection.document()
-        } else {
-            collection.document(assignment.id)
-        }
-        val finalAssignment = assignment.copy(id = docRef.id, userId = uid)
-
-        // 1. Save to local Room DB FIRST so user actions work seamlessly offline
-        try {
-            assignmentDao.insertAssignments(listOf(finalAssignment))
-            Log.d(TAG, "Saved assignment locally to Room: $finalAssignment")
-        } catch (e: Exception) {
-            Log.e(TAG, "Error saving assignment locally to Room", e)
-        }
-
-        // 2. Sync with Firestore in try-catch so offline network errors won't prevent local save
-        try {
-            Log.d(TAG, "Syncing assignment to Firestore: $finalAssignment")
-            docRef.set(finalAssignment).await()
-        } catch (e: Exception) {
-            Log.w(TAG, "Firestore write offline/deferred: ${e.message}")
+        val due = NotificationCenter.describeDue(assignment.dueDate)
+        when {
+            previous == null -> NotificationCenter.post(
+                uid, "Assignment added", "\"${assignment.title}\" is $due.", "assignment"
+            )
+            previous.status != "Completed" && assignment.status == "Completed" -> NotificationCenter.post(
+                uid, "Assignment completed", "Well done! You finished \"${assignment.title}\".", "assignment"
+            )
+            else -> NotificationCenter.post(
+                uid, "Assignment updated", "\"${assignment.title}\" is $due.", "assignment"
+            )
         }
     }
 
@@ -86,20 +64,9 @@ class AssignmentRepository(
             Log.w(TAG, "No signed-in user; cannot delete assignment")
             return
         }
-
-        // 1. Delete from local Room DB FIRST
-        try {
-            assignmentDao.deleteAssignment(assignment.id)
-            Log.d(TAG, "Deleted assignment locally from Room: ${assignment.id}")
-        } catch (e: Exception) {
-            Log.e(TAG, "Error deleting assignment locally from Room", e)
-        }
-
-        // 2. Sync deletion with Firestore
-        try {
-            userAssignmentCollection(uid).document(assignment.id).delete().await()
-        } catch (e: Exception) {
-            Log.w(TAG, "Firestore delete offline/deferred: ${e.message}")
-        }
+        // Hidden from the UI immediately; removed for good once the server confirms.
+        assignmentDao.markDeleted(assignment.id)
+        SyncManager.requestSync()
+        NotificationCenter.post(uid, "Assignment removed", "\"${assignment.title}\" was deleted.", "assignment")
     }
 }

@@ -30,7 +30,7 @@ class AssignmentsActivity : AppCompatActivity() {
     private lateinit var rvAssignments: RecyclerView
     private lateinit var tvEmptyState: TextView
     private lateinit var fabAddAssignment: FloatingActionButton
-    private lateinit var layoutOfflineBanner: View
+    private lateinit var layoutOfflineBanner: TextView
     private lateinit var adapter: AssignmentAdapter
 
     private val displayDateFormat = SimpleDateFormat("MMM d, yyyy", Locale.getDefault())
@@ -55,9 +55,9 @@ class AssignmentsActivity : AppCompatActivity() {
     }
 
     private fun observeNetwork() {
-        com.example.mycampuscomp.utils.NetworkUtils.NetworkStateLiveData(this).observe(this) { isConnected ->
-            layoutOfflineBanner.visibility = if (isConnected) View.GONE else View.VISIBLE
-        }
+        com.example.mycampuscomp.sync.SyncStatusBanner.bind(
+            this, layoutOfflineBanner, "Offline Mode - Assignments saved locally"
+        )
     }
 
     private fun setupRecyclerView() {

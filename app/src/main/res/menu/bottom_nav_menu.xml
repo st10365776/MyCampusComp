@@ -4,26 +4,26 @@
     <item
         android:id="@+id/nav_home"
         android:icon="@drawable/ic_school"
-        android:title="Home" />
+        android:title="@string/menu_home" />
 
     <item
         android:id="@+id/nav_timetable"
         android:icon="@drawable/ic_timetable"
-        android:title="Timetable" />
+        android:title="@string/timetable" />
 
     <item
         android:id="@+id/nav_ai"
         android:icon="@drawable/ic_ai"
-        android:title="AI Assistant" />
+        android:title="@string/menu_ai_assistant" />
 
     <item
         android:id="@+id/nav_assignments"
         android:icon="@drawable/ic_assignment"
-        android:title="Assignments" />
+        android:title="@string/assignments" />
 
     <item
         android:id="@+id/nav_more"
         android:icon="@drawable/ic_menu_hamburger"
-        android:title="More" />
+        android:title="@string/menu_more" />
 
 </menu>

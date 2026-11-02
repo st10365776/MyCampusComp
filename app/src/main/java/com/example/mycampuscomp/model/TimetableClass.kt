@@ -1,8 +1,9 @@
 package com.example.mycampuscomp.model
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.google.firebase.firestore.PropertyName
+import com.google.firebase.firestore.Exclude
 
 @Entity(tableName = "timetable_classes")
 data class TimetableClass(
@@ -13,5 +14,9 @@ data class TimetableClass(
     val time: String = "",
     val room: String = "",
     val day: String = "", // e.g., "Mon", "Tue", etc.
-    val type: String = "Lecture" // e.g., "Lecture", "Lab"
+    val type: String = "Lecture", // e.g., "Lecture", "Lab"
+    // Local-only sync flag, never written to Firestore.
+    @get:Exclude
+    @ColumnInfo(defaultValue = SyncState.SYNCED)
+    val syncState: String = SyncState.SYNCED
 )

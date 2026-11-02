@@ -27,7 +27,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="Back"
+                android:contentDescription="@string/back_text"
                 android:src="@drawable/ic_chevron_down"
                 android:rotation="90"
                 app:tint="@color/text_main" />
@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:fontFamily="sans-serif-bold"
-                android:text="APS Calculator"
+                android:text="@string/aps_calculator"
                 android:textColor="@color/text_main"
                 android:textSize="20sp" />
         </LinearLayout>
@@ -55,7 +55,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="⚡ Offline Mode - Results will sync when connected"
+                android:text="@string/offline_results_sync"
                 android:textColor="@color/warn_text"
                 android:textSize="12sp"
                 android:textStyle="bold" />
@@ -91,7 +91,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-medium"
-                            android:text="Grading System"
+                            android:text="@string/grading_system"
                             android:textColor="@color/text_main"
                             android:textSize="16sp" />
 
@@ -100,7 +100,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
                             android:fontFamily="sans-serif"
-                            android:text="Select the grading scale used by your institution:"
+                            android:text="@string/select_grading"
                             android:textColor="@color/text_muted"
                             android:textSize="12sp" />
 
@@ -127,7 +127,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="sans-serif-bold"
-                        android:text="Modules &amp; Marks"
+                        android:text="@string/modules_marks"
                         android:textColor="@color/text_main"
                         android:textSize="18sp" />
 
@@ -136,7 +136,7 @@
                         style="@style/Widget.MaterialComponents.Button.TextButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="+ Add Module"
+                        android:text="@string/add_module"
                         android:textColor="@color/accent_text"
                         android:textSize="14sp" />
                 </LinearLayout>
@@ -156,7 +156,7 @@
                     android:layout_marginTop="16dp"
                     android:backgroundTint="@color/accent_text"
                     android:fontFamily="sans-serif-bold"
-                    android:text="Calculate APS"
+                    android:text="@string/calculate_aps"
                     android:textSize="16sp"
                     app:cornerRadius="16dp" />
 
@@ -183,7 +183,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-medium"
-                            android:text="YOUR COMPUTED SCORE"
+                            android:text="@string/computed_score"
                             android:textColor="#AEBBE7"
                             android:textSize="12sp" />
 
@@ -215,7 +215,7 @@
                             android:layout_marginTop="16dp"
                             android:backgroundTint="@color/white"
                             android:fontFamily="sans-serif-bold"
-                            android:text="Save APS to Profile (+30 pts)"
+                            android:text="@string/save_aps"
                             android:textColor="#143C8C"
                             app:cornerRadius="12dp" />
                     </LinearLayout>

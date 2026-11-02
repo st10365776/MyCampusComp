@@ -119,7 +119,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_marginTop="15dp"
-                        android:text="View Seller's Listings"
+                        android:text="@string/view_sellers_listings"
                         app:cornerRadius="15dp"/>
 
                 </LinearLayout>

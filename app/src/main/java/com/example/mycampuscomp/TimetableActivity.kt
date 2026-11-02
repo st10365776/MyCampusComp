@@ -48,6 +48,9 @@ class TimetableActivity : AppCompatActivity() {
         setupBottomNavigation()
         automateDates()
         observeViewModel()
+        com.example.mycampuscomp.sync.SyncStatusBanner.bind(
+            this, findViewById(R.id.tvSyncBanner), "Offline Mode - Classes saved locally"
+        )
     }
 
     private fun initViews() {
@@ -79,6 +82,10 @@ class TimetableActivity : AppCompatActivity() {
         val spinnerDay = dialogView.findViewById<Spinner>(R.id.spinnerDay)
         val spinnerType = dialogView.findViewById<Spinner>(R.id.spinnerType)
         val btnSave = dialogView.findViewById<Button>(R.id.btnSave)
+
+        // Default to the day being viewed so the new class shows up right away.
+        val days = resources.getStringArray(R.array.days_array)
+        spinnerDay.setSelection(days.indexOf(viewModel.currentDay).coerceAtLeast(0))
 
         btnSave.setOnClickListener {
             val subject = etSubject.text.toString()

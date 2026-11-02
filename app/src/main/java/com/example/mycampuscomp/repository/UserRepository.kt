@@ -154,6 +154,19 @@ class UserRepository(
             currentBadges.add("badge_level5")
         }
 
+        currentBadges.filter { it !in current.badges }.forEach { badge ->
+            val name = badge.removePrefix("badge_").replace('_', ' ').replaceFirstChar { it.uppercase() }
+            com.example.mycampuscomp.notifications.NotificationCenter.post(
+                uid, "Badge unlocked", "You earned the \"$name\" badge!", "badge"
+            )
+        }
+        if (newLevel > current.level) {
+            com.example.mycampuscomp.notifications.NotificationCenter.post(
+                uid, "Level up", "You reached level $newLevel with $newPoints points!", "badge",
+                id = "level_${uid}_$newLevel"
+            )
+        }
+
         val updatedUser = current.copy(
             points = newPoints,
             level = newLevel,
