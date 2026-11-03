@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyCampusComp</string>
+    <string name="settings_title">Ditlhophiso</string>
+    <string name="account_section">Akhaonto</string>
+    <string name="edit_profile">Fetola Profeili</string>
+    <string name="notifications">Ditsebiso</string>
+    <string name="preferences_section">Dikgetho</string>
+    <string name="theme">Moo</string>
+    <string name="theme_light">Moo o Khanyang</string>
+    <string name="log_out">Tswa</string>
+    <string name="language">Puo</string>
+    <string name="select_language">Kgetha Puo</string>
+    <string name="language_system_default">Ya Sistimi</string>
+    <string name="theme_dark">E Mofifi</string>
+    <string name="theme_light_short">Khanya</string>
+    <string name="choose_theme">Kgetha Mooko</string>
+    <string name="cancel">Hlakola</string>
+    <string name="menu_home">Hae</string>
+    <string name="timetable">Senako</string>
+    <string name="assignments">Ditshebeletso</string>
+    <string name="marketplace">Mmaraka</string>
+    <string name="community_events">Diketso tsa Sechaba</string>
+    <string name="aps_calculator">Bala APS</string>
+    <string name="gamification_badges">Di-badge le Katleho</string>
+    <string name="good_morning">Dumela,</string>
+    <string name="todays_classes">Ditlelase tsa Kajeno</string>
+    <string name="upcoming_assignment">Mosebetsi o Tlang</string>
+    <string name="save_changes">Boloka Diphetolo</string>
+    <string name="search_items">Batla dilo...</string>
+    <string name="sell_an_item">Reka/Rekisa Ntho</string>
+    <string name="my_listings">Dilo tsa Ka</string>
+    <string name="menu_ai_assistant">Batho ba AI</string>
+    <string name="menu_more">Tse Ding</string>
+</resources>

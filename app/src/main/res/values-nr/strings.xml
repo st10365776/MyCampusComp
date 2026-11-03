@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyCampusComp</string>
+    <string name="settings_title">Izilungiselelo</string>
+    <string name="account_section">I-akhawunti</string>
+    <string name="edit_profile">Hlela Iphrofayili</string>
+    <string name="notifications">Izaziso</string>
+    <string name="preferences_section">Izikhetho</string>
+    <string name="theme">Isihloko</string>
+    <string name="theme_light">Isihloko Esikhanyako</string>
+    <string name="log_out">Phuma</string>
+    <string name="language">Ilimi</string>
+    <string name="select_language">Khetha Ilimi</string>
+    <string name="language_system_default">Kwefoni</string>
+    <string name="theme_dark">Esikhanyako</string>
+    <string name="theme_light_short">Esikhanyako</string>
+    <string name="choose_theme">Khetha Isihloko</string>
+    <string name="cancel">Rarolula</string>
+    <string name="menu_home">Ekhaya</string>
+    <string name="timetable">Isikhathi</string>
+    <string name="assignments">Imisebenzi</string>
+    <string name="marketplace">Imakethe</string>
+    <string name="community_events">Imicimbi</string>
+    <string name="aps_calculator">I-APS Khalkhuleyitha</string>
+    <string name="gamification_badges">Amabheji</string>
+    <string name="good_morning">Lotjhani,</string>
+    <string name="todays_classes">Izifundo Zanamuhla</string>
+    <string name="upcoming_assignment">Umsebenzi Oza Ko</string>
+    <string name="save_changes">Bulunga Utshintsho</string>
+    <string name="search_items">Funa izinto...</string>
+    <string name="sell_an_item">Thengisa Into</string>
+    <string name="my_listings">Izinto Zam</string>
+    <string name="menu_ai_assistant">Umsizi wa AI</string>
+    <string name="menu_more">Okunye</string>
+</resources>

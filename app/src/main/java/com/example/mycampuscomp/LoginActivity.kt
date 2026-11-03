@@ -62,6 +62,7 @@ class LoginActivity : AppCompatActivity() {
 
             auth.signInWithEmailAndPassword(emailText, passwordText)
                 .addOnSuccessListener {
+                    UserRepository.clearLocalUserCache(this@LoginActivity)
                     startActivity(Intent(this, DashboardActivity::class.java))
                     finish()
                 }
@@ -155,6 +156,7 @@ class LoginActivity : AppCompatActivity() {
                     finish()
                     return@addOnSuccessListener
                 }
+                UserRepository.clearLocalUserCache(this@LoginActivity)
                 val photoUrl = account.photoUrl?.toString() ?: ""
                 val user = User(
                     uid = uid,

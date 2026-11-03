@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyCampusComp</string>
+    <string name="settings_title">Izilungiselelo</string>
+    <string name="account_section">Inkontileka</string>
+    <string name="edit_profile">Hlela Iphrofayili</string>
+    <string name="notifications">Izaziso</string>
+    <string name="preferences_section">Okuthandayo</string>
+    <string name="theme">Isihloko</string>
+    <string name="theme_light">Isihloko Esikhanyayo</string>
+    <string name="log_out">Phuma</string>
+    <string name="language">Ulimi</string>
+    <string name="select_language">Khetha Ulimi</string>
+    <string name="language_system_default">Okuzenzakalelayo</string>
+    <string name="theme_dark">Okumnyama</string>
+    <string name="theme_light_short">Okukhanyayo</string>
+    <string name="choose_theme">Khetha Isihloko</string>
+    <string name="cancel">Khansela</string>
+    <string name="menu_home">Ekhaya</string>
+    <string name="timetable">Isikhathi</string>
+    <string name="assignments">Izabelo</string>
+    <string name="marketplace">Imakethe</string>
+    <string name="community_events">Imicimbi</string>
+    <string name="aps_calculator">Ibalazwe Le-APS</string>
+    <string name="gamification_badges">Amabheji Nempumelelo</string>
+    <string name="good_morning">Sawubona,</string>
+    <string name="todays_classes">Izifundo Zanamuhla</string>
+    <string name="upcoming_assignment">Isabelo Esizayo</string>
+    <string name="save_changes">Gcina Izinguquko</string>
+    <string name="search_items">Seshana nezinto...</string>
+    <string name="sell_an_item">Thengisa Into</string>
+    <string name="my_listings">Izinto Zami</string>
+    <string name="menu_ai_assistant">I-AI Assistant</string>
+    <string name="menu_more">Okuningi</string>
+</resources>

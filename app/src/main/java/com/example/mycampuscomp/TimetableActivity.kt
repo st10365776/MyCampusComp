@@ -78,11 +78,20 @@ class TimetableActivity : AppCompatActivity() {
             .create()
 
         val etSubject = dialogView.findViewById<EditText>(R.id.etSubject)
+        val layoutTime = dialogView.findViewById<com.google.android.material.textfield.TextInputLayout>(R.id.layoutTime)
         val etTime = dialogView.findViewById<EditText>(R.id.etTime)
         val etRoom = dialogView.findViewById<EditText>(R.id.etRoom)
         val spinnerDay = dialogView.findViewById<Spinner>(R.id.spinnerDay)
         val spinnerType = dialogView.findViewById<Spinner>(R.id.spinnerType)
         val btnSave = dialogView.findViewById<Button>(R.id.btnSave)
+
+        val openTimePicker = {
+            showTimeSelector(etTime)
+        }
+
+        etTime.setOnClickListener { openTimePicker() }
+        layoutTime.setOnClickListener { openTimePicker() }
+        layoutTime.setEndIconOnClickListener { openTimePicker() }
 
         // Default to the day being viewed so the new class shows up right away.
         val days = resources.getStringArray(R.array.days_array)

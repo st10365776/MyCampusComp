@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import coil.load
+import com.example.mycampuscomp.repository.UserRepository
 import com.example.mycampuscomp.viewmodel.DashboardViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
@@ -226,6 +227,22 @@ class DashboardActivity : AppCompatActivity() {
         super.onResume()
         com.example.mycampuscomp.notifications.NotificationCenter.runRemindersNow()
         bottomNavigation.selectedItemId = R.id.nav_home
+
+        val localPhoto = UserRepository.getLocalProfileImageUrl(this)
+        if (localPhoto.isNotEmpty()) {
+            ivProfile.load(localPhoto) {
+                crossfade(true)
+                placeholder(R.drawable.logo2)
+                error(R.drawable.logo2)
+            }
+            val headerView = navigationView.getHeaderView(0)
+            val ivDrawerProfile = headerView.findViewById<com.google.android.material.imageview.ShapeableImageView>(R.id.ivDrawerProfile)
+            ivDrawerProfile?.load(localPhoto) {
+                crossfade(true)
+                placeholder(R.drawable.logo2)
+                error(R.drawable.logo2)
+            }
+        }
 
         if (intent.getBooleanExtra("open_drawer", false)) {
             drawerLayout.openDrawer(GravityCompat.START)

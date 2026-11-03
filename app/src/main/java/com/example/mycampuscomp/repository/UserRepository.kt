@@ -40,6 +40,12 @@ class UserRepository(
 
         // Load local cached profile instantly from SharedPreferences so UI displays immediately
         if (context != null) {
+            val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+            val storedUid = prefs.getString(KEY_UID, "") ?: ""
+            if (storedUid.isNotEmpty() && storedUid != uid) {
+                prefs.edit().clear().apply()
+            }
+
             val localUser = updateDailyStudyStreak(context, getLocalUser(context, uid))
             saveUserLocally(context, localUser)
             if (_user.value != localUser) {
@@ -65,7 +71,7 @@ class UserRepository(
                     val mergedBadges = (remoteUser.badges + (currentLocal?.badges ?: emptyList())).distinct()
                     val mergedName = remoteUser.name.ifEmpty { currentLocal?.name ?: "" }
                     val mergedEmail = remoteUser.email.ifEmpty { currentLocal?.email ?: "" }
-                    val mergedImage = remoteUser.profileImageUrl.ifEmpty { currentLocal?.profileImageUrl ?: "" }
+                    val mergedImage = currentLocal?.profileImageUrl?.takeIf { it.isNotEmpty() } ?: remoteUser.profileImageUrl
 
                     User(
                         uid = uid,
@@ -265,19 +271,28 @@ class UserRepository(
         private const val KEY_BADGES = "badges"
         private const val KEY_LAST_LOGIN_DATE = "last_login_date"
 
-        fun saveUserLocally(context: Context, user: User) {
+        fun clearLocalUserCache(context: Context) {
             val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-            val existing = getLocalUser(context, user.uid)
+            prefs.edit().clear().apply()
+        }
 
-            val finalUid = user.uid.ifEmpty { existing.uid }
+        fun saveUserLocally(context: Context, user: User) {
+            if (user.uid.isEmpty()) return
+            val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+            val storedUid = prefs.getString(KEY_UID, "") ?: ""
+
+            val isSameUser = storedUid.isEmpty() || storedUid == user.uid
+            val existing = if (isSameUser) getLocalUser(context, user.uid) else User(uid = user.uid)
+
+            val finalUid = user.uid
             val finalName = user.name.ifEmpty { existing.name }
             val finalEmail = user.email.ifEmpty { existing.email }
-            val finalStreak = maxOf(user.studyStreak, existing.studyStreak)
-            val finalAps = maxOf(user.apsScore, existing.apsScore)
-            val finalImage = user.profileImageUrl.ifEmpty { existing.profileImageUrl }
-            val finalPoints = maxOf(user.points, existing.points)
-            val finalLevel = maxOf(user.level, existing.level)
-            val finalBadges = (user.badges + existing.badges).distinct()
+            val finalStreak = if (isSameUser) maxOf(user.studyStreak, existing.studyStreak) else user.studyStreak
+            val finalAps = if (isSameUser) maxOf(user.apsScore, existing.apsScore) else user.apsScore
+            val finalImage = user.profileImageUrl.ifEmpty { if (isSameUser) existing.profileImageUrl else "" }
+            val finalPoints = if (isSameUser) maxOf(user.points, existing.points) else user.points
+            val finalLevel = if (isSameUser) maxOf(user.level, existing.level) else user.level
+            val finalBadges = if (isSameUser) (user.badges + existing.badges).distinct() else user.badges
 
             val badgesString = finalBadges.joinToString(",")
             prefs.edit()
@@ -295,7 +310,13 @@ class UserRepository(
 
         fun getLocalUser(context: Context, fallbackUid: String = ""): User {
             val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-            val uid = prefs.getString(KEY_UID, fallbackUid) ?: fallbackUid
+            val storedUid = prefs.getString(KEY_UID, "") ?: ""
+            val uid = storedUid.ifEmpty { fallbackUid }
+
+            if (fallbackUid.isNotEmpty() && storedUid.isNotEmpty() && storedUid != fallbackUid) {
+                return User(uid = fallbackUid)
+            }
+
             val name = prefs.getString(KEY_NAME, "") ?: ""
             val email = prefs.getString(KEY_EMAIL, "") ?: ""
             val studyStreak = prefs.getInt(KEY_STUDY_STREAK, 0)
@@ -326,7 +347,7 @@ class UserRepository(
 
             var streak = currentUser.studyStreak
             if (lastDateStr.isEmpty()) {
-                streak = maxOf(streak, 1)
+                streak = maxOf(streak, 0)
             } else if (lastDateStr != todayStr) {
                 val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.US)
                 try {
@@ -337,11 +358,11 @@ class UserRepository(
                         streak = when (diffDays) {
                             1 -> streak + 1
                             0 -> streak
-                            else -> 1
+                            else -> 0
                         }
                     }
                 } catch (e: Exception) {
-                    streak = maxOf(streak, 1)
+                    streak = maxOf(streak, 0)
                 }
             }
             prefs.edit().putString(KEY_LAST_LOGIN_DATE, todayStr).apply()
@@ -354,7 +375,39 @@ class UserRepository(
         }
 
         fun getLocalProfileImageUrl(context: Context): String {
-            return getLocalUser(context).profileImageUrl
+            val currentUid = FirebaseAuth.getInstance().currentUser?.uid ?: ""
+            val user = getLocalUser(context, currentUid)
+            return if (user.uid == currentUid) user.profileImageUrl else ""
+        }
+
+        fun saveProfilePhotoToLocalFile(context: Context, uri: android.net.Uri, uid: String): String? {
+            return try {
+                val inputStream = context.contentResolver.openInputStream(uri) ?: return null
+                val originalBitmap = android.graphics.BitmapFactory.decodeStream(inputStream)
+                inputStream.close()
+                if (originalBitmap == null) return null
+
+                val maxDimension = 400
+                val width = originalBitmap.width
+                val height = originalBitmap.height
+                val scale = minOf(maxDimension.toFloat() / width, maxDimension.toFloat() / height, 1.0f)
+                val scaledWidth = (width * scale).toInt().coerceAtLeast(1)
+                val scaledHeight = (height * scale).toInt().coerceAtLeast(1)
+
+                val scaledBitmap = android.graphics.Bitmap.createScaledBitmap(originalBitmap, scaledWidth, scaledHeight, true)
+
+                val fileName = "profile_${uid.ifEmpty { "user" }}.jpg"
+                val file = java.io.File(context.filesDir, fileName)
+                val outputStream = java.io.FileOutputStream(file)
+                scaledBitmap.compress(android.graphics.Bitmap.CompressFormat.JPEG, 85, outputStream)
+                outputStream.flush()
+                outputStream.close()
+
+                "file://" + file.absolutePath
+            } catch (e: Exception) {
+                Log.e("UserRepository", "Error saving profile photo to local file", e)
+                null
+            }
         }
     }
 }

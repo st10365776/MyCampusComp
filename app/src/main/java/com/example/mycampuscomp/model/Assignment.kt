@@ -15,6 +15,6 @@ data class Assignment(
     val status: String = "Pending", // "Pending", "Urgent", or "Completed"
     // Local-only sync flag, never written to Firestore.
     @get:Exclude
-    @ColumnInfo(defaultValue = SyncState.SYNCED)
+    @ColumnInfo(defaultValue = "SYNCED")
     val syncState: String = SyncState.SYNCED
 )
