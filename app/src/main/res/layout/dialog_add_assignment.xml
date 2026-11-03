@@ -14,7 +14,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:text="Add Assignment"
+            android:text="@string/add_assignment"
             android:textColor="@color/navy_dark"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
-            android:hint="Assignment Title"
+            android:hint="@string/assignment_title"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -37,7 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
-            android:hint="Due Date"
+            android:hint="@string/due_date"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -54,7 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
-            android:text="Status"
+            android:text="@string/status"
             android:textColor="@color/text_secondary" />
 
         <Spinner
@@ -69,7 +69,7 @@
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:backgroundTint="@color/brand_primary"
-            android:text="Save Assignment"
+            android:text="@string/save_assignment"
             android:textColor="@color/white" />
 
     </LinearLayout>

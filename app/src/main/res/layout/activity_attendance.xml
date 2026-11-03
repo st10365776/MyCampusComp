@@ -25,7 +25,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="QR Attendance"
+            android:text="@string/qr_attendance"
             android:textColor="@color/white"
             android:textSize="26sp"
             android:textStyle="bold" />
@@ -34,7 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
-            android:text="Mark your attendance by scanning the class QR code"
+            android:text="@string/mark_attendance_qr"
             android:textColor="@color/lightText"
             android:textSize="14sp" />
 
@@ -65,7 +65,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Module"
+                android:text="@string/module"
                 android:textColor="@color/text_muted"
                 android:textSize="13sp" />
 
@@ -101,7 +101,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
-                android:text="Attendance Status"
+                android:text="@string/attendance_status"
                 android:textColor="@color/text_muted"
                 android:textSize="13sp" />
 
@@ -110,7 +110,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="Not marked"
+                android:text="@string/not_marked"
                 android:textColor="@color/upcoming_icon_tint"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -128,7 +128,7 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="20dp"
         android:backgroundTint="@color/student_bubble"
-        android:text="Scan QR Code"
+        android:text="@string/scan_qr"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="16sp"
@@ -145,7 +145,7 @@
         android:layout_marginTop="12dp"
         android:layout_marginEnd="20dp"
         android:backgroundTint="@color/accent_surface"
-        android:text="Enter Code Manually"
+        android:text="@string/enter_code_manually"
         android:textAllCaps="false"
         android:textColor="@color/accent_text"
         android:textSize="16sp"

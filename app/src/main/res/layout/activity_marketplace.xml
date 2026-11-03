@@ -24,7 +24,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Marketplace"
+                android:text="@string/marketplace"
                 android:textColor="@color/text_main"
                 android:textSize="28sp"
                 android:fontFamily="sans-serif-black"/>
@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="4dp"
-                android:text="Buy and sell with fellow students"
+                android:text="@string/buy_sell_students"
                 android:textColor="@color/text_muted"
                 android:textSize="14sp"/>
 
@@ -44,7 +44,7 @@
                 android:layout_height="52dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/bg_marketplace_input"
-                android:hint="Search items..."
+                android:hint="@string/search_items"
                 android:paddingHorizontal="18dp"
                 android:singleLine="true"
                 android:textColor="@color/text_main"
@@ -61,7 +61,7 @@
                     android:layout_width="0dp"
                     android:layout_height="52dp"
                     android:layout_weight="1"
-                    android:text="Sell an Item"
+                    android:text="@string/sell_an_item"
                     android:textColor="@color/white"
                     app:backgroundTint="@color/brand_primary"
                     app:cornerRadius="16dp"/>
@@ -72,7 +72,7 @@
                     android:layout_height="52dp"
                     android:layout_marginStart="10dp"
                     android:layout_weight="1"
-                    android:text="My Listings"
+                    android:text="@string/my_listings"
                     android:textColor="@color/brand_primary"
                     app:backgroundTint="@color/card_surface"
                     app:cornerRadius="16dp"
@@ -84,7 +84,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="26dp"
-                android:text="Browse Marketplace"
+                android:text="@string/browse_marketplace"
                 android:textColor="@color/text_main"
                 android:textSize="20sp"
                 android:fontFamily="sans-serif-black"/>

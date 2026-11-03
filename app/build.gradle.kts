@@ -65,6 +65,9 @@ dependencies {
     implementation("androidx.camera:camera-lifecycle:1.4.2")
     implementation("androidx.camera:camera-view:1.4.2")
     
+    implementation("com.google.firebase:firebase-messaging")
+    implementation("androidx.work:work-runtime-ktx:2.10.0")
+
     // Room
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)

@@ -73,7 +73,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:text="Stay on Track"
+        android:text="@string/onboarding_title_1"
         android:textColor="@color/text_main"
         android:textSize="34sp"
         android:fontFamily="@font/poppins_bold"/>
@@ -89,6 +89,6 @@
         android:textSize="17sp"
         android:lineSpacingExtra="3dp"
         android:fontFamily="@font/poppins_medium"
-        android:text="Never miss a class or deadline again. Smart timetables and assignment reminders keep you ahead."/>
+        android:text="@string/onboarding_long"/>
 
 </LinearLayout>

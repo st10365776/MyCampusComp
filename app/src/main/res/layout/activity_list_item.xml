@@ -16,7 +16,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="List an Item"
+            android:text="@string/list_an_item"
             android:textColor="@color/text_main"
             android:textSize="28sp"
             android:fontFamily="sans-serif-black"/>
@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="Sell something to fellow students"
+            android:text="@string/sell_something"
             android:textColor="@color/text_muted"
             android:textSize="14sp"/>
 
@@ -34,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:layout_marginTop="25dp"
-            android:hint="Item title *"
+            android:hint="@string/item_title_required"
             android:background="@drawable/bg_marketplace_input"
             android:paddingHorizontal="16dp"/>
 
@@ -44,7 +44,7 @@
             android:layout_height="130dp"
             android:layout_marginTop="12dp"
             android:gravity="top"
-            android:hint="Description *"
+            android:hint="@string/description_required"
             android:background="@drawable/bg_marketplace_input"
             android:padding="16dp"/>
 
@@ -54,7 +54,7 @@
             android:layout_height="55dp"
             android:layout_marginTop="12dp"
             android:inputType="numberDecimal"
-            android:hint="Price (R) *"
+            android:hint="@string/price_required"
             android:background="@drawable/bg_marketplace_input"
             android:paddingHorizontal="16dp"/>
 
@@ -62,7 +62,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
-            android:text="Category"
+            android:text="@string/category"
             android:textColor="@color/text_main"
             android:textSize="13sp"/>
 
@@ -76,7 +76,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:text="Condition"
+            android:text="@string/condition"
             android:textColor="@color/text_main"
             android:textSize="13sp"/>
 
@@ -91,7 +91,7 @@
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:layout_marginTop="12dp"
-            android:hint="Image URL"
+            android:hint="@string/image_url"
             android:inputType="textUri"
             android:background="@drawable/bg_marketplace_input"
             android:paddingHorizontal="16dp"/>
@@ -101,7 +101,7 @@
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:layout_marginTop="12dp"
-            android:hint="Location / Campus"
+            android:hint="@string/location_campus"
             android:background="@drawable/bg_marketplace_input"
             android:paddingHorizontal="16dp"/>
 
@@ -110,7 +110,7 @@
             android:layout_width="match_parent"
             android:layout_height="58dp"
             android:layout_marginTop="25dp"
-            android:text="Publish Listing"
+            android:text="@string/publish_listing"
             android:textColor="@color/white"
             app:backgroundTint="@color/brand_primary"
             app:cornerRadius="18dp"/>
