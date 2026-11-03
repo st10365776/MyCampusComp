@@ -9,6 +9,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import com.example.mycampuscomp.repository.UserRepository
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
@@ -59,6 +60,7 @@ class SettingsActivity : AppCompatActivity() {
         }
 
         btnLogout.setOnClickListener {
+            UserRepository.clearLocalUserCache(this)
             auth.signOut()
             val intent = Intent(this, LoginActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -97,6 +99,7 @@ class SettingsActivity : AppCompatActivity() {
                 dialog.dismiss()
                 if (tags[which] != LanguageManager.currentTag()) {
                     LanguageManager.apply(tags[which])
+                    recreate()
                 }
             }
             .setNegativeButton(R.string.cancel, null)

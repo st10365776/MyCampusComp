@@ -82,20 +82,23 @@ class AIStudyAssistantActivity : AppCompatActivity() {
     // ============================================================
 
     private fun showWelcomeMessage() {
-        addTutorMessage(
-            "Hello! I'm your Campus Assistant.\n\n" +
-                    "I can help you with:\n" +
-                    "• Assignments\n" +
-                    "• Classes\n" +
-                    "• Your timetable\n" +
-                    "• Due dates\n" +
-                    "• Study planning\n" +
-                    "• Your MyCampusComp information\n\n" +
-                    "Try asking me:\n" +
-                    "\"What assignments do I have?\"\n\n" +
-                    "or\n\n" +
-                    "\"What classes do I have today?\""
-        )
+        addTutorMessage(getWelcomeMessageForLanguage())
+    }
+
+    private fun getWelcomeMessageForLanguage(): String {
+        return when (LanguageManager.currentTag()) {
+            "xh" -> "Molo! Mna ndingumncedisi wakho wasekampasi.\n\nNdingakunceda nge:\n• Izabelo\n• Iiklasi\n• Ishedyuli neentsuku ezilindelekileyo\n• Ukucwangcisa izifundo\n\nZama ukundibuza:\n\"Ziziphi izabelo endinazo?\"\n\nokanye\n\n\"Ziziphi iiklasi endinazo namhlanje?\""
+            "zu" -> "Sawubona! Ngingumsizi wakho wasekhampasi.\n\nNgingakusiza nge:\n• Izabelo\n• Amakilasi\n• Isikhathi nezinsuku ezinqunyiwe\n• Ukuhlela ukufunda\n\nZama ukungibuza:\n\"Ngineziphi izabelo?\"\n\nnoma\n\n\"Amakilasi amaphi enginawo namhlanje?\""
+            "af" -> "Hallo! Ek is jou Kampusassistent.\n\nEk kan jou help met:\n• Opdragte\n• Klasse\n• Rooster en keerdatums\n• Studiebeplanning\n\nProbeer my vra:\n\"Watter opdragte het ek?\"\n\nof\n\n\"Watter klasse het ek vandag?\""
+            "st" -> "Lumela! Ke mothusi oa hau oa khampase.\n\nNka u meletsa ka:\n• Ditshebeletso\n• Ditlelase\n• Senako le matsatsi a ho qetela\n• Morero oa ho ithuta\n\nLeka ho botsa:\n\"Ke na le ditshebeletso dife?\"\n\nkapa\n\n\"Ke na le ditlelase dife kajeno?\""
+            "tn" -> "Dumela! Ke mothusi wa gago wa khampase.\n\nNka go thusha ka:\n• Ditiro\n• Ditlelase\n• Thulaganyo le matlha a bokhutlo\n• Togamaano ya go ithuta\n\nLeka go mpotsa:\n\"Ke na le ditiro dife?\"\n\nkgotsa\n\n\"Ke na le ditlelase dife gompieno?\""
+            "nso" -> "Dumela! Ke mothuši wa gago wa khampase.\n\nNka go thuša ka:\n• Mešomo\n• Ditlelase\n• Tšhupametši le matšatši a mafelelo\n• Leanothuto\n\nLeka go mpotšiša:\n\"Ke na le mešomo efe?\"\n\ngoba\n\n\"Ke na le ditlelase dife hlale?\""
+            "ss" -> "Sawubona! Ngimtfusi wakho wasekhamphasini.\n\nNgimfuna kukusiza nge:\n• Tifundvo\n• Tinhlelonto netinsuku tekugcina\n• Kuhlela kufundza\n\nTsample kumbingata:\n\"Ngitiphi tifundvo enginatfo?\"\n\nnoma\n\n\"Ngitiphi tinhlelonto enginatfo namuhla?\""
+            "ts" -> "Avuxeni! Hi mina mupfuni wa wena wa khampasi.\n\nNdingaku pfuna hi:\n• Swiavelo\n• Ticlass\n• Xhedyuli na masiku yo hetelela\n• Pulani ya dyondzo\n\nRingeta ku vutisa:\n\"I swiavelo swihi leswi ndzi nga na swona?\"\n\nkumbe\n\n\"I ticlass tihi leswi ndzi nga na swona namuntlha?\""
+            "ve" -> "Ndaa! Ndi muthusi wau wa khamphasi.\n\nNdi nga u thusa nga:\n• Mushumo\n• Kilasi\n• Tshededzo na maduvha a u fhedzisela\n• Pulane ya u guda\n\nLinga u mbudzisa:\n\"Ndi na mushumo ufhio?\"\n\nkana\n\n\"Ndi na kilasi dzifhio namusi?\""
+            "nr" -> "Lotjhani! Ngingumsizi wakho wasekhamphasini.\n\nNgingakusiza nge:\n• Imisebenzi\n• Izifundo\n• Isikhathi samakilasi\n• Ukuhlela ukufunda\n\nRinga ukumbuza:\n\"Ngineyiphi imisebenzi?\"\n\nnamhana\n\n\"Ngineyiphi izifundo namhla?\""
+            else -> "Hello! I'm your Campus Assistant.\n\nI can help you with:\n• Assignments\n• Classes\n• Your timetable\n• Due dates\n• Study planning\n• Your MyCampusComp information\n\nTry asking me:\n\"What assignments do I have?\"\n\nor\n\n\"What classes do I have today?\""
+        }
     }
 
     // ============================================================
@@ -138,17 +141,21 @@ class AIStudyAssistantActivity : AppCompatActivity() {
     }
 
     private fun buildPrompt(userQuestion: String, studentContext: String): String {
+        val currentTag = LanguageManager.currentTag()
+        val languageName = LanguageManager.displayName(currentTag, "English")
+
         return """
             SYSTEM INSTRUCTION:
             You are the Campus Assistant inside MyCampusComp powered by OpenRouter GPT-4o.
             You are a helpful university student assistant.
 
             IMPORTANT RULES:
-            1. Use the actual student data provided below when answering questions about assignments, classes, timetable, due dates, or schedules.
-            2. Never invent assignments, classes, due dates, rooms, or timetable entries.
-            3. If the user asks "view timetable", "what classes do I have today?", or "what assignments do I have?", display their exact timetable or assignments from the data provided.
-            4. If the requested information is not present in the data, state clearly that you cannot find it in their MyCampusComp data.
-            5. Keep answers friendly, clear, concise, and helpful.
+            1. Respond to the student in $languageName ($currentTag).
+            2. Use the actual student data provided below when answering questions about assignments, classes, timetable, due dates, or schedules.
+            3. Never invent assignments, classes, due dates, rooms, or timetable entries.
+            4. If the user asks "view timetable", "what classes do I have today?", or "what assignments do I have?", display their exact timetable or assignments from the data provided.
+            5. If the requested information is not present in the data, state clearly that you cannot find it in their MyCampusComp data.
+            6. Keep answers friendly, clear, concise, and helpful in $languageName.
 
             STUDENT DATA:
             $studentContext

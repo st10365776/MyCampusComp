@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyCampusComp</string>
+    <string name="settings_title">Nzudzanyo</string>
+    <string name="account_section">Akhaunthi</string>
+    <string name="edit_profile">Lugisa Burofayili</string>
+    <string name="notifications">Ndivhadzo</string>
+    <string name="preferences_section">Zwine na Takalela</string>
+    <string name="theme">Thimu</string>
+    <string name="theme_light">Thimu ya Tshetshe</string>
+    <string name="log_out">Bva</string>
+    <string name="language">Luambo</string>
+    <string name="select_language">Nanga Luambo</string>
+    <string name="language_system_default">Zwa Sisteim</string>
+    <string name="theme_dark">Nswifu</string>
+    <string name="theme_light_short">Tshena</string>
+    <string name="choose_theme">Nanga Thimu</string>
+    <string name="cancel">Kanzela</string>
+    <string name="menu_home">Hayani</string>
+    <string name="timetable">Tshededzo</string>
+    <string name="assignments">Mushumo</string>
+    <string name="marketplace">Makete</string>
+    <string name="community_events">Zwiitea zwa Tshitshavha</string>
+    <string name="aps_calculator">Vhalela APS</string>
+    <string name="gamification_badges">Zwidina na Zwiito</string>
+    <string name="good_morning">Ndaa / Aa,</string>
+    <string name="todays_classes">Kilasi dza Namusi</string>
+    <string name="upcoming_assignment">Mushumo u re phanda</string>
+    <string name="save_changes">Vhulunga Tshanduko</string>
+    <string name="search_items">Toda zwithu...</string>
+    <string name="sell_an_item">Rengisa Tshitshu</string>
+    <string name="my_listings">Zwithu zhanga</string>
+    <string name="menu_ai_assistant">Muthusi wa AI</string>
+    <string name="menu_more">Zwinwe</string>
+</resources>
