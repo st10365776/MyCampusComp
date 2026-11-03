@@ -4,34 +4,34 @@
         <item
             android:id="@+id/drawer_marketplace"
             android:icon="@drawable/ic_marketplace"
-            android:title="Marketplace" />
+            android:title="@string/marketplace" />
         <item
             android:id="@+id/drawer_map"
             android:icon="@drawable/ic_map"
-            android:title="Community Events" />
+            android:title="@string/community_events" />
         <item
             android:id="@+id/drawer_attendance"
             android:icon="@drawable/ic_timetable_header"
-            android:title="Attendance Tracker" />
+            android:title="@string/menu_attendance_tracker" />
         <item
             android:id="@+id/drawer_aps_calculator"
             android:icon="@drawable/ic_class_book"
-            android:title="APS Calculator" />
+            android:title="@string/aps_calculator" />
         <item
             android:id="@+id/drawer_gamification"
             android:icon="@drawable/ic_ai"
-            android:title="Gamification &amp; Badges" />
+            android:title="@string/gamification_badges" />
         <item
             android:id="@+id/drawer_qr_scanner"
             android:icon="@drawable/ic_more_vert"
-            android:title="QR Scanner" />
+            android:title="@string/menu_qr_scanner" />
         <item
             android:id="@+id/drawer_notifications"
             android:icon="@drawable/ic_filter_list"
-            android:title="Notifications" />
+            android:title="@string/notifications" />
         <item
             android:id="@+id/drawer_settings"
             android:icon="@drawable/ic_settings"
-            android:title="Settings" />
+            android:title="@string/settings_title" />
     </group>
 </menu>

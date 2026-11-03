@@ -37,6 +37,13 @@ class DashboardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
 
+        if (android.os.Build.VERSION.SDK_INT >= 33 &&
+            checkSelfPermission(android.Manifest.permission.POST_NOTIFICATIONS) !=
+            android.content.pm.PackageManager.PERMISSION_GRANTED
+        ) {
+            requestPermissions(arrayOf(android.Manifest.permission.POST_NOTIFICATIONS), 1001)
+        }
+
         initViews()
         setupBottomNavigation()
         setupDrawerNavigation()
@@ -217,6 +224,7 @@ class DashboardActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        com.example.mycampuscomp.notifications.NotificationCenter.runRemindersNow()
         bottomNavigation.selectedItemId = R.id.nav_home
 
         if (intent.getBooleanExtra("open_drawer", false)) {

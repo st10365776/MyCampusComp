@@ -21,6 +21,14 @@ Built with **Kotlin**, **Jetpack Architecture Components (MVVM)**, **Firebase**,
 * **Student Marketplace**: Buy, sell, and manage textbook or gear listings with fellow campus students.
 * **Attendance & QR Scanner**: On-device barcode scanner powered by CameraX and ML Kit for class check-ins.
 * **Customization & Dark Theme**: Full profile editor (name and custom profile image URL) plus System/Light/Dark theme support.
+* **Community Events**: Campus events shown as cards (replaces the former Campus Map).
+* **Offline Mode with Sync**: Timetable classes and assignments are saved to Room first, so you can add, edit and delete while offline. Each record carries a sync state (`SYNCED`, `PENDING_UPSERT`, `PENDING_DELETE`). A banner shows "Syncing N changes" while changes are queued, and `SyncManager` uploads them to Firestore (with retries) once the device reconnects.
+* **Real-time Notifications**:
+  * Alerts when a class or assignment is added, including days left until the due date.
+  * Scheduled assignment and class reminders (WorkManager `ReminderWorker`).
+  * Firebase Cloud Messaging push support and a live Firestore announcements listener.
+  * All notifications are stored in Room and listed on the **Notifications** screen (mark all read, clear all).
+* **Multi-language Support**: Choose the app language under **Settings → Language**. Supported: English, Afrikaans, isiZulu, isiXhosa, Sesotho, Setswana, Sepedi, siSwati, Tshivenda, Xitsonga and isiNdebele, plus System Default. Uses AppCompat per-app locales; the choice persists across restarts.
 
 ---
 
@@ -55,13 +63,13 @@ The bottom bar allows instant access to the core daily features:
 ### Side Navigation Drawer
 Access the drawer by tapping the top-left menu icon or selecting **More** from the bottom bar:
 * **Marketplace**: Browse student items for sale, view product details, contact sellers, or create your own listing under **My Listings**.
-* **Campus Map**: Interactive map navigation to locate lecture halls and campus buildings.
+* **Community Events**: Browse events happening on campus.
 * **Attendance**: View attendance records and check-in history.
 * **APS Calculator**: Calculate your module scores/GPA and save results to earn gamification points.
 * **Gamification & Badges**: View your current level, point progress bar, unlocked achievements, and daily streak.
 * **QR Scanner**: Open the camera to scan attendance or event QR codes.
-* **Notifications**: View campus updates and assignment reminders.
-* **Settings**: Change app themes (Light, Dark, or System Default), edit your profile, or log out.
+* **Notifications**: View campus updates, reminders and add/sync alerts.
+* **Settings**: Change app themes (Light, Dark, or System Default), choose your language, edit your profile, or log out.
 
 ### Profile Customization
 1. Open the drawer, tap **Settings**, then select **Edit Profile**.
@@ -75,11 +83,13 @@ Access the drawer by tapping the top-left menu icon or selecting **More** from t
 * **Language**: Kotlin
 * **Architecture Pattern**: MVVM (Model-View-ViewModel) + Repository Pattern
 * **Local Storage**: 
-  * **Room Database**: Local caching for timetable classes and assignments.
+  * **Room Database (v5)**: Offline-first storage for timetable classes, assignments and notifications, with sync-state tracking.
   * **SharedPreferences**: Persistent offline cache for user profile, study streak, points, level, and badges.
 * **Cloud & Backend**:
   * **Firebase Authentication**: Email/Password and Google Sign-In.
   * **Cloud Firestore**: Real-time cloud database for user profiles, marketplace items, timetable, and assignments.
+  * **Firebase Cloud Messaging** and **WorkManager**: Push and scheduled notifications.
+* **Localisation**: `values-xx/strings.xml` per language and `AppCompatDelegate.setApplicationLocales` (`LanguageManager`). Translations are machine-generated and need native-speaker review. Notification text, toasts and marketplace categories are still English.
 * **Networking**: Retrofit 2 + Gson Converter for AI assistant API integration.
 * **Image Loading**: Coil (Coroutines Image Loader).
 * **UI Components**: Material Design 3, ConstraintLayout, ViewPager2, DrawerLayout, CameraX, and ML Kit Barcode Scanning.

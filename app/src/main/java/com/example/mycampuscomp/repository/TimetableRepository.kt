@@ -2,27 +2,25 @@ package com.example.mycampuscomp.repository
 
 import android.util.Log
 import com.example.mycampuscomp.db.TimetableDao
+import com.example.mycampuscomp.model.SyncState
+import com.example.mycampuscomp.notifications.NotificationCenter
 import com.example.mycampuscomp.model.TimetableClass
+import com.example.mycampuscomp.sync.SyncManager
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.CollectionReference
-import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.tasks.await
+import java.util.UUID
 
+/**
+ * Room is the source of truth for the UI. Writes are saved locally and flagged as
+ * pending; SyncManager uploads them as soon as the device is online.
+ */
 class TimetableRepository(
     private val timetableDao: TimetableDao,
-    private val firestore: FirebaseFirestore = FirebaseFirestore.getInstance(),
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
 ) {
 
     private val TAG = "TimetableRepository"
-
-    // Each signed-in user's classes live under their own document, e.g.
-    // users/{uid}/timetable/{classId} - so one user never sees another's data.
-    private fun userTimetableCollection(uid: String): CollectionReference {
-        return firestore.collection("users").document(uid).collection("timetable")
-    }
 
     fun getClassesForDayLocal(day: String): Flow<List<TimetableClass>> {
         val uid = auth.currentUser?.uid ?: return flowOf(emptyList())
@@ -35,22 +33,7 @@ class TimetableRepository(
     }
 
     suspend fun refreshClassesFromFirestore() {
-        val uid = auth.currentUser?.uid
-        if (uid == null) {
-            Log.w(TAG, "No signed-in user; skipping Firestore refresh")
-            return
-        }
-        try {
-            val snapshot = userTimetableCollection(uid).get().await()
-            val classes = snapshot.toObjects(TimetableClass::class.java).map { it.copy(userId = uid) }
-            Log.d(TAG, "Fetched ${classes.size} classes from Firestore for $uid")
-            timetableDao.clearAllForUser(uid)
-            if (classes.isNotEmpty()) {
-                timetableDao.insertClasses(classes)
-            }
-        } catch (e: Exception) {
-            Log.e(TAG, "Error refreshing classes from Firestore", e)
-        }
+        SyncManager.syncAll()
     }
 
     suspend fun saveClass(timetableClass: TimetableClass) {
@@ -59,22 +42,16 @@ class TimetableRepository(
             Log.w(TAG, "No signed-in user; cannot save class")
             return
         }
-        try {
-            val collection = userTimetableCollection(uid)
-            val docRef = if (timetableClass.id.isEmpty()) {
-                collection.document()
-            } else {
-                collection.document(timetableClass.id)
-            }
-            val finalClass = timetableClass.copy(id = docRef.id, userId = uid)
-            Log.d(TAG, "Saving class to Firestore: $finalClass")
-            docRef.set(finalClass).await()
-            Log.d(TAG, "Successfully saved to Firestore")
-            // Local update will happen through Firestore sync or manual refresh,
-            // but for immediate feedback, we can insert to DAO right away.
-            timetableDao.insertClasses(listOf(finalClass))
-        } catch (e: Exception) {
-            Log.e(TAG, "Error saving class to Firestore", e)
-        }
+        val id = timetableClass.id.ifEmpty { UUID.randomUUID().toString() }
+        timetableDao.insertClasses(
+            listOf(timetableClass.copy(id = id, userId = uid, syncState = SyncState.PENDING_UPSERT))
+        )
+        SyncManager.requestSync()
+        NotificationCenter.post(
+            uid,
+            "Class added",
+            "${timetableClass.subject} on ${timetableClass.day} at ${timetableClass.time}.",
+            "class"
+        )
     }
 }

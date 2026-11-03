@@ -31,7 +31,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif"
-                    android:text="Good morning,"
+                    android:text="@string/good_morning"
                     android:textColor="@color/text_muted"
                     android:textSize="17sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -68,7 +68,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="28dp"
                     android:fontFamily="sans-serif-medium"
-                    android:text="Today's Classes"
+                    android:text="@string/todays_classes"
                     android:textColor="@color/text_main"
                     android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -104,7 +104,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="sans-serif-medium"
-                                android:text="TODAY"
+                                android:text="@string/today_caps"
                                 android:textColor="@color/accent_text"
                                 android:textSize="11sp" />
 
@@ -130,7 +130,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="sans-serif-medium"
                                 android:letterSpacing="0.1"
-                                android:text="NEXT CLASS"
+                                android:text="@string/next_class"
                                 android:textColor="@color/text_muted"
                                 android:textSize="10sp"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -153,7 +153,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="6dp"
                                 android:fontFamily="sans-serif-black"
-                                android:text="No Classes"
+                                android:text="@string/no_classes"
                                 android:textColor="@color/text_main"
                                 android:textSize="16sp"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -164,7 +164,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="sans-serif"
-                                android:text="Free time"
+                                android:text="@string/free_time"
                                 android:textColor="@color/text_muted"
                                 android:textSize="12sp"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -204,7 +204,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="sans-serif-medium"
                                 android:letterSpacing="0.05"
-                                android:text="ASSIGNMENTS"
+                                android:text="@string/assignments_caps"
                                 android:textColor="@color/stats_card_1_text"
                                 android:textSize="10sp" />
 
@@ -221,7 +221,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="sans-serif"
-                                android:text="This Week"
+                                android:text="@string/this_week"
                                 android:textColor="@color/stats_card_1_text"
                                 android:textSize="11sp" />
                         </LinearLayout>
@@ -250,7 +250,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="sans-serif-medium"
                                 android:letterSpacing="0.1"
-                                android:text="CURRENT APS"
+                                android:text="@string/current_aps"
                                 android:textColor="@color/text_muted"
                                 android:textSize="10sp" />
 
@@ -267,7 +267,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="sans-serif"
-                                android:text="Connected"
+                                android:text="@string/connected"
                                 android:textColor="@color/text_muted"
                                 android:textSize="11sp" />
                         </LinearLayout>
@@ -304,7 +304,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="sans-serif-medium"
-                                android:text="STUDY STREAK"
+                                android:text="@string/study_streak"
                                 android:textColor="@color/white"
                                 android:textSize="12sp" />
 
@@ -312,7 +312,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="sans-serif"
-                                android:text="Maintain your daily goals!"
+                                android:text="@string/maintain_goals"
                                 android:textColor="#AEBBE7"
                                 android:textSize="12sp" />
                         </LinearLayout>
@@ -338,7 +338,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
                     android:fontFamily="sans-serif-medium"
-                    android:text="Upcoming Assignment"
+                    android:text="@string/upcoming_assignment"
                     android:textColor="@color/text_main"
                     android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -389,7 +389,7 @@
                             android:layout_marginStart="16dp"
                             android:layout_marginEnd="8dp"
                             android:fontFamily="sans-serif-medium"
-                            android:text="No Upcoming Assignments"
+                            android:text="@string/no_upcoming_assignments"
                             android:textColor="@color/text_main"
                             android:textSize="15sp"
                             app:layout_constraintEnd_toStartOf="@id/cardStatusContainer"
@@ -402,7 +402,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
                             android:fontFamily="sans-serif"
-                            android:text="All caught up!"
+                            android:text="@string/all_caught_up"
                             android:textColor="@color/text_muted"
                             android:textSize="13sp"
                             app:layout_constraintStart_toEndOf="@id/cardIconContainer"
@@ -427,7 +427,7 @@
                                 android:fontFamily="sans-serif-black"
                                 android:paddingHorizontal="10dp"
                                 android:paddingVertical="4dp"
-                                android:text="Done"
+                                android:text="@string/done"
                                 android:textColor="@color/upcoming_icon_tint"
                                 android:textSize="11sp" />
                         </com.google.android.material.card.MaterialCardView>

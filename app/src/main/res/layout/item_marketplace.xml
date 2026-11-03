@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:maxLines="2"
                 android:ellipsize="end"
-                android:text="Scientific Calculator"
+                android:text="@string/scientific_calculator"
                 android:textColor="@color/text_main"
                 android:textSize="15sp"
                 android:fontFamily="sans-serif-medium"/>
@@ -56,7 +56,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="Good condition"
+                android:text="@string/good_condition"
                 android:textColor="@color/text_muted"
                 android:textSize="12sp"/>
 
@@ -65,7 +65,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
-                android:text="Campus"
+                android:text="@string/campus"
                 android:textColor="@color/text_muted"
                 android:textSize="11sp"/>
 

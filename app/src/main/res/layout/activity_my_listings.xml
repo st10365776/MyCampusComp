@@ -11,7 +11,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="My Listings"
+        android:text="@string/my_listings"
         android:textColor="@color/text_main"
         android:textSize="28sp"
         android:fontFamily="sans-serif-black"/>
@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:text="Manage everything you're selling"
+        android:text="@string/manage_selling"
         android:textColor="@color/text_muted"
         android:textSize="14sp"/>
 

@@ -56,7 +56,7 @@
             android:fontFamily="sans-serif-medium"
             android:paddingHorizontal="10dp"
             android:paddingVertical="4dp"
-            android:text="Unlocked"
+            android:text="@string/unlocked"
             android:textColor="@color/accent_text"
             android:textSize="10sp" />
     </LinearLayout>

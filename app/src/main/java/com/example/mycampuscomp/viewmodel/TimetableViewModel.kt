@@ -45,6 +45,8 @@ class TimetableViewModel(application: Application) : AndroidViewModel(applicatio
         refreshData()
     }
 
+    val currentDay: String get() = selectedDay.value
+
     fun setDay(day: String) {
         selectedDay.value = day
     }
