@@ -1,5 +1,6 @@
 package com.example.mycampuscomp
 
+import android.app.TimePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -80,6 +81,10 @@ class TimetableActivity : AppCompatActivity() {
         val spinnerType = dialogView.findViewById<Spinner>(R.id.spinnerType)
         val btnSave = dialogView.findViewById<Button>(R.id.btnSave)
 
+        etTime.setOnClickListener {
+            showTimeSelector(etTime)
+        }
+
         btnSave.setOnClickListener {
             val subject = etSubject.text.toString()
             val time = etTime.text.toString()
@@ -91,11 +96,63 @@ class TimetableActivity : AppCompatActivity() {
                 viewModel.addClass(subject, time, room, day, type)
                 dialog.dismiss()
             } else {
-                // Show error if needed
+                if (subject.isEmpty()) etSubject.error = "Required"
+                if (time.isEmpty()) etTime.error = "Select a time"
+                if (room.isEmpty()) etRoom.error = "Required"
             }
         }
 
         dialog.show()
+    }
+
+    private fun showTimeSelector(target: EditText) {
+        val timeslots = arrayOf(
+            "08:00 - 09:00",
+            "09:00 - 10:00",
+            "10:00 - 11:00",
+            "11:00 - 12:00",
+            "12:00 - 13:00",
+            "13:00 - 14:00",
+            "14:00 - 15:00",
+            "15:00 - 16:00",
+            "16:00 - 17:00",
+            "17:00 - 18:00",
+            "Custom Time..."
+        )
+
+        AlertDialog.Builder(this)
+            .setTitle("Select Class Time")
+            .setItems(timeslots) { _, which ->
+                if (which == timeslots.size - 1) {
+                    showCustomTimePicker(target)
+                } else {
+                    target.setText(timeslots[which])
+                    target.error = null
+                }
+            }
+            .show()
+    }
+
+    private fun showCustomTimePicker(target: EditText) {
+        val calendar = Calendar.getInstance()
+        val currentHour = calendar.get(Calendar.HOUR_OF_DAY)
+        val currentMinute = calendar.get(Calendar.MINUTE)
+
+        TimePickerDialog(this, { _, startHour, startMinute ->
+            val startTimeStr = String.format(Locale.getDefault(), "%02d:%02d", startHour, startMinute)
+
+            TimePickerDialog(this, { _, endHour, endMinute ->
+                val endTimeStr = String.format(Locale.getDefault(), "%02d:%02d", endHour, endMinute)
+                target.setText("$startTimeStr - $endTimeStr")
+                target.error = null
+            }, (startHour + 1) % 24, startMinute, true).apply {
+                setTitle("Select End Time")
+                show()
+            }
+        }, currentHour, currentMinute, true).apply {
+            setTitle("Select Start Time")
+            show()
+        }
     }
 
     private fun setupRecyclerView() {
