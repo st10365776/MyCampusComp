@@ -66,7 +66,18 @@ class RegisterActivity : AppCompatActivity() {
                         finish()
                         return@addOnSuccessListener
                     }
-                    val newUser = User(uid = uid, name = nameText, email = emailText)
+                    UserRepository.clearLocalUserCache(this@RegisterActivity)
+                    val newUser = User(
+                        uid = uid,
+                        name = nameText,
+                        email = emailText,
+                        studyStreak = 0,
+                        apsScore = 0,
+                        profileImageUrl = "",
+                        points = 0,
+                        level = 1,
+                        badges = emptyList()
+                    )
                     UserRepository.saveUserLocally(this@RegisterActivity, newUser)
                     // Also persist the user's profile in Firestore so classes and
                     // other data can be stored under this user's document.
@@ -135,12 +146,18 @@ class RegisterActivity : AppCompatActivity() {
                     finish()
                     return@addOnSuccessListener
                 }
+                UserRepository.clearLocalUserCache(this@RegisterActivity)
                 val photoUrl = account.photoUrl?.toString() ?: ""
                 val newUser = User(
                     uid = uid,
                     name = account.displayName ?: "",
                     email = account.email ?: "",
-                    profileImageUrl = photoUrl
+                    studyStreak = 0,
+                    apsScore = 0,
+                    profileImageUrl = photoUrl,
+                    points = 0,
+                    level = 1,
+                    badges = emptyList()
                 )
                 UserRepository.saveUserLocally(this@RegisterActivity, newUser)
                 // merge() so an existing user's doc (e.g. they've registered before)

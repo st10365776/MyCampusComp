@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyCampusComp</string>
+    <string name="settings_title">Swi-setting</string>
+    <string name="account_section">Akhaunti</string>
+    <string name="edit_profile">Cinca Phurofayili</string>
+    <string name="notifications">Switiviso</string>
+    <string name="preferences_section">Swihlawulekisi</string>
+    <string name="theme">Theme</string>
+    <string name="theme_light">Theme yo Basa</string>
+    <string name="log_out">Huma</string>
+    <string name="language">Ririmi</string>
+    <string name="select_language">Hlawula Ririmi</string>
+    <string name="language_system_default">Swa Sisteme</string>
+    <string name="theme_dark">Ntima</string>
+    <string name="theme_light_short">Basa</string>
+    <string name="choose_theme">Hlawula Theme</string>
+    <string name="cancel">Khansela</string>
+    <string name="menu_home">Kaya</string>
+    <string name="timetable">Xhedyuli</string>
+    <string name="assignments">Swiavelo</string>
+    <string name="marketplace">Makete</string>
+    <string name="community_events">Makhombo ya Muganga</string>
+    <string name="aps_calculator">Khalkhulayita APS</string>
+    <string name="gamification_badges">Mambhurhi na Swipfuno</string>
+    <string name="good_morning">Avuxeni,</string>
+    <string name="todays_classes">Ticlass ta Namuntlha</string>
+    <string name="upcoming_assignment">Ntirho lowu Takaka</string>
+    <string name="save_changes">Hlayisa Kucinca</string>
+    <string name="search_items">Lava swilo...</string>
+    <string name="sell_an_item">Xavisa Nchumu</string>
+    <string name="my_listings">Swilo swa Mina</string>
+    <string name="menu_ai_assistant">Mupfuni wa AI</string>
+    <string name="menu_more">Swinwana</string>
+</resources>
