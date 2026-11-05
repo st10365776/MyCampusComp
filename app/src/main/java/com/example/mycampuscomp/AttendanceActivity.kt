@@ -42,6 +42,11 @@ class AttendanceActivity : AppCompatActivity() {
         setContentView(R.layout.activity_attendance)
 
         findViewById<android.view.View>(R.id.btnBack).setOnClickListener {
+            if (isTaskRoot) {
+                val intent = Intent(this, DashboardActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+                startActivity(intent)
+            }
             finish()
         }
 

@@ -1,5 +1,6 @@
 package com.example.mycampuscomp
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageButton
@@ -17,7 +18,14 @@ class NotificationsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_notifications)
 
-        findViewById<ImageButton>(R.id.btnBack).setOnClickListener { finish() }
+        findViewById<ImageButton>(R.id.btnBack).setOnClickListener {
+            if (isTaskRoot) {
+                val intent = Intent(this, DashboardActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+                startActivity(intent)
+            }
+            finish()
+        }
 
         val uid = FirebaseAuth.getInstance().currentUser?.uid ?: return
         val dao = AppDatabase.getDatabase(this).notificationDao()

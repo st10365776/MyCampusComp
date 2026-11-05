@@ -40,7 +40,7 @@ class AssignmentsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_assignments)
 
         findViewById<View>(R.id.btnBack).setOnClickListener {
-            finish()
+            navigateBack()
         }
 
         rvAssignments = findViewById(R.id.rvAssignments)
@@ -195,5 +195,14 @@ class AssignmentsActivity : AppCompatActivity() {
                 else -> false
             }
         }
+    }
+
+    private fun navigateBack() {
+        if (isTaskRoot) {
+            val intent = Intent(this, DashboardActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+            startActivity(intent)
+        }
+        finish()
     }
 }

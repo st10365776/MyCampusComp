@@ -444,8 +444,8 @@
             android:layout_height="wrap_content"
             android:background="@color/card_surface"
             android:elevation="16dp"
-            app:itemIconTint="@color/brand_primary"
-            app:itemTextColor="@color/brand_primary"
+            app:itemIconTint="@color/nav_item_color"
+            app:itemTextColor="@color/nav_item_color"
             app:labelVisibilityMode="labeled"
             app:layout_constraintBottom_toBottomOf="parent"
             app:menu="@menu/bottom_nav_menu" />
@@ -459,6 +459,8 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:background="@color/card_surface"
+        app:itemIconTint="@color/nav_item_color"
+        app:itemTextColor="@color/nav_item_color"
         app:headerLayout="@layout/drawer_header"
         app:menu="@menu/drawer_menu" />
 

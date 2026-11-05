@@ -1,5 +1,6 @@
 package com.example.mycampuscomp
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
@@ -58,6 +59,11 @@ class AIStudyAssistantActivity : AppCompatActivity() {
         chatScrollView = findViewById(R.id.chatScrollView)
 
         findViewById<View>(R.id.btnBack).setOnClickListener {
+            if (isTaskRoot) {
+                val intent = Intent(this, DashboardActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+                startActivity(intent)
+            }
             finish()
         }
 

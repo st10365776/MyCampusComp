@@ -1,5 +1,6 @@
 package com.example.mycampuscomp
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
@@ -61,7 +62,14 @@ class ApsCalculatorActivity : AppCompatActivity() {
             adapter.notifyDataSetChanged()
         }
 
-        btnBack.setOnClickListener { onBackPressed() }
+        btnBack.setOnClickListener {
+            if (isTaskRoot) {
+                val intent = Intent(this, DashboardActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+                startActivity(intent)
+            }
+            finish()
+        }
 
         btnAddModule.setOnClickListener {
             val newNum = modulesList.size + 1
