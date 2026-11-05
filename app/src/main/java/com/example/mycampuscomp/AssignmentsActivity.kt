@@ -39,6 +39,10 @@ class AssignmentsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_assignments)
 
+        findViewById<View>(R.id.btnBack).setOnClickListener {
+            finish()
+        }
+
         rvAssignments = findViewById(R.id.rvAssignments)
         tvEmptyState = findViewById(R.id.tvEmptyState)
         fabAddAssignment = findViewById(R.id.fabAddAssignment)

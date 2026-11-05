@@ -20,23 +20,47 @@
             android:orientation="vertical"
             android:padding="20dp">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/marketplace"
-                android:textColor="@color/text_main"
-                android:textSize="28sp"
-                android:fontFamily="sans-serif-black"/>
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="4dp"
-                android:text="@string/buy_sell_students"
-                android:textColor="@color/text_muted"
-                android:textSize="14sp"/>
+                <ImageButton
+                    android:id="@+id/btnBack"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/back_text"
+                    android:src="@drawable/ic_chevron_down"
+                    android:rotation="90"
+                    app:tint="@color/text_main" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/marketplace"
+                        android:textColor="@color/text_main"
+                        android:textSize="28sp"
+                        android:fontFamily="sans-serif-black"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="@string/buy_sell_students"
+                        android:textColor="@color/text_muted"
+                        android:textSize="14sp"/>
+                </LinearLayout>
+
+            </LinearLayout>
 
             <EditText
                 android:id="@+id/etSearchMarketplace"

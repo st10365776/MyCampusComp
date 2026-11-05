@@ -39,6 +39,10 @@ class MarketplaceActivity : AppCompatActivity() {
             R.layout.activity_marketplace
         )
 
+        findViewById<View>(R.id.btnBack).setOnClickListener {
+            finish()
+        }
+
         recyclerView =
             findViewById(R.id.recyclerMarketplace)
 
