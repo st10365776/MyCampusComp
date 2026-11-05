@@ -2,7 +2,7 @@
 
 **MyCampusComp** is a modern, feature-rich native Android application designed to simplify student life. From tracking daily lectures and assignment deadlines to consulting an AI study assistant, calculating APS scores, trading on a student marketplace, and earning gamification badges — MyCampusComp serves as an all-in-one digital companion on campus.
 
-Built with **Kotlin**, **Jetpack Architecture Components (MVVM)**, **Firebase**, and **Room Database**, the app is optimized for both online real-time sync and seamless offline usage.
+Built with **Kotlin**, **Firebase**, and **Room Database**, the app is optimized for both online real-time sync and seamless offline usage.
 
 ---
 
