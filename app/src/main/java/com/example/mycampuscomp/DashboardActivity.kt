@@ -85,7 +85,7 @@ class DashboardActivity : AppCompatActivity() {
         val ivDrawerProfile = headerView.findViewById<com.google.android.material.imageview.ShapeableImageView>(R.id.ivDrawerProfile)
 
         viewModel.userName.observe(this) { name ->
-            tvUserName.text = "$name 👋"
+            tvUserName.text = name
             tvDrawerName.text = name
         }
 
@@ -138,6 +138,7 @@ class DashboardActivity : AppCompatActivity() {
 
         viewModel.studyStreak.observe(this) { streak ->
             tvStudyStreak.text = "$streak 🔥"
+            tvStudyStreak.setTextColor(streakColor(streak))
         }
 
         viewModel.nextAssignment.observe(this) { assignment ->
@@ -151,6 +152,24 @@ class DashboardActivity : AppCompatActivity() {
                 tvUpcomingStatus.text = "Done"
             }
         }
+    }
+
+    private fun streakColor(streak: Int): Int {
+        // White at day 0, then warming through yellow, orange and red to purple by day 30.
+        val stops = listOf(
+            0 to 0xFFFFFFFF.toInt(),
+            1 to 0xFFFFEB3B.toInt(),
+            5 to 0xFFFFA000.toInt(),
+            10 to 0xFFFF5722.toInt(),
+            20 to 0xFFFF1744.toInt(),
+            30 to 0xFFE040FB.toInt()
+        )
+        if (streak >= stops.last().first) return stops.last().second
+        val upper = stops.indexOfFirst { streak <= it.first }.coerceAtLeast(1)
+        val (d0, c0) = stops[upper - 1]
+        val (d1, c1) = stops[upper]
+        val fraction = (streak - d0).toFloat() / (d1 - d0)
+        return androidx.core.graphics.ColorUtils.blendARGB(c0, c1, fraction.coerceIn(0f, 1f))
     }
 
     private fun setupBottomNavigation() {

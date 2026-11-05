@@ -110,16 +110,17 @@
                                 android:layout_marginTop="2dp"
                                 android:fontFamily="sans-serif-medium"
                                 android:text="0 Total Points"
-                                android:textColor="#AEBBE7"
+                                                                android:textColor="@color/white"
                                 android:textSize="14sp" />
                         </LinearLayout>
 
-                        <TextView
+                        <ImageView
                             android:id="@+id/tvLevelEmoji"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="🎓"
-                            android:textSize="44sp" />
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:importantForAccessibility="no"
+                            android:src="@drawable/ic_school"
+                            app:tint="@color/white" />
                     </LinearLayout>
 
                     <!-- Level Progress Bar -->
@@ -130,7 +131,7 @@
                         android:layout_marginTop="16dp"
                         android:fontFamily="sans-serif"
                         android:text="Progress to Level 2 (0 / 100 Pts)"
-                        android:textColor="#D0D9F7"
+                                                android:textColor="@color/white"
                         android:textSize="12sp" />
 
                     <ProgressBar

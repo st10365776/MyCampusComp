@@ -32,8 +32,8 @@
     <string name="choose_theme">Kgetha Pono</string>
     <string name="cancel">Khansela</string>
     <string name="add_module">+ Oketša Modiule</string>
-    <string name="offline_progress_saved">⚡ Mokgwa wa Ntle ga Inthanete - Tšwelopele e bolokilwe mo gae</string>
-    <string name="offline_results_sync">⚡ Mokgwa wa Ntle ga Inthanete - Dipoelo di tla sepelelana ge o kopantšwe</string>
+    <string name="offline_progress_saved">Mokgwa wa Ntle ga Inthanete - Tšwelopele e bolokilwe mo gae</string>
+    <string name="offline_results_sync">Mokgwa wa Ntle ga Inthanete - Dipoelo di tla sepelelana ge o kopantšwe</string>
     <string name="add_assignment">Oketša Modiro</string>
     <string name="add_new_class">Oketša Sehlopha se Seswa</string>
     <string name="all_caught_up">Tšohle di beakantšwe!</string>

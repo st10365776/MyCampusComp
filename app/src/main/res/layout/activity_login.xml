@@ -142,7 +142,8 @@
             app:cornerRadius="18dp"
             app:strokeColor="@color/divider_color"
             app:strokeWidth="1dp"
-            app:icon="@drawable/ic_google"
+            app:icon="@drawable/ic_google_g"
+            app:iconSize="24dp"
             app:iconGravity="textStart"
             app:iconPadding="10dp"
             app:iconTint="@null"/>

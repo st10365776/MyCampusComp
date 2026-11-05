@@ -1,9 +1,11 @@
 package com.example.mycampuscomp.model
 
+import androidx.annotation.DrawableRes
+
 data class Badge(
     val id: String,
     val title: String,
     val description: String,
-    val iconEmoji: String,
+    @DrawableRes val iconRes: Int,
     val isUnlocked: Boolean
 )

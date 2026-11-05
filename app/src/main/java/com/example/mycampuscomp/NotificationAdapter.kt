@@ -4,6 +4,7 @@ import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
@@ -20,7 +21,7 @@ class NotificationAdapter(
 
     class NotificationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val card: CardView = itemView.findViewById(R.id.cardNotification)
-        val icon: TextView = itemView.findViewById(R.id.tvNotificationIcon)
+        val icon: ImageView = itemView.findViewById(R.id.tvNotificationIcon)
         val title: TextView = itemView.findViewById(R.id.tvNotificationTitle)
         val message: TextView = itemView.findViewById(R.id.tvNotificationMessage)
         val time: TextView = itemView.findViewById(R.id.tvNotificationTime)
@@ -43,17 +44,16 @@ class NotificationAdapter(
             ContextCompat.getColor(ctx, if (notification.read) R.color.card_surface else R.color.accent_surface)
         )
 
-        holder.icon.text = when (notification.type) {
-            "assignment" -> "\uD83D\uDCDD"
-            "class" -> "\uD83D\uDCDA"
-            "reminder" -> "\u23F0"
-            "sync" -> "\u2601\uFE0F"
-            "badge" -> "\uD83C\uDFC6"
-            "marketplace" -> "\uD83D\uDED2"
-            "event" -> "\uD83D\uDCC5"
-            "announcement" -> "\uD83D\uDCE2"
-            else -> "\uD83D\uDD14"
-        }
+        holder.icon.setImageResource(
+            when (notification.type) {
+                "assignment" -> R.drawable.ic_assignment
+                "class" -> R.drawable.ic_class_book
+                "reminder", "event" -> R.drawable.ic_timetable
+                "badge" -> R.drawable.ic_trophy
+                "marketplace" -> R.drawable.ic_marketplace
+                else -> R.drawable.ic_stat_notification
+            }
+        )
 
         holder.time.text = if (notification.timestamp > 0) {
             SimpleDateFormat("dd MMM yyyy, HH:mm", Locale.getDefault()).format(Date(notification.timestamp))
