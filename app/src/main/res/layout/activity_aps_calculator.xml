@@ -184,7 +184,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-medium"
                             android:text="@string/computed_score"
-                            android:textColor="#AEBBE7"
+                                                        android:textColor="@color/white"
                             android:textSize="12sp" />
 
                         <TextView
@@ -205,7 +205,7 @@
                             android:fontFamily="sans-serif"
                             android:gravity="center"
                             android:text="Based on 6 modules entered"
-                            android:textColor="#D0D9F7"
+                                                        android:textColor="@color/white"
                             android:textSize="13sp" />
 
                         <com.google.android.material.button.MaterialButton

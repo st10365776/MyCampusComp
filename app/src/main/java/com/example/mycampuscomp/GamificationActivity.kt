@@ -95,12 +95,12 @@ class GamificationActivity : AppCompatActivity() {
         }
 
         val allBadges = listOf(
-            Badge("badge_first_points", "Point Collector", "Earned your first points", "🌟", unlockedBadgeIds.contains("badge_first_points") || points > 0),
-            Badge("badge_first_assignment", "Task Master", "Completed an assignment", "✅", unlockedBadgeIds.contains("badge_first_assignment")),
-            Badge("badge_ai_study", "AI Scholar", "Used AI Study Assistant", "🤖", unlockedBadgeIds.contains("badge_ai_study")),
-            Badge("badge_aps_calculator", "APS Planner", "Saved your APS calculation", "📊", unlockedBadgeIds.contains("badge_aps_calculator")),
-            Badge("badge_level2", "Rising Star", "Reached Level 2", "⭐", unlockedBadgeIds.contains("badge_level2") || level >= 2),
-            Badge("badge_level5", "Master Scholar", "Reached Level 5", "👑", unlockedBadgeIds.contains("badge_level5") || level >= 5)
+            Badge("badge_first_points", "Point Collector", "Earned your first points", R.drawable.ic_star, unlockedBadgeIds.contains("badge_first_points") || points > 0),
+            Badge("badge_first_assignment", "Task Master", "Completed an assignment", R.drawable.ic_check_circle, unlockedBadgeIds.contains("badge_first_assignment")),
+            Badge("badge_ai_study", "AI Scholar", "Used AI Study Assistant", R.drawable.ic_ai, unlockedBadgeIds.contains("badge_ai_study")),
+            Badge("badge_aps_calculator", "APS Planner", "Saved your APS calculation", R.drawable.ic_bar_chart, unlockedBadgeIds.contains("badge_aps_calculator")),
+            Badge("badge_level2", "Rising Star", "Reached Level 2", R.drawable.ic_trending_up, unlockedBadgeIds.contains("badge_level2") || level >= 2),
+            Badge("badge_level5", "Master Scholar", "Reached Level 5", R.drawable.ic_trophy, unlockedBadgeIds.contains("badge_level5") || level >= 5)
         )
 
         badgeAdapter.updateBadges(allBadges)

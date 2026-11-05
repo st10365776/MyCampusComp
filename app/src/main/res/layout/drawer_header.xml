@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif"
         android:text="student@mycampus.com"
-        android:textColor="#AEBBE7"
+                android:textColor="@color/white"
         android:textSize="14sp" />
 
 </LinearLayout>

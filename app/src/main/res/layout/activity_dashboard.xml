@@ -42,7 +42,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-bold"
-                    android:text="Student 👋"
+                    android:text="Student"
                     android:textColor="@color/text_main"
                     android:textSize="24sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -313,7 +313,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="sans-serif"
                                 android:text="@string/maintain_goals"
-                                android:textColor="#AEBBE7"
+                                android:textColor="@color/white"
                                 android:textSize="12sp" />
                         </LinearLayout>
 

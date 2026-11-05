@@ -75,8 +75,8 @@
 
     <!-- Layout / menu strings -->
     <string name="add_module">+ Add Module</string>
-    <string name="offline_progress_saved">⚡ Offline Mode - Progress saved locally</string>
-    <string name="offline_results_sync">⚡ Offline Mode - Results will sync when connected</string>
+    <string name="offline_progress_saved">Offline Mode - Progress saved locally</string>
+    <string name="offline_results_sync">Offline Mode - Results will sync when connected</string>
     <string name="add_assignment">Add Assignment</string>
     <string name="add_new_class">Add New Class</string>
     <string name="all_caught_up">All caught up!</string>

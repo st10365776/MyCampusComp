@@ -21,7 +21,7 @@ class AttendanceActivity : AppCompatActivity() {
         if (result.resultCode == Activity.RESULT_OK) {
             val scannedValue = result.data?.getStringExtra("QR_RESULT")
             if (scannedValue == VALID_ATTENDANCE_QR) {
-                attendanceStatus.text = "Present ✓"
+                attendanceStatus.text = "Present"
                 attendanceStatus.setTextColor(getColor(R.color.accent_text))
                 Toast.makeText(this, "Attendance marked successfully", Toast.LENGTH_LONG).show()
             } else {
@@ -83,7 +83,7 @@ class AttendanceActivity : AppCompatActivity() {
                     if (enteredCode == VALID_ATTENDANCE_QR) {
 
                         attendanceStatus.text =
-                            "Present ✓"
+                            "Present"
 
                         attendanceStatus.setTextColor(
                             getColor(R.color.accent_text)

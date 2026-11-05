@@ -83,7 +83,7 @@ class MainActivity : AppCompatActivity() {
             val card = inflater.inflate(R.layout.item_event, container, false)
             card.findViewById<TextView>(R.id.tvEventDate).text = event.date
             card.findViewById<TextView>(R.id.tvEventTitle).text = event.title
-            card.findViewById<TextView>(R.id.tvEventLocation).text = "📍 ${event.location}"
+            card.findViewById<TextView>(R.id.tvEventLocation).text = event.location
             card.findViewById<TextView>(R.id.tvEventDescription).text = event.description
             container.addView(card)
         }

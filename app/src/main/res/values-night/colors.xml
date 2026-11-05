@@ -4,8 +4,10 @@
     <color name="screen_background">#0D1117</color>
     <color name="card_surface">#161B22</color>
     <color name="text_main">#FFFFFF</color>
-    <color name="text_muted">#B0B8C1</color>
+    <color name="text_muted">#FFFFFF</color>
     <color name="primary_text">#FFFFFF</color>
+    <color name="secondary_text">#FFFFFF</color>
+    <color name="lightText">#FFFFFF</color>
     <color name="divider_color">#30363D</color>
     <color name="header_bg">#161B22</color>
     <color name="button_logout_text">#F85149</color>
@@ -22,8 +24,8 @@
     <color name="ai_chat_bubble_ai">#161B22</color>
 
     <color name="bg_light">#0D1117</color>
-    <color name="navy_dark">#E6EDF3</color>
-    <color name="text_secondary">#8B949E</color>
+    <color name="navy_dark">#FFFFFF</color>
+    <color name="text_secondary">#FFFFFF</color>
 
     <color name="brand_primary">#3B7BEA</color>
     <color name="warn_bg">#3A2F10</color>
@@ -39,5 +41,5 @@
     <color name="status_completed_text">#56D364</color>
     <color name="input_background">#21262D</color>
     <color name="ai_input_text_color">#FFFFFF</color>
-    <color name="ai_input_hint_color">#8B949E</color>
+    <color name="ai_input_hint_color">#FFFFFF</color>
 </resources>
