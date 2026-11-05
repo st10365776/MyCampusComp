@@ -43,6 +43,9 @@ class TimetableActivity : AppCompatActivity() {
         setContentView(R.layout.activity_timetable)
 
         initViews()
+        findViewById<android.view.View>(R.id.btnBack).setOnClickListener {
+            finish()
+        }
         setupRecyclerView()
         setupDaySelection()
         setupToggle()

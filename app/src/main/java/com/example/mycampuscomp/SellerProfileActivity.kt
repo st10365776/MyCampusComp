@@ -28,6 +28,10 @@ class SellerProfileActivity : AppCompatActivity() {
             R.layout.activity_seller_profile
         )
 
+        findViewById<android.view.View>(R.id.btnBack).setOnClickListener {
+            finish()
+        }
+
         val sellerId =
             intent.getStringExtra(
                 "SELLER_ID"

@@ -15,6 +15,10 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_main)
 
+        findViewById<android.view.View>(R.id.btnBack).setOnClickListener {
+            finish()
+        }
+
         showEvents()
 
         // --------------------------------------------------
