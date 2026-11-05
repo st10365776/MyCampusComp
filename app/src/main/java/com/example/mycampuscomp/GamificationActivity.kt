@@ -41,7 +41,14 @@ class GamificationActivity : AppCompatActivity() {
         pbLevelProgress = findViewById(R.id.pbLevelProgress)
         rvBadges = findViewById(R.id.rvBadges)
 
-        btnBack.setOnClickListener { onBackPressed() }
+        btnBack.setOnClickListener {
+            if (isTaskRoot) {
+                val intent = android.content.Intent(this, DashboardActivity::class.java)
+                intent.flags = android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP or android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP
+                startActivity(intent)
+            }
+            finish()
+        }
 
         rvBadges.layoutManager = GridLayoutManager(this, 2)
         rvBadges.adapter = badgeAdapter

@@ -29,6 +29,11 @@ class SellerProfileActivity : AppCompatActivity() {
         )
 
         findViewById<android.view.View>(R.id.btnBack).setOnClickListener {
+            if (isTaskRoot) {
+                val intent = android.content.Intent(this, DashboardActivity::class.java)
+                intent.flags = android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP or android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP
+                startActivity(intent)
+            }
             finish()
         }
 

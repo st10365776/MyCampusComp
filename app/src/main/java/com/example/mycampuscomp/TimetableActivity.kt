@@ -44,7 +44,7 @@ class TimetableActivity : AppCompatActivity() {
 
         initViews()
         findViewById<android.view.View>(R.id.btnBack).setOnClickListener {
-            finish()
+            navigateBack()
         }
         setupRecyclerView()
         setupDaySelection()
@@ -305,5 +305,14 @@ class TimetableActivity : AppCompatActivity() {
             topText.setTextColor(topTextColor)
             bottomText.setTextColor(bottomTextColor)
         }
+    }
+
+    private fun navigateBack() {
+        if (isTaskRoot) {
+            val intent = Intent(this, DashboardActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+            startActivity(intent)
+        }
+        finish()
     }
 }

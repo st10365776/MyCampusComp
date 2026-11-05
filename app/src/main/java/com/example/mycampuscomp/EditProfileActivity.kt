@@ -1,5 +1,6 @@
 package com.example.mycampuscomp
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.widget.Button
@@ -92,7 +93,14 @@ class EditProfileActivity : AppCompatActivity() {
             }
         }
 
-        btnBack.setOnClickListener { finish() }
+        btnBack.setOnClickListener {
+            if (isTaskRoot) {
+                val intent = Intent(this, DashboardActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+                startActivity(intent)
+            }
+            finish()
+        }
 
         btnSave.setOnClickListener {
             val name = etName.text.toString().trim()

@@ -300,8 +300,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/card_surface"
-        app:itemIconTint="@color/navy_dark"
-        app:itemTextColor="@color/navy_dark"
+        app:itemIconTint="@color/nav_item_color"
+        app:itemTextColor="@color/nav_item_color"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/bottom_nav_menu" />

@@ -26,6 +26,7 @@
     <color name="bg_light">#0D1117</color>
     <color name="navy_dark">#FFFFFF</color>
     <color name="text_secondary">#FFFFFF</color>
+    <color name="nav_item_color">#FFFFFF</color>
 
     <color name="brand_primary">#3B7BEA</color>
     <color name="warn_bg">#3A2F10</color>
