@@ -12,13 +12,30 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/ivProductImage"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="280dp"
-            android:background="@color/placeholder_bg"
-            android:scaleType="centerCrop"
-            android:src="@drawable/logo2"/>
+            android:layout_height="280dp">
+
+            <ImageView
+                android:id="@+id/ivProductImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/placeholder_bg"
+                android:scaleType="centerCrop"
+                android:src="@drawable/logo2"/>
+
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="16dp"
+                android:background="@drawable/bg_toggle_switch"
+                android:contentDescription="@string/back_text"
+                android:src="@drawable/ic_chevron_down"
+                android:rotation="90"
+                app:tint="@color/text_main" />
+
+        </FrameLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

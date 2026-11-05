@@ -31,6 +31,10 @@ class MyListingsActivity : AppCompatActivity() {
             R.layout.activity_my_listings
         )
 
+        findViewById<android.view.View>(R.id.btnBack).setOnClickListener {
+            finish()
+        }
+
         val recycler =
             findViewById<RecyclerView>(
                 R.id.recyclerMyListings

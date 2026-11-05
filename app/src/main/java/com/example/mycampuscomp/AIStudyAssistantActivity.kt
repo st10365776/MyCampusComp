@@ -57,6 +57,10 @@ class AIStudyAssistantActivity : AppCompatActivity() {
         chatContainer = findViewById(R.id.chatContainer)
         chatScrollView = findViewById(R.id.chatScrollView)
 
+        findViewById<View>(R.id.btnBack).setOnClickListener {
+            finish()
+        }
+
         showWelcomeMessage()
 
         sendButton.setOnClickListener {

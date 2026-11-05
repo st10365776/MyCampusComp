@@ -22,6 +22,10 @@ class ListItemActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_list_item)
 
+        findViewById<android.view.View>(R.id.btnBack).setOnClickListener {
+            finish()
+        }
+
         val title = findViewById<EditText>(
             R.id.etItemTitle
         )

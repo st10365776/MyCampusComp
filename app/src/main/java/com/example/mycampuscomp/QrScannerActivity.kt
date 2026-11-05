@@ -47,6 +47,10 @@ class QrScannerActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_qr_scanner)
 
+        findViewById<android.view.View>(R.id.btnBack).setOnClickListener {
+            finish()
+        }
+
         previewView = findViewById(R.id.previewView)
 
         checkCameraPermission()

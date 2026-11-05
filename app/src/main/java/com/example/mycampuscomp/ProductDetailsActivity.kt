@@ -29,6 +29,10 @@ class ProductDetailsActivity : AppCompatActivity() {
             R.layout.activity_product_details
         )
 
+        findViewById<android.view.View>(R.id.btnBack).setOnClickListener {
+            finish()
+        }
+
         itemId =
             intent.getStringExtra(
                 "ITEM_ID"
