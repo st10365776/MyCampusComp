@@ -41,6 +41,10 @@ class AttendanceActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_attendance)
 
+        findViewById<android.view.View>(R.id.btnBack).setOnClickListener {
+            finish()
+        }
+
         attendanceStatus =
             findViewById(R.id.tvAttendanceStatus)
 

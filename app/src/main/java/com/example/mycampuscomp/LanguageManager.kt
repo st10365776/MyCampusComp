@@ -3,40 +3,44 @@ package com.example.mycampuscomp
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.LocaleListCompat
 
-/** The 11 official South African languages. An empty tag means "follow the system". */
+data class LanguageItem(
+    val tag: String,
+    val nativeName: String,
+    val englishName: String
+)
+
 object LanguageManager {
-
-    data class Language(val tag: String, val nativeName: String, val englishName: String)
-
     val languages = listOf(
-        Language("en", "English", "English"),
-        Language("af", "Afrikaans", "Afrikaans"),
-        Language("zu", "isiZulu", "Zulu"),
-        Language("xh", "isiXhosa", "Xhosa"),
-        Language("st", "Sesotho", "Southern Sotho"),
-        Language("tn", "Setswana", "Tswana"),
-        Language("nso", "Sepedi", "Northern Sotho"),
-        Language("ss", "siSwati", "Swati"),
-        Language("ve", "Tshivenda", "Venda"),
-        Language("ts", "Xitsonga", "Tsonga"),
-        Language("nr", "isiNdebele", "Southern Ndebele")
+        LanguageItem("en", "English", "English"),
+        LanguageItem("af", "Afrikaans", "Afrikaans"),
+        LanguageItem("zu", "isiZulu", "Zulu"),
+        LanguageItem("xh", "isiXhosa", "Xhosa"),
+        LanguageItem("st", "Sesotho", "Sotho"),
+        LanguageItem("tn", "Setswana", "Tswana"),
+        LanguageItem("nso", "Sepedi", "Northern Sotho"),
+        LanguageItem("ss", "siSwati", "Swati"),
+        LanguageItem("ts", "Xitsonga", "Tsonga"),
+        LanguageItem("ve", "Tshivenda", "Venda"),
+        LanguageItem("nr", "isiNdebele", "Ndebele")
     )
 
-    /** Tag of the language currently applied, or "" when following the system. */
     fun currentTag(): String {
         val locales = AppCompatDelegate.getApplicationLocales()
-        if (locales.isEmpty) return ""
-        val locale = locales[0] ?: return ""
-        return locale.language
+        return if (!locales.isEmpty) locales.get(0)?.language ?: "" else ""
+    }
+
+    fun displayName(tag: String, defaultName: String): String {
+        if (tag.isEmpty()) return defaultName
+        val item = languages.find { it.tag == tag }
+        return if (item != null) "${item.nativeName} (${item.englishName})" else defaultName
     }
 
     fun apply(tag: String) {
-        AppCompatDelegate.setApplicationLocales(
-            if (tag.isEmpty()) LocaleListCompat.getEmptyLocaleList()
-            else LocaleListCompat.forLanguageTags(tag)
-        )
+        val localeList = if (tag.isEmpty()) {
+            LocaleListCompat.getEmptyLocaleList()
+        } else {
+            LocaleListCompat.forLanguageTags(tag)
+        }
+        AppCompatDelegate.setApplicationLocales(localeList)
     }
-
-    fun displayName(tag: String, systemDefaultLabel: String): String =
-        languages.firstOrNull { it.tag == tag }?.nativeName ?: systemDefaultLabel
 }

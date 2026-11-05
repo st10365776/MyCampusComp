@@ -17,6 +17,6 @@ data class TimetableClass(
     val type: String = "Lecture", // e.g., "Lecture", "Lab"
     // Local-only sync flag, never written to Firestore.
     @get:Exclude
-    @ColumnInfo(defaultValue = SyncState.SYNCED)
+    @ColumnInfo(defaultValue = "SYNCED")
     val syncState: String = SyncState.SYNCED
 )

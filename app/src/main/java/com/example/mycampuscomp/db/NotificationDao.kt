@@ -12,17 +12,13 @@ interface NotificationDao {
     @Query("SELECT * FROM notifications WHERE userId = :userId ORDER BY timestamp DESC")
     fun getForUser(userId: String): Flow<List<NotificationModel>>
 
-    @Query("SELECT COUNT(*) FROM notifications WHERE userId = :userId AND `read` = 0")
-    fun countUnread(userId: String): Flow<Int>
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insert(notifications: List<NotificationModel>)
 
-    // IGNORE makes deterministic ids (e.g. daily reminders) show only once; returns -1 on duplicates.
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(notification: NotificationModel): Long
-
-    @Query("UPDATE notifications SET `read` = 1 WHERE id = :id")
+    @Query("UPDATE notifications SET read = 1 WHERE id = :id")
     suspend fun markRead(id: String)
 
-    @Query("UPDATE notifications SET `read` = 1 WHERE userId = :userId")
+    @Query("UPDATE notifications SET read = 1 WHERE userId = :userId")
     suspend fun markAllRead(userId: String)
 
     @Query("DELETE FROM notifications WHERE userId = :userId")
